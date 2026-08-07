@@ -681,7 +681,7 @@ export default function InternshipPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="w-full max-w-7xl flex flex-col md:flex-row md:min-h-[640px] border border-slate-200 rounded-3xl overflow-hidden shadow-sm bg-white"
+          className="w-full max-w-7xl flex flex-col md:flex-row md:min-h-160 border border-slate-200 rounded-3xl overflow-hidden shadow-sm bg-white"
         >
           
           {/* Left Side - The Image */}
@@ -694,7 +694,7 @@ export default function InternshipPage() {
           </div>
 
           {/* Right Side - Application Form */}
-          <div className="w-full md:w-7/12 lg:w-7/12 p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-white md:min-h-[640px]">
+          <div className="w-full md:w-7/12 lg:w-7/12 p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-white md:min-h-160">
             <div className="w-full">
               
               {/* Header */}
@@ -837,7 +837,7 @@ export default function InternshipPage() {
                   <div className="flex gap-3 w-full">
                     <button 
                       onClick={() => setFormStep("edit")} 
-                      className={`bg-white text-slate-700 font-bold rounded-2xl hover:bg-slate-50 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] flex items-center justify-center overflow-hidden shrink-0 ${
+                      className={`bg-white text-slate-700 font-bold rounded-2xl hover:bg-slate-50 transition-all duration-500 ease-in-out flex items-center justify-center overflow-hidden shrink-0 ${
                         formStep === "submitting" ? "w-0 opacity-0 border-0 py-4" : "w-1/3 opacity-100 border border-slate-300 py-4"
                       }`}
                     >
@@ -846,7 +846,7 @@ export default function InternshipPage() {
                     <button 
                       onClick={handleConfirmSubmit}
                       disabled={formStep === "submitting"} 
-                      className={`bg-emerald-800 text-white text-lg font-bold py-4 rounded-2xl hover:bg-emerald-700 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] shadow-sm disabled:opacity-90 disabled:cursor-not-allowed flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap ${
+                      className={`bg-emerald-800 text-white text-lg font-bold py-4 rounded-2xl hover:bg-emerald-700 transition-all duration-500 ease-in-out shadow-sm disabled:opacity-90 disabled:cursor-not-allowed flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap ${
                         formStep === "submitting" ? "w-full" : "w-2/3"
                       }`}
                     >

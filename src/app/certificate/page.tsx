@@ -115,7 +115,7 @@ export default function CertificatePage() {
           backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.025) 10px, rgba(0,0,0,0.025) 11px)' 
         }}
       >
-        <div className="w-full max-w-6xl mx-auto flex flex-col bg-white rounded-[2rem] overflow-hidden border border-slate-200">
+        <div className="w-full max-w-6xl mx-auto flex flex-col bg-white rounded-4xl overflow-hidden border border-slate-200">
           
           {/* Top Banner Section */}
           <motion.div 
