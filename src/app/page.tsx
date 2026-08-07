@@ -67,7 +67,7 @@ export default function Home() {
             <a href="/internship" className={`transition-colors ${activeSection === 'internship' ? 'text-primary font-bold' : 'hover:text-primary'}`}>
               {language === 'en' ? 'Internship' : 'ఇంటర్న్ షిప్'}
             </a>
-            <a href="#certificate" className={`transition-colors ${activeSection === 'certificate' ? 'text-primary font-bold' : 'hover:text-primary'}`}>
+            <a href="/certificate" className={`transition-colors ${activeSection === 'certificate' ? 'text-primary font-bold' : 'hover:text-primary'}`}>
               {language === 'en' ? 'Certificates' : 'సర్టిఫికెట్స్'}
             </a>
           </div>

@@ -202,7 +202,7 @@ export default function InternshipPage() {
             <span className="transition-colors text-primary font-bold">
               Internship
             </span>
-            <Link href="/#certificate" className="transition-colors hover:text-primary">
+            <Link href="/certificate" className="transition-colors hover:text-primary">
               Certificates
             </Link>
           </div>
@@ -226,7 +226,7 @@ export default function InternshipPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.25 }}
-                  className="bg-white text-slate-800 border border-slate-200 px-5 py-2.5 h-11 rounded-lg font-bold text-base flex items-center gap-2.5 shadow-sm"
+                  className="bg-white text-slate-800 border border-slate-200 px-5 py-2.5 h-11 rounded-lg font-bold text-base flex items-center gap-2.5"
                 >
                   <div className="w-6 h-6 rounded-full bg-slate-800 text-white flex items-center justify-center text-sm">
                     {formData.name.charAt(0).toUpperCase()}
@@ -681,11 +681,11 @@ export default function InternshipPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="w-full max-w-7xl flex flex-col md:flex-row md:min-h-[1000px] border border-slate-200 rounded-3xl overflow-hidden shadow-sm bg-white"
+          className="w-full max-w-7xl flex flex-col md:flex-row md:min-h-[640px] border border-slate-200 rounded-3xl overflow-hidden shadow-sm bg-white"
         >
           
           {/* Left Side - The Image */}
-          <div className="w-full md:w-5/12 lg:w-5/12 relative bg-slate-50 min-h-[300px] md:min-h-full">
+          <div className="w-full md:w-5/12 lg:w-5/12 relative bg-slate-50 min-h-75 md:min-h-full">
             <img 
               src="/form image.png" 
               alt="Internship Form Banner" 
@@ -694,7 +694,7 @@ export default function InternshipPage() {
           </div>
 
           {/* Right Side - Application Form */}
-          <div className="w-full md:w-7/12 lg:w-7/12 p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-white md:min-h-[1000px]">
+          <div className="w-full md:w-7/12 lg:w-7/12 p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-white md:min-h-[640px]">
             <div className="w-full">
               
               {/* Header */}
@@ -705,9 +705,11 @@ export default function InternshipPage() {
                 <h4 className="text-lg md:text-xl font-bold text-slate-800 mb-4">
                   Agri-Tech Field Operations Internship
                 </h4>
-                <p className="text-slate-500 font-medium text-base">
-                  Please fill in your details below to apply for the program.
-                </p>
+                {formStep === "edit" && !loginMode && (
+                  <p className="text-slate-500 font-medium text-base">
+                    Please fill in your details below to apply for the program.
+                  </p>
+                )}
               </div>
 
               {/* Application Status / Form */}
@@ -729,7 +731,7 @@ export default function InternshipPage() {
                     <CheckCircle size={48} strokeWidth={2.5} />
                   </div>
                   <h4 className="text-3xl font-extrabold text-emerald-900 mb-2 font-heading tracking-tight">Congratulations!</h4>
-                  <p className="text-emerald-700 font-bold text-xl mb-3">You are Selected.</p>
+                  <p className="text-slate-900 font-bold text-xl mb-3">You are Selected.</p>
                   <p className="text-slate-600 font-medium text-base mb-8 max-w-sm">
                     {userData?.name.split(' ')[0]}, your application has been approved! Welcome to the Kisan Khata Field Operations Team.
                   </p>
