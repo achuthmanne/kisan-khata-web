@@ -80,7 +80,7 @@ export default function Home() {
                 className="flex items-center gap-2 px-4 py-2.5 text-base font-medium text-gray-800 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors"
               >
                 <Globe size={18} className="text-primary" />
-                <span className={`leading-none ${language === 'te' ? 'pt-1.5' : ''}`}>
+                <span className="leading-none">
                   {language === 'en' ? 'English' : 'తెలుగు'}
                 </span>
                 <ChevronDown size={16} className={`text-gray-500 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} />
@@ -468,8 +468,42 @@ export default function Home() {
         </svg>
       </div>
 
-      {/* Download App CTA Section */}
-      <section className="w-full bg-[#064e3b] relative overflow-hidden py-16 md:py-24">
+      {/* Dedicated Telugu Farmers & Download App CTA Section */}
+      <section className="w-full bg-[#064e3b] relative overflow-hidden pt-12 md:pt-20 pb-16 md:pb-24">
+        
+        {/* --- NEW AP/TG SECTION (Melts perfectly into the CTA) --- */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-20 flex flex-col items-center justify-center text-center mb-20 md:mb-28">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-center"
+          >
+            <div className="flex items-center gap-6 md:gap-10 mb-8">
+              <div className="w-20 h-20 md:w-28 md:h-28 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center p-3 md:p-4 border border-white/20 shadow-2xl relative group overflow-hidden">
+                <div className="absolute inset-0 rounded-full bg-emerald-400/20 blur-xl group-hover:bg-emerald-400/40 transition-all duration-500"></div>
+                <img src="/Emblem_of_Andhra_Pradesh.svg" alt="Andhra Pradesh Emblem" className="w-full h-full object-contain relative z-10 scale-[1.3] translate-y-2 md:translate-y-3" />
+              </div>
+              <div className="h-12 w-px bg-white/20"></div>
+              <div className="w-20 h-20 md:w-28 md:h-28 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center p-3 md:p-4 border border-white/20 shadow-2xl relative group overflow-hidden">
+                <div className="absolute inset-0 rounded-full bg-emerald-400/20 blur-xl group-hover:bg-emerald-400/40 transition-all duration-500"></div>
+                <img src="/Emblem_of_Telangana.svg" alt="Telangana Emblem" className="w-full h-full object-contain relative z-10 scale-[1.2] translate-y-2 md:translate-y-2" />
+              </div>
+            </div>
+            
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-5 tracking-tight drop-shadow-sm">
+              {language === 'en' ? 'Proudly Built for Telugu Farmers' : 'మన తెలుగు రైతుల కోసం ప్రత్యేకంగా'}
+            </h2>
+            <p className="text-emerald-50/90 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+              {language === 'en' 
+                ? 'Dedicated to empowering the agricultural heartbeat of Andhra Pradesh and Telangana with modern digital tools.'
+                : 'ఆంధ్రప్రదేశ్ మరియు తెలంగాణ రైతుల డిజిటల్ ప్రగతి కోసం అంకితమివ్వబడింది.'}
+            </p>
+          </motion.div>
+        </div>
+        {/* -------------------------------------------------------- */}
+
         <div className="max-w-325 mx-auto px-6 md:px-12 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-16">
           
           <motion.div 
@@ -479,10 +513,10 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="w-full lg:w-1/2 flex flex-col gap-6 text-center lg:text-left items-center lg:items-start"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-white leading-[1.1] tracking-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-yellow-400 leading-[1.1] tracking-tight drop-shadow-sm">
               {language === 'en' ? 'Take Control of Your Farm Today.' : 'మీ వ్యవసాయాన్ని మీ చేతుల్లోకి తీసుకోండి.'}
             </h2>
-            <p className="text-xl text-green-50 font-medium max-w-lg opacity-90 leading-relaxed">
+            <p className="text-xl text-emerald-50/80 font-medium max-w-lg leading-relaxed">
               {language === 'en' 
                 ? 'Join thousands of smart farmers and machine owners across Telugu states. Download Kisan Khata now.'
                 : 'తెలుగు రాష్ట్రాల్లోని వేలాది మంది స్మార్ట్ రైతులు, మెషిన్ ఓనర్లతో కలవండి. ఇప్పుడే కిసాన్ ఖాతా యాప్ ని డౌన్లోడ్ చేసుకోండి.'}
@@ -557,11 +591,11 @@ export default function Home() {
             
             {/* Brand Column */}
             <div className="flex flex-col gap-6 lg:col-span-2 lg:pr-12">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center p-1 shrink-0 shadow-sm overflow-hidden border border-gray-100">
-                  <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[1.2]" />
+              <div className="flex flex-col items-start">
+                <div className="w-20 h-12 flex items-center justify-start shrink-0 overflow-visible z-20">
+                  <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[2.2] origin-left" />
                 </div>
-                <span className="text-3xl font-heading font-extrabold tracking-tight text-gray-900">Kisan Khata</span>
+                <span className="text-3xl font-heading font-extrabold tracking-tight text-gray-900 z-10 relative mt-2">Kisan Khata</span>
               </div>
               <p className="text-gray-600 text-sm leading-relaxed max-w-sm mt-2">
                 {language === 'en' 
@@ -575,12 +609,12 @@ export default function Home() {
                   href="https://instagram.com/kisankhata.official" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="inline-flex items-center gap-3 p-1.5 pr-5 bg-white rounded-full border border-gray-200 hover:border-pink-200 transition-all group"
+                  className="inline-flex items-center gap-3 transition-all group"
                 >
                   <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="w-9 h-9 object-contain group-hover:scale-110 transition-transform" />
                   <div className="flex flex-col justify-center">
                     <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider leading-none mb-1">Follow Us</span>
-                    <span className="text-sm font-extrabold text-gray-900 leading-none">@kisankhata.official</span>
+                    <span className="text-sm font-extrabold text-gray-900 group-hover:text-pink-600 transition-colors leading-none">@kisankhata.official</span>
                   </div>
                 </a>
               </div>
@@ -591,7 +625,6 @@ export default function Home() {
               <h4 className="font-bold text-gray-900 uppercase tracking-wider text-sm">{language === 'en' ? 'Quick Links' : 'క్విక్ లింక్స్'}</h4>
               <nav className="flex flex-col gap-3 text-gray-600">
                 <a href="#features" className="hover:text-primary hover:translate-x-1 transition-all w-fit">Features</a>
-                <a href="#certificate" className="hover:text-primary hover:translate-x-1 transition-all w-fit">Get Certificate</a>
                 <a href="https://sites.google.com/view/kisankhata-terms" target="_blank" rel="noopener noreferrer" className="hover:text-primary hover:translate-x-1 transition-all w-fit">Privacy Policy</a>
               </nav>
             </div>
@@ -606,10 +639,6 @@ export default function Home() {
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kisankhata.support@gmail.com&su=Kisan%20Khata%20Support%20Request&body=Hi%20Kisan%20Khata%20Team," target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors flex flex-col">
                   <span className="opacity-70 text-xs">General Support</span>
                   <span className="font-medium">kisankhata.support@gmail.com</span>
-                </a>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kisankhata.official@gmail.com&su=Kisan%20Khata%20Business%20Inquiry" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors flex flex-col">
-                  <span className="opacity-70 text-xs">Internship & Official</span>
-                  <span className="font-medium">kisankhata.official@gmail.com</span>
                 </a>
               </nav>
             </div>

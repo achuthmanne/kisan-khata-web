@@ -15,6 +15,7 @@ const notoSansTelugu = Noto_Sans_Telugu({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://kisankhata.com"),
   title: "Kisan Khata - Smart Digital Ledger for Farmers",
   description: "Kisan Khata is a simple digital platform replacing traditional paper notebooks for farmers to track labor, machinery, and crop sales.",
 };
@@ -25,9 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
       <body
-        className={`${poppins.variable} ${notoSansTelugu.variable} antialiased min-h-screen bg-white text-gray-900 font-sans`}
+        className={`${poppins.variable} ${notoSansTelugu.variable} antialiased min-h-screen bg-white text-gray-900 font-sans overflow-x-hidden`}
       >
         {children}
       </body>

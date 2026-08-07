@@ -1,10 +1,160 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Send, Globe, ChevronDown, ExternalLink, ShieldCheck } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Send, Globe, ChevronDown, ExternalLink, ShieldCheck, CheckCircle2, Share2, ArrowLeft, PencilLine, User, CheckCircle } from "lucide-react";
 import Link from "next/link";
 
 export default function InternshipPage() {
+  const [formData, setFormData] = useState({
+    name: "", phone: "", email: "", role: "", college: "", village: "", motivation: ""
+  });
+  const [formStep, setFormStep] = useState<"checking" | "edit" | "preview" | "submitting" | "success" | "approved">("checking");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [userData, setUserData] = useState<any>(null);
+  const [loginMode, setLoginMode] = useState(false);
+  const [loginEmail, setLoginEmail] = useState("");
+
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("kisan_khata_email");
+    if (savedEmail) {
+      checkStatus(savedEmail);
+    } else {
+      setFormStep("edit");
+    }
+  }, []);
+
+  const checkStatus = async (email: string) => {
+    setFormStep("checking");
+    try {
+      const res = await fetch(`/api/internship/status?email=${encodeURIComponent(email)}`);
+      const data = await res.json();
+      if (res.ok) {
+        setUserData(data);
+        if (data.status === "Approved") {
+          setFormStep("approved");
+        } else {
+          setFormStep("success"); // We use "success" to denote pending review UI
+        }
+        setFormData(prev => ({ ...prev, name: data.name }));
+      } else {
+        localStorage.removeItem("kisan_khata_email");
+        setFormStep("edit");
+      }
+    } catch (err) {
+      console.error(err);
+      setFormStep("edit");
+    }
+  };
+
+  const handleLoginSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg("");
+    if (loginEmail && loginEmail.includes("@")) {
+      localStorage.setItem("kisan_khata_email", loginEmail.trim().toLowerCase());
+      checkStatus(loginEmail.trim().toLowerCase());
+    } else {
+      setErrorMsg("Please enter a valid email address.");
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("kisan_khata_email");
+    setUserData(null);
+    setFormData({ name: "", phone: "", email: "", role: "", college: "", village: "", motivation: "" });
+    setLoginEmail("");
+    setLoginMode(false);
+    setFormStep("edit");
+  };
+
+  const handlePreview = (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg("");
+    
+    const { name, phone, email, role, village, motivation } = formData;
+
+    // 1. Mandatory Fields Check
+    if (!name.trim() || !phone.trim() || !email.trim() || !role || !village.trim() || !motivation.trim()) {
+      setErrorMsg("Please fill in all mandatory fields.");
+      return;
+    }
+
+    // 2. Name Validation (At least 3 chars, letters and spaces only)
+    const nameRegex = /^[A-Za-z\s.]{3,50}$/;
+    if (!nameRegex.test(name.trim())) {
+      setErrorMsg("Please enter a valid full name (min 3 characters, letters only).");
+      return;
+    }
+
+    // 3. Phone Number Validation (Exactly 10 digits, starting with 6-9)
+    const phoneRegex = /^[6-9]\d{9}$/;
+    const cleanPhone = phone.replace(/\D/g, ''); // strip non-digits
+    if (!phoneRegex.test(cleanPhone)) {
+      setErrorMsg("Please enter a valid 10-digit Indian phone number.");
+      return;
+    }
+
+    // 4. Email Validation (Strict formatting)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim().toLowerCase())) {
+      setErrorMsg("Please enter a valid email address (e.g., name@gmail.com).");
+      return;
+    }
+
+    // 5. Village Validation
+    if (village.trim().length < 3) {
+      setErrorMsg("Please enter a valid village or town name.");
+      return;
+    }
+
+    // Update form data to sanitized versions before preview
+    setFormData({
+      ...formData,
+      name: name.trim(),
+      phone: cleanPhone,
+      email: email.trim().toLowerCase(),
+      village: village.trim(),
+      college: formData.college.trim(),
+      motivation: motivation.trim()
+    });
+
+    setFormStep("preview");
+  };
+
+  const handleConfirmSubmit = async () => {
+    setFormStep("submitting");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/internship", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      
+      const data = await res.json();
+      
+      if (res.status === 409) {
+        setLoginEmail(formData.email);
+        setLoginMode(true);
+        setErrorMsg(data.error || "This email or phone number is already registered. Please check your status.");
+        setFormStep("edit");
+        return;
+      }
+      
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to submit application");
+      }
+      
+      localStorage.setItem("kisan_khata_email", formData.email);
+      setUserData({ name: formData.name });
+      setFormStep("success");
+    } catch (err: any) {
+      setErrorMsg(err.message);
+      setFormStep("preview");
+    }
+  };
+
   // As requested, language is always English on this page.
   const language = "en";
 
@@ -68,12 +218,40 @@ export default function InternshipPage() {
             </div>
 
             {/* Changed to Apply Now with Send icon and Emerald theme */}
-            <a href="#apply-internship" className="bg-emerald-700 text-white px-8 py-2.5 h-11 rounded-lg font-medium text-base hover:bg-emerald-800 transition-all flex items-center gap-2 shadow-md">
-              <Send size={18} />
-              <span className="hidden sm:inline">
-                Apply Now
-              </span>
-            </a>
+            <AnimatePresence mode="wait">
+              {formStep === "success" || formStep === "approved" ? (
+                <motion.div 
+                  key="account"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.25 }}
+                  className="bg-white text-slate-800 border border-slate-200 px-5 py-2.5 h-11 rounded-lg font-bold text-base flex items-center gap-2.5 shadow-sm"
+                >
+                  <div className="w-6 h-6 rounded-full bg-slate-800 text-white flex items-center justify-center text-sm">
+                    {formData.name.charAt(0).toUpperCase()}
+                  </div>
+                  <span className="hidden sm:inline">
+                    {formData.name.split(' ')[0]}
+                  </span>
+                </motion.div>
+              ) : (
+                <motion.a 
+                  key="apply"
+                  href="#apply-internship" 
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.25 }}
+                  className="bg-emerald-700 text-white px-8 py-2.5 h-11 rounded-lg font-medium text-base hover:bg-emerald-800 transition-colors flex items-center gap-2 shadow-md cursor-pointer"
+                >
+                  <Send size={18} />
+                  <span className="hidden sm:inline">
+                    Apply Now
+                  </span>
+                </motion.a>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </nav>
@@ -312,7 +490,7 @@ export default function InternshipPage() {
               
               <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 flex items-center gap-4">
                 <div className="w-12 h-12 bg-white rounded-full border border-slate-200 flex items-center justify-center shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-600"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#0A66C2]"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
                 </div>
                 <div>
                   <p className="text-sm text-slate-500 font-semibold mb-0.5">Verified Credential</p>
@@ -460,14 +638,20 @@ export default function InternshipPage() {
         </div>
 
         {/* NEW Support & Share Block */}
-        <div className="max-w-5xl mx-auto px-6 mt-20 pb-12 w-full text-center border-t border-emerald-800/60 pt-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-5xl mx-auto px-6 mt-20 pb-12 w-full text-center border-t border-emerald-800/60 pt-16"
+        >
           <h3 className="text-2xl font-bold text-white mb-8">Still have doubts? Or want to invite friends?</h3>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
             <a href="https://wa.me/919493959557?text=Hi%20Kisan%20Khata,%20I%20am%20interested%20in%20the%20Internship!" target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center justify-center gap-3 bg-white text-emerald-900 px-8 py-3.5 rounded-full font-bold hover:bg-emerald-50 transition-colors shadow-sm">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-600"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
               WhatsApp Us
             </a>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kisankhata.official@gmail.com" target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center justify-center gap-3 bg-emerald-800 text-white border border-emerald-700 px-8 py-3.5 rounded-full font-bold hover:bg-emerald-700 transition-colors">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kisankhata.official@gmail.com" target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center justify-center gap-3 bg-slate-800 text-white border border-slate-700 px-8 py-3.5 rounded-full font-bold hover:bg-slate-700 transition-colors shadow-sm">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
               Email Support
             </a>
@@ -476,7 +660,7 @@ export default function InternshipPage() {
               Share with Friends
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Layered Exciting Bottom Wave into White Form */}
         <div className="w-full overflow-hidden leading-0 -mb-px rotate-180 mt-auto">
@@ -492,7 +676,13 @@ export default function InternshipPage() {
       <div id="apply-internship" className="w-full min-h-screen bg-white py-16 px-4 md:px-8 flex items-center justify-center">
         
         {/* Main Split Container - With Light Border */}
-        <div className="w-full max-w-7xl flex flex-col md:flex-row min-h-187.5 border border-slate-200 rounded-3xl overflow-hidden shadow-sm bg-white">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="w-full max-w-7xl flex flex-col md:flex-row md:min-h-[1000px] border border-slate-200 rounded-3xl overflow-hidden shadow-sm bg-white"
+        >
           
           {/* Left Side - The Image */}
           <div className="w-full md:w-5/12 lg:w-5/12 relative bg-slate-50 min-h-[300px] md:min-h-full">
@@ -504,7 +694,7 @@ export default function InternshipPage() {
           </div>
 
           {/* Right Side - Application Form */}
-          <div className="w-full md:w-7/12 lg:w-7/12 p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-white">
+          <div className="w-full md:w-7/12 lg:w-7/12 p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-white md:min-h-[1000px]">
             <div className="w-full">
               
               {/* Header */}
@@ -520,76 +710,341 @@ export default function InternshipPage() {
                 </p>
               </div>
 
-              {/* Form Fields - Larger & Neater */}
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                
-                {/* Field 1: Full Name */}
-                <div>
-                  <label className="block text-base font-bold text-slate-700 mb-2">Full Name <span className="text-red-500 ml-0.5">*</span></label>
-                  <input type="text" required placeholder="Enter your full name" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
-                  <p className="mt-2 text-sm text-slate-500 flex items-center gap-1.5 font-medium">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-600"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-                    This exact name will be printed on your Internship Certificate.
+              {/* Application Status / Form */}
+              {formStep === "checking" ? (
+                <div className="flex flex-col items-center justify-center py-32">
+                  <svg className="animate-spin h-10 w-10 text-emerald-700 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <p className="text-slate-500 font-medium">Checking application status...</p>
+                </div>
+              ) : formStep === "approved" ? (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-emerald-50 border border-emerald-200 rounded-3xl p-10 flex flex-col items-center text-center mt-4"
+                >
+                  <div className="w-24 h-24 bg-emerald-600 text-white rounded-full flex items-center justify-center mb-6">
+                    <CheckCircle size={48} strokeWidth={2.5} />
+                  </div>
+                  <h4 className="text-3xl font-extrabold text-emerald-900 mb-2 font-heading tracking-tight">Congratulations!</h4>
+                  <p className="text-emerald-700 font-bold text-xl mb-3">You are Selected.</p>
+                  <p className="text-slate-600 font-medium text-base mb-8 max-w-sm">
+                    {userData?.name.split(' ')[0]}, your application has been approved! Welcome to the Kisan Khata Field Operations Team.
                   </p>
-                </div>
-
-                {/* Field 2: Phone Number */}
-                <div>
-                  <label className="block text-base font-bold text-slate-700 mb-2">Phone Number <span className="text-red-500 ml-0.5">*</span></label>
-                  <input type="tel" required placeholder="WhatsApp Number (e.g. +91 9876543210)" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
-                </div>
-
-                {/* Field 3: Email Address */}
-                <div>
-                  <label className="block text-base font-bold text-slate-700 mb-2">Email Address <span className="text-red-500 ml-0.5">*</span></label>
-                  <input type="email" required placeholder="Your active email ID" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
-                </div>
-
-                {/* Field 4: Current Role */}
-                <div>
-                  <label className="block text-base font-bold text-slate-700 mb-2">Current Status / Role <span className="text-red-500 ml-0.5">*</span></label>
-                  <div className="relative">
-                    <select required defaultValue="" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 text-slate-700 appearance-none">
-                      <option value="" disabled>Select your current status</option>
-                      <option value="student">College Student</option>
-                      <option value="graduate">Recent Graduate</option>
-                      <option value="working">Working Professional</option>
-                      <option value="volunteer">Volunteer / Other</option>
-                    </select>
-                    <div className="absolute inset-y-0 right-5 flex items-center pointer-events-none">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400"><path d="m6 9 6 6 6-6"/></svg>
+                  
+                  <div className="w-full bg-white border border-emerald-200 rounded-2xl p-6 mb-8 text-left shadow-sm">
+                    <h5 className="text-slate-800 font-bold text-sm uppercase tracking-wider mb-3">Your Referral Code</h5>
+                    <div className="flex items-center justify-between bg-slate-50 p-4 rounded-xl border border-slate-200">
+                      <span className="text-2xl font-extrabold text-emerald-800 font-mono tracking-widest">{userData?.referralCode || "PENDING"}</span>
+                      <button className="text-emerald-600 hover:text-emerald-700 font-bold text-sm">Copy</button>
+                    </div>
+                    <p className="text-xs text-slate-500 font-medium mt-3">Use this code to track your field work and referrals. More tracking features coming soon!</p>
+                  </div>
+                  
+                  <button 
+                    onClick={handleShare}
+                    className="w-full bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all flex items-center justify-center gap-2 shadow-sm mb-4"
+                  >
+                    <Share2 size={20} />
+                    Invite Your Friends
+                  </button>
+                  <button onClick={handleLogout} className="text-sm font-medium text-slate-500 hover:text-slate-700 underline decoration-slate-300 underline-offset-4">
+                    Not {userData?.name.split(' ')[0]}? Apply for a new internship
+                  </button>
+                </motion.div>
+              ) : formStep === "success" ? (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-slate-50 border border-slate-200 rounded-3xl p-10 flex flex-col items-center text-center mt-4"
+                >
+                  <div className="w-24 h-24 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-6">
+                    <User size={48} strokeWidth={2.5} />
+                  </div>
+                  <h4 className="text-3xl font-extrabold text-slate-900 mb-2 font-heading tracking-tight">Under Review</h4>
+                  <p className="text-slate-600 font-medium text-lg mb-6 max-w-sm">
+                    Thank you, {userData?.name?.split(' ')[0] || formData.name.split(' ')[0]}. Your application is currently being reviewed by our team. You will be notified once a decision is made.
+                  </p>
+                  
+                  <div className="inline-flex items-center justify-center gap-3 bg-slate-200/50 text-slate-700 px-6 py-3 rounded-full font-medium mb-8 text-sm border border-slate-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-600"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <span>Check your email for the official confirmation.</span>
+                  </div>
+                  
+                  <div className="w-full h-px bg-slate-200 mb-8"></div>
+                  
+                  <h5 className="text-slate-800 font-bold mb-4">Help us grow the community!</h5>
+                  <button 
+                    onClick={handleShare}
+                    className="w-full bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all flex items-center justify-center gap-2 shadow-sm mb-4"
+                  >
+                    <Share2 size={20} />
+                    Invite Your Friends
+                  </button>
+                  <button onClick={handleLogout} className="text-sm font-medium text-slate-500 hover:text-slate-700 underline decoration-slate-300 underline-offset-4">
+                    Not {userData?.name?.split(' ')[0] || formData.name.split(' ')[0]}? Apply for a new internship
+                  </button>
+                </motion.div>
+              ) : formStep === "preview" || formStep === "submitting" ? (
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="bg-slate-50 border border-slate-200 rounded-3xl p-8 mt-4"
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <h4 className="text-xl font-bold text-slate-800 font-heading">Review Details</h4>
+                  </div>
+                  
+                  <div className="space-y-4 mb-8">
+                    <div className="flex flex-col">
+                      <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Full Name</span>
+                      <span className="text-slate-800 font-medium">{formData.name}</span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Phone Number</span>
+                      <span className="text-slate-800 font-medium">{formData.phone}</span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Email Address</span>
+                      <span className="text-slate-800 font-medium">{formData.email}</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="flex flex-col">
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Role</span>
+                        <span className="text-slate-800 font-medium capitalize">{formData.role}</span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Village</span>
+                        <span className="text-slate-800 font-medium">{formData.village}</span>
+                      </div>
+                    </div>
+                    {formData.college && (
+                      <div className="flex flex-col mt-4">
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">College/Org</span>
+                        <span className="text-slate-800 font-medium">{formData.college}</span>
+                      </div>
+                    )}
+                    <div className="flex flex-col mt-4">
+                      <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Motivation</span>
+                      <span className="text-slate-800 font-medium italic">"{formData.motivation}"</span>
                     </div>
                   </div>
-                </div>
 
-                {/* Field 4: College/Organization (Optional) */}
-                <div>
-                  <label className="block text-base font-bold text-slate-700 mb-2">
-                    College / Organization Name <span className="text-slate-400 font-normal text-sm ml-1">(Optional)</span>
-                  </label>
-                  <input type="text" placeholder="Where do you study or work?" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
-                </div>
-
-                {/* Field 5: Village/Town */}
-                <div>
-                  <label className="block text-base font-bold text-slate-700 mb-2">Village / Town Name <span className="text-red-500 ml-0.5">*</span></label>
-                  <input type="text" required placeholder="Enter your native village or town" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
-                </div>
-
-                <div className="pt-2">
-                  <p className="text-sm font-medium text-red-500 mb-3">
-                    <span className="font-bold">*</span> Indicates mandatory fields
+                  <div className="flex gap-3 w-full">
+                    <button 
+                      onClick={() => setFormStep("edit")} 
+                      className={`bg-white text-slate-700 font-bold rounded-2xl hover:bg-slate-50 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] flex items-center justify-center overflow-hidden shrink-0 ${
+                        formStep === "submitting" ? "w-0 opacity-0 border-0 py-4" : "w-1/3 opacity-100 border border-slate-300 py-4"
+                      }`}
+                    >
+                      <ArrowLeft size={20} className="shrink-0" />
+                    </button>
+                    <button 
+                      onClick={handleConfirmSubmit}
+                      disabled={formStep === "submitting"} 
+                      className={`bg-emerald-800 text-white text-lg font-bold py-4 rounded-2xl hover:bg-emerald-700 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] shadow-sm disabled:opacity-90 disabled:cursor-not-allowed flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap ${
+                        formStep === "submitting" ? "w-full" : "w-2/3"
+                      }`}
+                    >
+                      {formStep === "submitting" ? (
+                        <>
+                          <svg className="animate-spin h-5 w-5 text-white shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          <span>Submitting...</span>
+                        </>
+                      ) : (
+                        <span>Confirm & Submit</span>
+                      )}
+                    </button>
+                  </div>
+                </motion.div>
+              ) : loginMode ? (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-slate-50 border border-slate-200 rounded-3xl p-8 md:p-12 mt-4 text-center"
+                >
+                  <div className="w-20 h-20 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <User size={36} strokeWidth={2.5} />
+                  </div>
+                  <h4 className="text-2xl font-extrabold text-slate-900 mb-2 font-heading">Check Your Status</h4>
+                  <p className="text-slate-500 font-medium text-sm mb-8 max-w-sm mx-auto">
+                    Please enter the email address you used during your internship registration to securely access your portal.
                   </p>
-                  <button type="submit" className="w-full bg-emerald-800 text-white text-lg font-bold py-4 rounded-2xl hover:bg-emerald-700 transition-all shadow-sm">
-                    Submit Application
+                  
+                  <form onSubmit={handleLoginSubmit} className="space-y-4 max-w-sm mx-auto">
+                    {errorMsg && (
+                      <div className="bg-red-50 text-red-600 p-4 rounded-xl border border-red-100 font-medium text-sm text-left">
+                        {errorMsg}
+                      </div>
+                    )}
+                    <input 
+                      type="email" 
+                      required 
+                      value={loginEmail} 
+                      onChange={(e) => setLoginEmail(e.target.value)} 
+                      placeholder="Enter your email address" 
+                      className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-white placeholder:text-slate-400 text-center" 
+                    />
+                    <button type="submit" className="w-full bg-emerald-800 text-white text-lg font-bold py-4 rounded-2xl hover:bg-emerald-700 transition-all shadow-sm flex items-center justify-center gap-2">
+                      Check Status <ArrowLeft className="rotate-180" size={18} />
+                    </button>
+                  </form>
+                  
+                  <button onClick={() => { setLoginMode(false); setErrorMsg(""); setLoginEmail(""); }} className="mt-8 text-slate-500 font-bold text-sm hover:text-slate-800 transition-colors flex items-center justify-center gap-2 mx-auto">
+                    <ArrowLeft size={16} /> Back to Application
                   </button>
-                </div>
-              </form>
+                </motion.div>
+              ) : (
+                <form className="space-y-6" onSubmit={handlePreview}>
+                  {errorMsg && (
+                    <div className="bg-red-50 text-red-600 p-4 rounded-xl border border-red-100 font-medium text-sm">
+                      {errorMsg}
+                    </div>
+                  )}
+                  
+                  {/* Field 1: Full Name */}
+                  <div>
+                    <label className="block text-base font-bold text-slate-700 mb-2">Full Name <span className="text-red-500 ml-0.5">*</span></label>
+                    <input type="text" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Enter your full name" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
+                    <p className="mt-2 text-sm text-slate-500 flex items-center gap-1.5 font-medium">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-600"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                      This exact name will be printed on your Internship Certificate.
+                    </p>
+                  </div>
+
+                  {/* Field 2: Phone Number */}
+                  <div>
+                    <label className="block text-base font-bold text-slate-700 mb-2">Phone Number <span className="text-red-500 ml-0.5">*</span></label>
+                    <input type="tel" maxLength={10} required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value.replace(/\D/g, '').slice(0, 10)})} placeholder="WhatsApp Number (e.g. 9876543210)" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
+                  </div>
+
+                  {/* Field 3: Email Address */}
+                  <div>
+                    <label className="block text-base font-bold text-slate-700 mb-2">Email Address <span className="text-red-500 ml-0.5">*</span></label>
+                    <input type="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="Your active email ID" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
+                  </div>
+
+                  {/* Field 4: Current Role */}
+                  <div>
+                    <label className="block text-base font-bold text-slate-700 mb-2">Current Status / Role <span className="text-red-500 ml-0.5">*</span></label>
+                    <div className="relative">
+                      <select required value={formData.role} onChange={(e) => setFormData({...formData, role: e.target.value})} className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 text-slate-700 appearance-none">
+                        <option value="" disabled>Select your current status</option>
+                        <option value="student">College Student</option>
+                        <option value="graduate">Recent Graduate</option>
+                        <option value="working">Working Professional</option>
+                        <option value="volunteer">Volunteer / Other</option>
+                      </select>
+                      <div className="absolute inset-y-0 right-5 flex items-center pointer-events-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400"><path d="m6 9 6 6 6-6"/></svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Field 4: College/Organization (Optional) */}
+                  <div>
+                    <label className="block text-base font-bold text-slate-700 mb-2">
+                      College / Organization Name <span className="text-slate-400 font-normal text-sm ml-1">(Optional)</span>
+                    </label>
+                    <input type="text" value={formData.college} onChange={(e) => setFormData({...formData, college: e.target.value})} placeholder="Where do you study or work?" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
+                  </div>
+
+                  {/* Field 5: Village/Town */}
+                  <div>
+                    <label className="block text-base font-bold text-slate-700 mb-2">Village / Town Name <span className="text-red-500 ml-0.5">*</span></label>
+                    <input type="text" required value={formData.village} onChange={(e) => setFormData({...formData, village: e.target.value})} placeholder="Enter your native village or town" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
+                  </div>
+
+                  {/* Field 6: Motivation */}
+                  <div>
+                    <label className="block text-base font-bold text-slate-700 mb-2">Why do you want to join Kisan Khata? <span className="text-red-500 ml-0.5">*</span></label>
+                    <textarea required value={formData.motivation} onChange={(e) => setFormData({...formData, motivation: e.target.value})} placeholder="Tell us how this internship will help you and why you want to work with farmers..." rows={4} className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400 resize-none"></textarea>
+                  </div>
+
+                  <div className="pt-2">
+                    <p className="text-sm font-medium text-red-500 mb-3">
+                      <span className="font-bold">*</span> Indicates mandatory fields
+                    </p>
+                    <button type="submit" className="w-full bg-emerald-800 text-white text-lg font-bold py-4 rounded-2xl hover:bg-emerald-700 transition-all shadow-sm flex items-center justify-center gap-2">
+                      Preview Application <ArrowLeft className="rotate-180" size={18} />
+                    </button>
+                    <div className="mt-6 text-center">
+                      <p className="text-slate-500 font-medium text-sm">
+                        Already applied? <button onClick={() => { setLoginMode(true); setErrorMsg(""); }} type="button" className="text-emerald-700 font-bold hover:underline">Check your status here.</button>
+                      </p>
+                    </div>
+                  </div>
+                </form>
+              )}
             </div>
           </div>
           
-        </div>
+        </motion.div>
       </div>
+
+      {/* Unique Minimal Footer for Internship Page */}
+      <footer className="w-full relative bg-slate-50 pt-24 pb-12 px-6 overflow-hidden">
+        {/* Top Wave Transition from White (Form) to Slate-50 (Footer) */}
+        <div className="absolute top-0 left-0 w-full overflow-hidden leading-0">
+          <svg className="relative block w-[200%] md:w-full h-10 md:h-16" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-white"></path>
+          </svg>
+        </div>
+
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-12 text-center md:text-left relative z-10">
+          
+          {/* Column 1: Logo & Tagline */}
+          <div className="flex flex-col items-center md:items-start">
+            <div className="w-20 h-12 flex items-center md:justify-start justify-center shrink-0 overflow-visible z-20">
+              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[2.2] md:origin-left origin-center" />
+            </div>
+            <h4 className="text-2xl font-heading font-extrabold text-slate-800 mt-2">Kisan Khata</h4>
+            <p className="text-slate-500 font-medium mt-1">The digital ledger for modern agriculture</p>
+          </div>
+          
+          {/* Column 2: Contact Us */}
+          <div className="flex flex-col items-center md:items-start">
+            <h5 className="font-bold text-slate-800 mb-4 uppercase tracking-wider text-sm">Contact Us</h5>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kisankhata.official@gmail.com" target="_blank" rel="noreferrer" className="text-slate-600 hover:text-red-600 transition-colors text-base font-medium flex items-center gap-2 mb-3 bg-white px-5 py-2.5 rounded-full border border-slate-200 hover:border-red-200">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#EA4335]"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Email Support
+            </a>
+            <a href="https://wa.me/919493959557?text=Hi%20Kisan%20Khata,%20I%20have%20a%20query!" target="_blank" rel="noreferrer" className="text-slate-600 hover:text-emerald-700 transition-colors text-base font-medium flex items-center gap-2 bg-white px-5 py-2.5 rounded-full border border-slate-200 hover:border-emerald-200">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#25D366]"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
+              WhatsApp Us
+            </a>
+          </div>
+          
+          {/* Column 3: Follow Us */}
+          <div className="flex flex-col items-center md:items-start">
+            <h5 className="font-bold text-slate-800 mb-4 uppercase tracking-wider text-sm">Follow Us On</h5>
+            <div className="flex items-center gap-4">
+              {/* Original Instagram Gradient */}
+              <a href="https://instagram.com/kisankhata.official" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full flex items-center justify-center text-white transition-transform hover:-translate-y-1" style={{ background: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)" }} title="Kisan Khata on Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              </a>
+              {/* Original LinkedIn Blue */}
+              <a href="https://www.linkedin.com/in/manne-achuth-629394332/" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full flex items-center justify-center text-white bg-[#0A66C2] transition-transform hover:-translate-y-1" title="Connect with Founder">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+            </div>
+            <p className="text-xs text-slate-400 font-medium mt-3 text-center md:text-left">Connect with our<br/>Founder on LinkedIn</p>
+          </div>
+          
+        </div>
+        
+        {/* Copyright */}
+        <div className="max-w-5xl mx-auto w-full mt-12 pt-8 border-t border-slate-200 flex flex-col items-center">
+          <p className="text-slate-500 text-sm font-medium">
+            &copy; {new Date().getFullYear()} Kisan Khata. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
