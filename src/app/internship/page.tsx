@@ -383,6 +383,230 @@ export default function InternshipPage() {
         </div>
       </section>
 
+      {/* Rewards & Rules Section - Corporate Minimal */}
+      <section className="w-full bg-slate-50 py-20 md:py-28 px-6 md:px-12 border-b border-gray-100">
+        <div className="max-w-6xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-slate-900 tracking-tight">
+              Rewards & <span className="text-emerald-700">Guidelines</span>
+            </h2>
+            <p className="mt-4 text-lg text-slate-600 font-medium max-w-2xl mx-auto">
+              Any student from Andhra Pradesh and Telangana is eligible to apply. Join the elite team, hit your targets, and get rewarded!
+            </p>
+            <div className="w-24 h-1.5 bg-emerald-700 mx-auto mt-6 rounded-full"></div>
+          </motion.div>
+
+          {/* Strict Warning Block */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="bg-white border-l-4 border-red-500 rounded-2xl p-6 md:p-8 shadow-sm mb-16"
+          >
+            <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
+              <div className="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-red-500"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+              </div>
+              <div>
+                <h4 className="text-xl font-bold text-slate-900 font-heading mb-2">Zero Tolerance for Fake Installs</h4>
+                <p className="text-slate-600 font-medium leading-relaxed">
+                  The app <strong className="text-red-600">MUST</strong> be installed directly on a farmer's smartphone. We use advanced device tracking to detect duplicate devices, fake profiles, and identical networks. Any fraudulent entry will lead to immediate disqualification.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* The Target & Breakdown */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="lg:col-span-1 bg-emerald-900 text-white rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-emerald-800 rounded-full blur-2xl opacity-50"></div>
+              <h3 className="text-2xl font-bold font-heading mb-2 relative z-10">The Mandatory Target</h3>
+              <p className="text-emerald-100 font-medium mb-6 relative z-10">To successfully complete the internship, you must onboard a total of 50 Unique Farmers.</p>
+              <div className="text-6xl font-extrabold font-heading text-emerald-400 relative z-10">50</div>
+              <p className="text-emerald-200 font-bold uppercase tracking-wider text-sm mt-2 relative z-10">Farmers Needed</p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="lg:col-span-2 bg-white border border-slate-200 rounded-3xl p-8 flex flex-col md:flex-row gap-8 items-center"
+            >
+              <div className="flex-1 text-center">
+                <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-100">
+                  <span className="text-2xl font-bold font-heading">30</span>
+                </div>
+                <h4 className="text-lg font-bold text-slate-900 mb-2">AgriConnect Users</h4>
+                <p className="text-sm text-slate-500 font-medium">Strictly minimum 30 farmers must add a machine or labor in AgriConnect.</p>
+              </div>
+              <div className="w-px h-24 bg-slate-200 hidden md:block"></div>
+              <div className="h-px w-full bg-slate-200 md:hidden"></div>
+              <div className="flex-1 text-center">
+                <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-100">
+                  <span className="text-2xl font-bold font-heading">20</span>
+                </div>
+                <h4 className="text-lg font-bold text-slate-900 mb-2">General Users</h4>
+                <p className="text-sm text-slate-500 font-medium">Remaining 20 farmers can use other features like expenses or attendance.</p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Pricing/Tiers Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            {/* Tier 1: Gold */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="bg-white border-2 border-amber-400 rounded-3xl p-8 shadow-[0_8px_30px_rgb(251,191,36,0.15)] flex flex-col relative overflow-hidden group hover:-translate-y-2 transition-transform"
+            >
+              <div className="absolute top-0 left-0 w-full h-2 bg-amber-400"></div>
+              <div className="absolute top-6 right-6 text-amber-400 opacity-20 group-hover:opacity-100 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <span className="text-amber-500 font-bold uppercase tracking-wider text-xs mb-2">Top 3 Interns</span>
+              <h3 className="text-2xl font-bold text-slate-900 font-heading mb-6">Elite Tier</h3>
+              
+              <ul className="space-y-4 mb-8 flex-1">
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                  <CheckCircle size={18} className="text-amber-500 shrink-0 mt-0.5" />
+                  Must cover 10+ Villages
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                  <CheckCircle size={18} className="text-amber-500 shrink-0 mt-0.5" />
+                  100% AgriConnect Usage
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                  <CheckCircle size={18} className="text-amber-500 shrink-0 mt-0.5" />
+                  Add valuable machines & labor
+                </li>
+              </ul>
+              
+              <div className="pt-6 border-t border-slate-100 mt-auto">
+                <p className="text-3xl font-extrabold text-slate-900 font-heading">₹1,000</p>
+                <p className="text-sm font-bold text-amber-500 mt-1">+ Elite Certificate</p>
+              </div>
+            </motion.div>
+
+            {/* Tier 2: Silver */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm flex flex-col relative overflow-hidden group hover:-translate-y-2 transition-transform"
+            >
+              <div className="absolute top-0 left-0 w-full h-2 bg-slate-400"></div>
+              <span className="text-slate-500 font-bold uppercase tracking-wider text-xs mb-2">Next Top 5</span>
+              <h3 className="text-2xl font-bold text-slate-900 font-heading mb-6">High Achiever</h3>
+              
+              <ul className="space-y-4 mb-8 flex-1">
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                  <CheckCircle size={18} className="text-slate-500 shrink-0 mt-0.5" />
+                  Must cover 5+ Villages
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                  <CheckCircle size={18} className="text-slate-500 shrink-0 mt-0.5" />
+                  100% AgriConnect Usage
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                  <CheckCircle size={18} className="text-slate-500 shrink-0 mt-0.5" />
+                  Add machines or labor
+                </li>
+              </ul>
+              
+              <div className="pt-6 border-t border-slate-100 mt-auto">
+                <p className="text-3xl font-extrabold text-slate-900 font-heading">₹500</p>
+                <p className="text-sm font-bold text-slate-500 mt-1">+ Certificate</p>
+              </div>
+            </motion.div>
+
+            {/* Tier 3: Bronze */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm flex flex-col relative overflow-hidden group hover:-translate-y-2 transition-transform"
+            >
+              <div className="absolute top-0 left-0 w-full h-2 bg-orange-400"></div>
+              <span className="text-orange-500 font-bold uppercase tracking-wider text-xs mb-2">Next Top 2</span>
+              <h3 className="text-2xl font-bold text-slate-900 font-heading mb-6">Rising Star</h3>
+              
+              <ul className="space-y-4 mb-8 flex-1">
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                  <CheckCircle size={18} className="text-orange-500 shrink-0 mt-0.5" />
+                  Must cover 2+ Villages
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                  <CheckCircle size={18} className="text-orange-500 shrink-0 mt-0.5" />
+                  Use AgriConnect feature
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                  <CheckCircle size={18} className="text-orange-500 shrink-0 mt-0.5" />
+                  Add farmers to network
+                </li>
+              </ul>
+              
+              <div className="pt-6 border-t border-slate-100 mt-auto">
+                <p className="text-3xl font-extrabold text-slate-900 font-heading">₹200</p>
+                <p className="text-sm font-bold text-orange-500 mt-1">+ Certificate</p>
+              </div>
+            </motion.div>
+
+            {/* Base Tier */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="bg-emerald-50 border border-emerald-200 rounded-3xl p-8 shadow-sm flex flex-col relative overflow-hidden group hover:-translate-y-2 transition-transform"
+            >
+              <div className="absolute top-0 left-0 w-full h-2 bg-emerald-600"></div>
+              <span className="text-emerald-700 font-bold uppercase tracking-wider text-xs mb-2">All Participants</span>
+              <h3 className="text-2xl font-bold text-slate-900 font-heading mb-6">Certified Intern</h3>
+              
+              <ul className="space-y-4 mb-8 flex-1">
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                  <CheckCircle size={18} className="text-emerald-600 shrink-0 mt-0.5" />
+                  Hit the 50 Farmer Target
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                  <CheckCircle size={18} className="text-emerald-600 shrink-0 mt-0.5" />
+                  No village limits
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                  <CheckCircle size={18} className="text-emerald-600 shrink-0 mt-0.5" />
+                  Gain verifiable experience
+                </li>
+              </ul>
+              
+              <div className="pt-6 border-t border-emerald-200 mt-auto">
+                <p className="text-3xl font-extrabold text-slate-900 font-heading">Certificate</p>
+                <p className="text-sm font-bold text-emerald-700 mt-1">Free T-Shirts for best effort!</p>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Motivation Section - Deep Emerald Green with Waves */}
       <section className="relative w-full bg-emerald-900 pt-32 pb-36 px-6 md:px-12 text-white overflow-hidden">
         {/* Top Wave */}
