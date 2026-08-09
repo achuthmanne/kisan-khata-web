@@ -750,7 +750,7 @@ export default function InternshipPage() {
                 </li>
                 <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
                   <CheckCircle size={18} className="text-emerald-600 shrink-0 mt-0.5" />
-                  Gain verifiable experience
+                  Use AgriConnect or any feature
                 </li>
               </ul>
               
