@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ChevronDown, Globe, Send, User } from "lucide-react";
+import { ChevronDown, Globe, Send, User, Menu, X } from "lucide-react";
 
 export default function CertificatePage() {
   const [userData, setUserData] = useState<any>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Check login status on mount
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function CertificatePage() {
     <div className="flex flex-col min-h-screen bg-slate-50">
       {/* Navigation - Exact match to Internship Page */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div className="flex items-center justify-between px-8 md:px-12 py-2 max-w-[1600px] mx-auto w-full">
+        <div className="flex items-center justify-between px-4 md:px-8 lg:px-12 py-2 max-w-[1600px] mx-auto w-full">
           <Link 
             href="/" 
             className="flex flex-col items-center justify-center cursor-pointer transition-transform hover:scale-105"
@@ -62,7 +63,7 @@ export default function CertificatePage() {
           
           <div className="flex items-center gap-4">
             {/* Auto-selected to EN - static dropdown visual */}
-            <div className="relative">
+            <div className="hidden md:block relative">
               <div className="flex items-center gap-2 px-4 py-2.5 text-base font-medium text-gray-800 bg-gray-50 border border-gray-200 rounded-lg opacity-70 cursor-not-allowed">
                 <Globe size={18} className="text-primary" />
                 <span className="leading-none">English</span>
@@ -104,8 +105,43 @@ export default function CertificatePage() {
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {/* Mobile Menu Toggle */}
+            <button 
+              className="md:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="md:hidden border-t border-gray-100 bg-white overflow-hidden"
+            >
+              <div className="flex flex-col px-4 py-4 gap-4">
+                <Link href="/" className="px-4 py-2 rounded-lg transition-colors text-gray-700 hover:bg-gray-50">
+                  Home
+                </Link>
+                <Link href="/#features" className="px-4 py-2 rounded-lg transition-colors text-gray-700 hover:bg-gray-50">
+                  Features
+                </Link>
+                <Link href="/internship" className="px-4 py-2 rounded-lg transition-colors text-gray-700 hover:bg-gray-50">
+                  Internship
+                </Link>
+                <span className="px-4 py-2 rounded-lg transition-colors bg-green-50 text-primary font-bold">
+                  Certificates
+                </span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Main Content Area - Single Continuous Card */}

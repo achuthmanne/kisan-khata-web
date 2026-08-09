@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, Download, ChevronRight, Image as ImageIcon, Globe, ChevronDown, MessageCircle, ShieldCheck, CheckCircle, X, ExternalLink, Quote } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Download, ChevronRight, Image as ImageIcon, Globe, ChevronDown, MessageCircle, ShieldCheck, CheckCircle, X, ExternalLink, Quote, Menu } from "lucide-react";
 
 export default function Home() {
   const [language, setLanguage] = useState<"en" | "te">("en");
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isUdyamModalOpen, setIsUdyamModalOpen] = useState(false);
 
@@ -42,7 +43,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-white">
       {/* Navigation - Sticky, Flat, Minimal */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div className="flex items-center justify-between px-8 md:px-12 py-2 max-w-[1600px] mx-auto w-full">
+        <div className="flex items-center justify-between px-6 md:px-8 lg:px-12 py-2 max-w-[1600px] mx-auto w-full">
           <a 
             href="#" 
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
@@ -50,7 +51,7 @@ export default function Home() {
           >
             {/* Small DOM container so navbar stays slim, but huge visual scale for the logo */}
             <div className="w-16 h-10 flex items-center justify-center shrink-0 relative overflow-visible">
-              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[2.5] origin-center" />
+              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[2.2] md:scale-[2.5] origin-center" />
             </div>
             <span className="text-[13px] md:text-[15px] font-heading font-extrabold text-green-900 tracking-tight leading-none z-10 -mt-0.5">
               Kisan Khata
@@ -61,7 +62,7 @@ export default function Home() {
             <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className={`transition-colors ${activeSection === 'home' ? 'text-primary font-bold' : 'hover:text-primary'}`}>
               {language === 'en' ? 'Home' : 'హోమ్'}
             </a>
-            <a href="#features" className={`transition-colors ${activeSection === 'features' ? 'text-primary font-bold' : 'hover:text-primary'}`}>
+            <a href="#features" onClick={(e) => { e.preventDefault(); document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' }); }} className={`transition-colors ${activeSection === 'features' ? 'text-primary font-bold' : 'hover:text-primary'}`}>
               {language === 'en' ? 'Features' : 'ఫీచర్స్'}
             </a>
             <a href="/internship" className={`transition-colors ${activeSection === 'internship' ? 'text-primary font-bold' : 'hover:text-primary'}`}>
@@ -72,14 +73,14 @@ export default function Home() {
             </a>
           </div>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             {/* Minimal Language Dropdown */}
             <div className="relative">
               <button 
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-2 px-4 py-2.5 text-base font-medium text-gray-800 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors"
+                className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2 md:py-2.5 text-sm md:text-base font-medium text-gray-800 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors"
               >
-                <Globe size={18} className="text-primary" />
+                <Globe size={18} className="text-primary shrink-0" />
                 <span className="leading-none">
                   {language === 'en' ? 'English' : 'తెలుగు'}
                 </span>
@@ -103,8 +104,16 @@ export default function Home() {
                 </div>
               )}
             </div>
+            
+            {/* Mobile Menu Toggle */}
+            <button 
+              className="md:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
 
-            <a href="#download" className="bg-primary text-white px-8 py-2.5 h-11 rounded-lg font-medium text-base hover:bg-primary-dark transition-all flex items-center gap-2">
+            <a href="#download" className="hidden md:flex bg-primary text-white px-8 py-2.5 h-11 rounded-lg font-medium text-base hover:bg-primary-dark transition-all items-center gap-2">
               <Download size={18} />
               <span className={`hidden sm:inline ${language === 'te' ? 'pt-1' : ''}`}>
                 {language === 'en' ? 'Get App' : 'యాప్ డౌన్లోడ్'}
@@ -112,6 +121,37 @@ export default function Home() {
             </a>
           </div>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="md:hidden border-t border-gray-100 bg-white overflow-hidden"
+            >
+              <div className="flex flex-col px-4 py-4 gap-4">
+                <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); setIsMobileMenuOpen(false); }} className={`px-4 py-2 rounded-lg transition-colors ${activeSection === 'home' ? 'bg-green-50 text-primary font-bold' : 'text-gray-700 hover:bg-gray-50'}`}>
+                  {language === 'en' ? 'Home' : 'హోమ్'}
+                </a>
+                <a href="#features" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' }); }} className={`px-4 py-2 rounded-lg transition-colors ${activeSection === 'features' ? 'bg-green-50 text-primary font-bold' : 'text-gray-700 hover:bg-gray-50'}`}>
+                  {language === 'en' ? 'Features' : 'ఫీచర్స్'}
+                </a>
+                <a href="/internship" className={`px-4 py-2 rounded-lg transition-colors ${activeSection === 'internship' ? 'bg-green-50 text-primary font-bold' : 'text-gray-700 hover:bg-gray-50'}`}>
+                  {language === 'en' ? 'Internship' : 'ఇంటర్న్ షిప్'}
+                </a>
+                <a href="/certificate" className={`px-4 py-2 rounded-lg transition-colors ${activeSection === 'certificate' ? 'bg-green-50 text-primary font-bold' : 'text-gray-700 hover:bg-gray-50'}`}>
+                  {language === 'en' ? 'Certificates' : 'సర్టిఫికెట్స్'}
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.achuth.agrisnap" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-2 rounded-lg transition-colors text-primary font-bold hover:bg-gray-50 flex items-center gap-2">
+                  <Download size={18} />
+                  {language === 'en' ? 'Get App' : 'యాప్ డౌన్లోడ్'}
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Hero Section - Full Width Image Banner Seamless Blend */}
@@ -169,7 +209,7 @@ export default function Home() {
       {/* Curved wave separator (Transitions from White bg to Gray 50) */}
       {/* The viewBox is cropped (0 96 1440 224) to remove the massive empty transparent space above the wave in the SVG */}
       <div id="features" className="w-full bg-white relative z-0 scroll-mt-24">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 1440 224" className="w-full h-auto block -mb-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 1440 224" preserveAspectRatio="none" className="w-full h-16 md:h-24 lg:h-auto block -mb-1">
           <path fill="#f9fafb" fillOpacity="1" d="M0,96L48,117.3C96,139,192,181,288,186.7C384,192,480,160,576,138.7C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
         </svg>
       </div>
@@ -463,7 +503,7 @@ export default function Home() {
 
       {/* Top Divider for CTA Section */}
       <div id="download" className="w-full relative z-10 -mb-1 bg-gray-50 scroll-mt-24">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full h-auto block">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-full h-12 md:h-20 lg:h-auto block">
           <path fill="#064e3b" fillOpacity="1" d="M0,32L60,42.7C120,53,240,75,360,69.3C480,64,600,32,720,26.7C840,21,960,43,1080,53.3C1200,64,1320,64,1380,64L1440,64L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"></path>
         </svg>
       </div>
@@ -578,7 +618,7 @@ export default function Home() {
 
       {/* Footer Top Divider (Transition from #064e3b to #f9fafb) */}
       <div className="w-full relative z-10 -mt-1 bg-[#064e3b]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full h-auto block -mb-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-full h-12 md:h-20 lg:h-auto block -mb-1">
           <path fill="#f9fafb" fillOpacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,42.7C1120,32,1280,32,1360,32L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
         </svg>
       </div>
