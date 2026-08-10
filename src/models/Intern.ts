@@ -10,6 +10,8 @@ export interface IIntern extends Document {
   motivation: string;
   status: "Pending" | "Approved" | "Rejected";
   referralCode?: string;
+  startDate?: Date;
+  endDate?: Date;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -29,11 +31,23 @@ const InternSchema: Schema = new Schema(
       default: "Pending",
     },
     referralCode: { type: String, unique: true, sparse: true },
+    startDate: { type: Date },
+    endDate: { type: Date },
   },
   {
     timestamps: true,
   }
 );
+
+// Automatically generate a referral code when the intern is approved
+InternSchema.pre("save", function () {
+  if (this.isModified("status") && this.status === "Approved" && !this.referralCode) {
+    // Generates something like KK-JOH-4921
+    const namePrefix = this.name ? this.name.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, "X") : "INT";
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    this.referralCode = `KK-${namePrefix}-${randomNum}`;
+  }
+});
 
 // Prevent mongoose from compiling the model multiple times in Next.js
 export default mongoose.models.Intern || mongoose.model<IIntern>("Intern", InternSchema);

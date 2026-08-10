@@ -14,6 +14,15 @@ export default function InternshipPage() {
   const [userData, setUserData] = useState<any>(null);
   const [loginMode, setLoginMode] = useState(false);
   const [loginEmail, setLoginEmail] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    if (userData?.referralCode) {
+      navigator.clipboard.writeText(userData.referralCode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -954,9 +963,20 @@ export default function InternshipPage() {
                   Agri-Tech Field Operations Internship
                 </h4>
                 {formStep === "edit" && !loginMode && (
-                  <p className="text-slate-500 font-medium text-base">
-                    Please fill in your details below to apply for the program.
-                  </p>
+                  <>
+                    <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 mb-6 flex items-start gap-3">
+                      <div className="mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-700"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                      </div>
+                      <div>
+                        <p className="font-bold text-emerald-900 mb-0.5">Application Window</p>
+                        <p className="text-sm text-emerald-800 font-medium">Aug 20, 2026 – Sep 10, 2026. <br/>Approvals and onboarding will be processed during this period.</p>
+                      </div>
+                    </div>
+                    <p className="text-slate-500 font-medium text-base">
+                      Please fill in your details below to apply for the program.
+                    </p>
+                  </>
                 )}
               </div>
 
@@ -984,15 +1004,33 @@ export default function InternshipPage() {
                     {userData?.name.split(' ')[0]}, your application has been approved! Welcome to the Kisan Khata Field Operations Team.
                   </p>
                   
-                  <div className="w-full bg-white border border-emerald-200 rounded-2xl p-5 md:p-6 mb-8 text-left shadow-sm">
+                  <div className="w-full bg-white border border-emerald-200 rounded-2xl p-5 md:p-6 mb-8 text-left shadow-sm relative overflow-hidden group">
+                    <div className="absolute top-0 left-0 w-1 h-full bg-[#008F5A]"></div>
                     <h5 className="text-slate-800 font-bold text-sm uppercase tracking-wider mb-3">Your Referral Code</h5>
-                    <div className="flex items-center justify-between bg-slate-50 p-4 rounded-xl border border-slate-200">
-                      <span className="text-2xl font-extrabold text-emerald-800 font-mono tracking-widest">{userData?.referralCode || "PENDING"}</span>
-                      <button className="text-emerald-600 hover:text-emerald-700 font-bold text-sm">Copy</button>
+                    <div className="flex items-center justify-between bg-slate-50 p-4 rounded-xl border border-slate-200 group-hover:border-[#008F5A]/30 transition-colors">
+                      <span className="text-2xl font-extrabold text-[#008F5A] font-mono tracking-widest">{userData?.referralCode || "PENDING"}</span>
+                      <button 
+                        onClick={handleCopy}
+                        disabled={!userData?.referralCode}
+                        className={`font-bold text-sm px-4 py-2 rounded-lg transition-all ${
+                          copied 
+                            ? "bg-[#008F5A] text-white" 
+                            : "bg-slate-200 text-slate-700 hover:bg-slate-300"
+                        }`}
+                      >
+                        {copied ? "Copied!" : "Copy"}
+                      </button>
                     </div>
-                    <p className="text-xs text-slate-500 font-medium mt-3">Use this code to track your field work and referrals. More tracking features coming soon!</p>
+                    <p className="text-xs text-slate-500 font-medium mt-3">This is your unique tracking ID. When farmers sign up using this code, your dashboard will automatically update.</p>
                   </div>
                   
+                  <a 
+                    href="/internship/dashboard"
+                    className="w-full bg-[#008F5A] text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#007A4D] transition-all flex items-center justify-center gap-2 shadow-sm mb-4"
+                  >
+                    Go to Dashboard
+                  </a>
+
                   <button 
                     onClick={handleShare}
                     className="w-full bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all flex items-center justify-center gap-2 shadow-sm mb-4"

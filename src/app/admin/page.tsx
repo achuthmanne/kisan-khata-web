@@ -9,6 +9,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [approvingId, setApprovingId] = useState<string | null>(null);
 
   const fetchInterns = async () => {
     try {
@@ -26,11 +27,22 @@ export default function AdminDashboard() {
     }
   };
 
-  useEffect(() => {
-    fetchInterns();
-  }, []);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === "Kisan@2026") {
+      setIsAuthenticated(true);
+      fetchInterns();
+    } else {
+      setLoginError("Invalid admin password");
+    }
+  };
 
   const handleApprove = async (id: string) => {
+    setApprovingId(id);
     try {
       const res = await fetch("/api/admin/approve", {
         method: "POST",
@@ -48,6 +60,8 @@ export default function AdminDashboard() {
       }
     } catch (err: any) {
       alert("Error: " + err.message);
+    } finally {
+      setApprovingId(null);
     }
   };
 
@@ -60,6 +74,35 @@ export default function AdminDashboard() {
     );
   });
 
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+        <div className="bg-white p-8 rounded-3xl border border-slate-200 w-full max-w-md shadow-sm">
+          <div className="text-center mb-8">
+            <h1 className="text-2xl font-bold text-slate-900 mb-2">Admin Access Only</h1>
+            <p className="text-slate-500">Enter password to view applications.</p>
+          </div>
+          <form onSubmit={handleLogin}>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter Admin Password"
+              className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 mb-4 text-center font-bold"
+            />
+            {loginError && <p className="text-red-500 text-sm font-medium mb-4 text-center">{loginError}</p>}
+            <button
+              type="submit"
+              className="w-full bg-[#008F5A] text-white font-bold py-4 rounded-2xl hover:bg-[#007A4D] transition-colors"
+            >
+              Unlock Dashboard
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
   if (loading) return <div className="p-10 text-center text-xl font-bold">Loading Admin Dashboard...</div>;
 
   return (
@@ -67,7 +110,7 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
           <div>
-            <h1 className="text-4xl font-extrabold text-emerald-900 font-heading tracking-tight">Admin Dashboard</h1>
+            <h1 className="text-4xl font-extrabold text-[#008F5A] font-heading tracking-tight">Admin Dashboard</h1>
             <p className="text-slate-500 mt-2 font-medium">Manage Internship Applications</p>
           </div>
           <div className="bg-slate-50 border border-slate-200 rounded-lg px-5 py-3 flex items-center gap-3 w-full md:w-auto">
@@ -91,7 +134,8 @@ export default function AdminDashboard() {
         <div className="bg-white rounded-xl border border-slate-200 overflow-x-auto">
           <table className="w-full text-left border-collapse whitespace-nowrap min-w-225">
             <thead>
-              <tr className="bg-emerald-50/50 border-b border-emerald-100 text-emerald-800 text-xs uppercase tracking-wider">
+              <tr className="bg-[#008F5A] text-white text-xs uppercase tracking-wider">
+                <th className="p-5 font-bold w-12 text-center">S.No</th>
                 <th className="p-5 font-bold w-1/5">Applicant Name</th>
                 <th className="p-5 font-bold w-1/5">Contact Info</th>
                 <th className="p-5 font-bold w-2/5">Details</th>
@@ -102,11 +146,12 @@ export default function AdminDashboard() {
             <tbody>
               {filteredInterns.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="p-10 text-center text-slate-500 font-medium">No applications found.</td>
+                  <td colSpan={6} className="p-10 text-center text-slate-500 font-medium">No applications found.</td>
                 </tr>
               ) : (
-                filteredInterns.map((intern) => (
+                filteredInterns.map((intern, index) => (
                   <tr key={intern._id} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
+                    <td className="p-5 align-top font-bold text-slate-400 text-center">{index + 1}</td>
                     <td className="p-5 align-top">
                       <div className="font-bold text-slate-900 text-base">{intern.name}</div>
                       <div className="text-xs text-slate-500 mt-1">Applied: {new Date(intern.createdAt).toLocaleDateString()}</div>
@@ -126,7 +171,7 @@ export default function AdminDashboard() {
                     </td>
                     <td className="p-5 align-top">
                       {intern.status === "Approved" ? (
-                        <div className="inline-flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 text-emerald-700 px-3 py-1.5 rounded-md text-xs font-bold">
+                        <div className="inline-flex items-center gap-1.5 bg-[#008F5A]/10 border border-[#008F5A]/20 text-[#008F5A] px-3 py-1.5 rounded-md text-xs font-bold">
                           <CheckCircle2 size={14} /> Approved
                         </div>
                       ) : (
@@ -138,13 +183,19 @@ export default function AdminDashboard() {
                     <td className="p-5 align-top">
                       {intern.status === "Pending" ? (
                         <button 
+                          disabled={approvingId === intern._id}
                           onClick={() => handleApprove(intern._id)}
-                          className="bg-slate-900 text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-slate-800 transition-colors w-full"
+                          className="bg-[#008F5A] text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-[#007A4D] transition-colors w-full disabled:opacity-75 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                         >
-                          Approve
+                          {approvingId === intern._id ? (
+                            <>
+                              <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                              Approving...
+                            </>
+                          ) : "Approve"}
                         </button>
                       ) : (
-                        <div className="text-sm font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 p-2 rounded-md text-center">
+                        <div className="text-sm font-bold text-[#008F5A] bg-[#008F5A]/10 border border-[#008F5A]/20 p-2 rounded-md text-center">
                           {intern.referralCode}
                         </div>
                       )}

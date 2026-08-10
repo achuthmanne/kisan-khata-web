@@ -4,10 +4,10 @@ import Intern from '@/models/Intern';
 import { sendApprovalEmail } from '@/lib/email';
 
 function generateReferralCode(name: string) {
-  // E.g., Achuth -> ACH-1234
-  const prefix = name.substring(0, 3).toUpperCase();
+  // E.g., Achuth -> KK-ACH-1234
+  const prefix = name.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, "X");
   const randomNum = Math.floor(1000 + Math.random() * 9000);
-  return `${prefix}-${randomNum}`;
+  return `KK-${prefix}-${randomNum}`;
 }
 
 export async function POST(req: NextRequest) {
@@ -46,6 +46,14 @@ export async function POST(req: NextRequest) {
     // Approve the intern
     intern.status = 'Approved';
     intern.referralCode = refCode;
+    
+    // Set 30-day internship duration
+    const now = new Date();
+    const endDate = new Date();
+    endDate.setDate(now.getDate() + 30);
+    intern.startDate = now;
+    intern.endDate = endDate;
+    
     await intern.save();
 
     // Trigger Email
