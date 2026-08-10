@@ -193,10 +193,7 @@ export default function CertificatePage() {
             </motion.div>
           </div>
           
-          {/* Flat Corporate Footer for the Card */}
-          <div className="w-full bg-emerald-800 text-emerald-50 px-8 py-3 md:py-4 text-center text-xs md:text-sm font-medium border-t border-emerald-900">
-            <span className="font-bold text-white mr-1">Notes :</span> Certificates will be given upon the completion of the program.
-          </div>
+
         </div>
       </main>
     </div>

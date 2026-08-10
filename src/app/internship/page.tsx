@@ -622,144 +622,131 @@ export default function InternshipPage() {
             </motion.div>
           </div>
 
-          {/* Pricing/Tiers Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Rewards Table - Google Ambassador Style */}
+          <div className="mt-12 overflow-hidden border border-slate-200 rounded-2xl bg-white">
             
-            {/* Tier 1: Gold */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white border-2 border-amber-400 rounded-3xl p-8 flex flex-col relative overflow-hidden group"
-            >
-              <div className="absolute top-0 left-0 w-full h-2 bg-amber-400"></div>
-              <div className="absolute top-6 right-6 text-amber-400 opacity-20 group-hover:opacity-100 transition-opacity">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              </div>
-              <span className="text-amber-500 font-bold uppercase tracking-wider text-xs mb-2">Top 3 Interns</span>
-              <h3 className="text-2xl font-bold text-slate-900 font-heading mb-6">Elite Tier</h3>
-              
-              <ul className="space-y-4 mb-8 flex-1">
-                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
-                  <CheckCircle size={18} className="text-amber-500 shrink-0 mt-0.5" />
-                  Must cover 10+ Villages
-                </li>
-                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
-                  <CheckCircle size={18} className="text-amber-500 shrink-0 mt-0.5" />
-                  100% AgriConnect Usage
-                </li>
-                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
-                  <CheckCircle size={18} className="text-amber-500 shrink-0 mt-0.5" />
-                  Add valuable machines & labor
-                </li>
-              </ul>
-              
-              <div className="pt-6 border-t border-slate-100 mt-auto">
-                <p className="text-3xl font-extrabold text-slate-900 font-heading">₹1,000</p>
-                <p className="text-sm font-bold text-amber-500 mt-1">+ Elite Certificate</p>
-              </div>
-            </motion.div>
+            {/* Emerald Green Banner Image */}
+            <div className="w-full relative">
+              <img 
+                src="/rew banner.png" 
+                alt="Internship Tiered Rewards Banner" 
+                className="w-full object-cover h-auto max-h-[300px] md:max-h-[400px]"
+              />
+            </div>
 
-            {/* Tier 2: Silver */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="bg-white border border-slate-200 rounded-3xl p-8 flex flex-col relative overflow-hidden group"
-            >
-              <div className="absolute top-0 left-0 w-full h-2 bg-slate-400"></div>
-              <span className="text-slate-500 font-bold uppercase tracking-wider text-xs mb-2">Next Top 5</span>
-              <h3 className="text-2xl font-bold text-slate-900 font-heading mb-6">High Achiever</h3>
-              
-              <ul className="space-y-4 mb-8 flex-1">
-                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
-                  <CheckCircle size={18} className="text-slate-500 shrink-0 mt-0.5" />
-                  Must cover 5+ Villages
-                </li>
-                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
-                  <CheckCircle size={18} className="text-slate-500 shrink-0 mt-0.5" />
-                  100% AgriConnect Usage
-                </li>
-                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
-                  <CheckCircle size={18} className="text-slate-500 shrink-0 mt-0.5" />
-                  Add machines or labor
-                </li>
-              </ul>
-              
-              <div className="pt-6 border-t border-slate-100 mt-auto">
-                <p className="text-3xl font-extrabold text-slate-900 font-heading">₹500</p>
-                <p className="text-sm font-bold text-slate-500 mt-1">+ Certificate</p>
-              </div>
-            </motion.div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse min-w-200">
+                <thead>
+                  <tr className="bg-[#008F5A] text-white">
+                    <th className="py-5 px-6 font-bold text-lg border-b border-r border-[#007A4D] w-1/4">Tier Category</th>
+                    <th className="py-5 px-6 font-bold text-lg border-b border-r border-[#007A4D] w-1/4 text-center">Required Target</th>
+                    <th className="py-5 px-6 font-bold text-lg border-b border-r border-[#007A4D] w-1/4 text-center">Cash Reward</th>
+                    <th className="py-5 px-6 font-bold text-lg border-b border-[#007A4D] w-1/4 text-center">Digital & Merch Rewards</th>
+                  </tr>
+                </thead>
+                <tbody className="text-slate-700">
+                  {/* Tier 1: Gold */}
+                  <tr className="hover:bg-slate-50 transition-colors">
+                    <td className="py-6 px-6 border-b border-r border-slate-200">
+                      <div className="flex items-center gap-3">
 
-            {/* Tier 3: Bronze */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="bg-white border border-slate-200 rounded-3xl p-8 flex flex-col relative overflow-hidden group"
-            >
-              <div className="absolute top-0 left-0 w-full h-2 bg-orange-400"></div>
-              <span className="text-orange-500 font-bold uppercase tracking-wider text-xs mb-2">Next Top 2</span>
-              <h3 className="text-2xl font-bold text-slate-900 font-heading mb-6">Rising Star</h3>
-              
-              <ul className="space-y-4 mb-8 flex-1">
-                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
-                  <CheckCircle size={18} className="text-orange-500 shrink-0 mt-0.5" />
-                  Must cover 2+ Villages
-                </li>
-                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
-                  <CheckCircle size={18} className="text-orange-500 shrink-0 mt-0.5" />
-                  Use AgriConnect feature
-                </li>
-                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
-                  <CheckCircle size={18} className="text-orange-500 shrink-0 mt-0.5" />
-                  Add farmers to network
-                </li>
-              </ul>
-              
-              <div className="pt-6 border-t border-slate-100 mt-auto">
-                <p className="text-3xl font-extrabold text-slate-900 font-heading">₹200</p>
-                <p className="text-sm font-bold text-orange-500 mt-1">+ Certificate</p>
-              </div>
-            </motion.div>
+                        <div>
+                          <p className="font-bold text-lg text-slate-900 leading-tight">Elite Tier</p>
+                          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Top 3 Interns</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
+                      <p className="font-bold text-slate-900">10+ Villages</p>
+                      <p className="text-sm text-slate-500 mt-1 font-medium">100% AgriConnect Usage</p>
+                    </td>
+                    <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
+                      <p className="text-2xl font-extrabold text-slate-900 font-heading">₹1,000</p>
+                    </td>
+                    <td className="py-6 px-6 border-b border-slate-200 text-center">
+                      <p className="font-bold text-slate-700">Elite Certificate</p>
+                    </td>
+                  </tr>
 
-            {/* Base Tier */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-              className="bg-emerald-50 border border-emerald-200 rounded-3xl p-8 flex flex-col relative overflow-hidden group"
-            >
-              <div className="absolute top-0 left-0 w-full h-2 bg-emerald-600"></div>
-              <span className="text-emerald-700 font-bold uppercase tracking-wider text-xs mb-2">All Participants</span>
-              <h3 className="text-2xl font-bold text-slate-900 font-heading mb-6">Certified Intern</h3>
-              
-              <ul className="space-y-4 mb-8 flex-1">
-                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
-                  <CheckCircle size={18} className="text-emerald-600 shrink-0 mt-0.5" />
-                  Hit the 50 Farmer Target
-                </li>
-                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
-                  <CheckCircle size={18} className="text-emerald-600 shrink-0 mt-0.5" />
-                  No village limits
-                </li>
-                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium">
-                  <CheckCircle size={18} className="text-emerald-600 shrink-0 mt-0.5" />
-                  Use AgriConnect or any feature
-                </li>
-              </ul>
-              
-              <div className="pt-6 border-t border-emerald-200 mt-auto">
-                <p className="text-3xl font-extrabold text-slate-900 font-heading">Certificate</p>
-                <p className="text-sm font-bold text-emerald-700 mt-1">Free T-Shirts for best effort!</p>
-              </div>
-            </motion.div>
+                  {/* Tier 2: Silver */}
+                  <tr className="hover:bg-slate-50 transition-colors">
+                    <td className="py-6 px-6 border-b border-r border-slate-200">
+                      <div className="flex items-center gap-3">
 
+                        <div>
+                          <p className="font-bold text-lg text-slate-900 leading-tight">High Achiever</p>
+                          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Next Top 5</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
+                      <p className="font-bold text-slate-900">5+ Villages</p>
+                      <p className="text-sm text-slate-500 mt-1 font-medium">100% AgriConnect Usage</p>
+                    </td>
+                    <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
+                      <p className="text-2xl font-extrabold text-slate-900 font-heading">₹500</p>
+                    </td>
+                    <td className="py-6 px-6 border-b border-slate-200 text-center">
+                      <p className="font-bold text-slate-700">Verified Certificate</p>
+                    </td>
+                  </tr>
+
+                  {/* Tier 3: Bronze */}
+                  <tr className="hover:bg-slate-50 transition-colors">
+                    <td className="py-6 px-6 border-b border-r border-slate-200">
+                      <div className="flex items-center gap-3">
+
+                        <div>
+                          <p className="font-bold text-lg text-slate-900 leading-tight">Rising Star</p>
+                          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Next Top 2</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
+                      <p className="font-bold text-slate-900">2+ Villages</p>
+                      <p className="text-sm text-slate-500 mt-1 font-medium">AgriConnect Usage</p>
+                    </td>
+                    <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
+                      <p className="text-2xl font-extrabold text-slate-900 font-heading">₹200</p>
+                    </td>
+                    <td className="py-6 px-6 border-b border-slate-200 text-center">
+                      <p className="font-bold text-slate-700">Verified Certificate</p>
+                    </td>
+                  </tr>
+
+                  {/* Base Tier */}
+                  <tr className="hover:bg-emerald-50/50 transition-colors bg-emerald-50/20">
+                    <td className="py-6 px-6 border-r border-slate-200">
+                      <div className="flex items-center gap-3">
+
+                        <div>
+                          <p className="font-bold text-lg text-slate-900 leading-tight">Certified Intern</p>
+                          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">All Participants</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="py-6 px-6 border-r border-slate-200 text-center">
+                      <p className="font-bold text-slate-900">50 Farmers</p>
+                      <p className="text-sm text-slate-500 mt-1 font-medium">Use AgriConnect/Any Feature</p>
+                    </td>
+                    <td className="py-6 px-6 border-r border-slate-200 text-center">
+                      <p className="font-bold text-slate-400 text-xl">-</p>
+                    </td>
+                    <td className="py-6 px-6 text-center">
+                      <p className="font-bold text-emerald-700">Verified Certificate</p>
+                      <p className="text-xs font-bold text-slate-500 mt-1">Free T-Shirts for best effort!</p>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            
+            {/* Notes Section moved from Certificate */}
+            <div className="w-full bg-slate-50 px-6 py-4 border-t border-slate-200 text-sm text-slate-600 font-medium">
+              <span className="font-bold text-slate-900 mr-1">Notes:</span> 
+              Certificates and rewards will be given upon the successful and verified completion of the program targets.
+            </div>
           </div>
         </div>
       </section>

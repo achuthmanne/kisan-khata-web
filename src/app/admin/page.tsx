@@ -89,7 +89,7 @@ export default function AdminDashboard() {
         )}
 
         <div className="bg-white rounded-xl border border-slate-200 overflow-x-auto">
-          <table className="w-full text-left border-collapse whitespace-nowrap min-w-[900px]">
+          <table className="w-full text-left border-collapse whitespace-nowrap min-w-225">
             <thead>
               <tr className="bg-emerald-50/50 border-b border-emerald-100 text-emerald-800 text-xs uppercase tracking-wider">
                 <th className="p-5 font-bold w-1/5">Applicant Name</th>
