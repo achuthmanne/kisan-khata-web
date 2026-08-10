@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     await dbConnect();
 
     const body = await req.json();
-    const { internReferralCode, farmerFirebaseUid, deviceId, eventType } = body;
+    const { internReferralCode, farmerFirebaseUid, deviceId, eventType, metadata } = body;
 
     // 1. Validate required fields
     if (!internReferralCode || !farmerFirebaseUid || !deviceId || !eventType) {
@@ -18,7 +18,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!["SIGNUP", "AGRICONNECT_USAGE"].includes(eventType)) {
+    const validEventTypes = [
+      "FARMER_ONBOARDED",
+      "AGRICONNECT_USAGE",
+      "LABOR_LOG",
+      "PAYMENT_TRACKED",
+      "VEHICLE_ADDED",
+      "EXPENSE_LOG",
+      "SALE_LOG"
+    ];
+
+    if (!validEventTypes.includes(eventType)) {
       return NextResponse.json(
         { success: false, message: "Invalid event type" },
         { status: 400 }
@@ -56,6 +66,7 @@ export async function POST(req: NextRequest) {
       farmerFirebaseUid,
       deviceId,
       eventType,
+      metadata
     });
 
     return NextResponse.json(

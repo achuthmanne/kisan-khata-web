@@ -212,6 +212,17 @@ export default function InternshipDashboard() {
                 <span className="text-4xl font-black text-slate-900">{stats.uniqueVillages}</span>
                 <span className="text-slate-500 font-medium mb-1">unique locations</span>
               </div>
+              
+              {/* Render the actual list of villages */}
+              {stats.villagesList && stats.villagesList.length > 0 && (
+                <div className="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2">
+                  {stats.villagesList.map((village: string, idx: number) => (
+                    <span key={idx} className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-bold capitalize">
+                      {village}
+                    </span>
+                  ))}
+                </div>
+              )}
             </motion.div>
 
             {/* AgriConnect Usage */}

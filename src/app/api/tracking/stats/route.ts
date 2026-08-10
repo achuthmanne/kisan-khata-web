@@ -33,7 +33,15 @@ export async function GET(req: NextRequest) {
           vehiclesAdded: { $sum: { $cond: [{ $eq: ["$eventType", "VEHICLE_ADDED"] }, 1, 0] } },
           expensesLogged: { $sum: { $cond: [{ $eq: ["$eventType", "EXPENSE_LOG"] }, 1, 0] } },
           salesLogged: { $sum: { $cond: [{ $eq: ["$eventType", "SALE_LOG"] }, 1, 0] } },
-          villages: { $addToSet: "$metadata.villageName" }
+          villages: { 
+            $addToSet: { 
+              $cond: [
+                { $eq: ["$eventType", "FARMER_ONBOARDED"] },
+                { $trim: { input: { $toLower: "$metadata.villageName" } } },
+                null
+              ]
+            } 
+          }
         }
       }
     ]);
@@ -66,6 +74,7 @@ export async function GET(req: NextRequest) {
           agriConnectUsages: stats.agriConnectUsages,
           dataEntryUsages,
           uniqueVillages,
+          villagesList: stats.villages.filter((v: any) => v),
           breakdown: {
             laborLogs: stats.laborLogs,
             paymentsTracked: stats.paymentsTracked,
