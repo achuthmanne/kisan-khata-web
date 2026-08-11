@@ -177,10 +177,9 @@ export default function CertificatePage() {
             >
               <h1 className="text-3xl font-extrabold text-slate-900 font-heading mb-4">Your Verified Credentials</h1>
               {userData && userData.status === "Approved" ? (
-                <p className="text-lg text-slate-600 font-medium">
-                  Hello {userData.name.split(' ')[0]}, your official Kisan Khata certificate is ready! You can now download it and showcase your skills on LinkedIn.
+                <p className="text-lg text-slate-600 font-medium leading-relaxed">
+                  Hello <span className="font-bold text-slate-800">{userData.name.split(' ')[0]}</span>, your internship is currently <span className="font-bold text-emerald-600">In Progress</span>! Keep up the great work in the field. Your official, verifiable certificate will be generated and available for download here upon successful completion of your tenure.
                 </p>
-                // Add download button logic here later
               ) : userData ? (
                 <p className="text-lg text-slate-600 font-medium">
                   Hello {userData.name.split(' ')[0]}, your application is currently {userData.status}. Complete your internship tenure to unlock your official certificate.

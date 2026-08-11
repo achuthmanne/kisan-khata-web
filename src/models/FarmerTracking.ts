@@ -4,7 +4,7 @@ export interface IFarmerTracking extends Document {
   internReferralCode: string;
   farmerFirebaseUid: string;
   deviceId: string;
-  eventType: "FARMER_ONBOARDED" | "AGRICONNECT_USAGE" | "LABOR_LOG" | "PAYMENT_TRACKED" | "VEHICLE_ADDED" | "EXPENSE_LOG" | "SALE_LOG";
+  eventType: "FARMER_ONBOARDED" | "AGRICONNECT_USAGE" | "LABOR_LOG" | "PAYMENT_TRACKED" | "VEHICLE_ADDED" | "EXPENSE_LOG" | "SALE_LOG" | "MACHINE_LOG";
   metadata?: Record<string, any>;
   createdAt: Date;
   updatedAt: Date;
@@ -17,7 +17,7 @@ const FarmerTrackingSchema: Schema = new Schema(
     deviceId: { type: String, required: true },
     eventType: {
       type: String,
-      enum: ["FARMER_ONBOARDED", "AGRICONNECT_USAGE", "LABOR_LOG", "PAYMENT_TRACKED", "VEHICLE_ADDED", "EXPENSE_LOG", "SALE_LOG"],
+      enum: ["FARMER_ONBOARDED", "AGRICONNECT_USAGE", "LABOR_LOG", "PAYMENT_TRACKED", "VEHICLE_ADDED", "EXPENSE_LOG", "SALE_LOG", "MACHINE_LOG"],
       required: true,
     },
     metadata: { type: Schema.Types.Mixed },
@@ -30,4 +30,8 @@ const FarmerTrackingSchema: Schema = new Schema(
 // We removed the generic unique index because a device can submit multiple LABOR_LOGs, etc.
 // Uniqueness for FARMER_ONBOARDED will be enforced at the API level.
 
-export default mongoose.models.FarmerTracking || mongoose.model<IFarmerTracking>("FarmerTracking", FarmerTrackingSchema);
+if (mongoose.models.FarmerTracking) {
+  delete mongoose.models.FarmerTracking;
+}
+
+export default mongoose.model<IFarmerTracking>("FarmerTracking", FarmerTrackingSchema);

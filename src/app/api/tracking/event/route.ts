@@ -25,7 +25,8 @@ export async function POST(req: NextRequest) {
       "PAYMENT_TRACKED",
       "VEHICLE_ADDED",
       "EXPENSE_LOG",
-      "SALE_LOG"
+      "SALE_LOG",
+      "MACHINE_LOG"
     ];
 
     if (!validEventTypes.includes(eventType)) {
@@ -44,20 +45,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 3. Fraud Prevention: Check if this device already triggered this event type
-    const existingTracking = await FarmerTracking.findOne({
-      deviceId,
-      eventType,
-    });
+    // 3. Fraud Prevention: Check if this device already triggered this one-time event type
+    if (eventType === "FARMER_ONBOARDED" || eventType === "AGRICONNECT_USAGE") {
+      const existingTracking = await FarmerTracking.findOne({
+        deviceId,
+        eventType,
+      });
 
-    if (existingTracking) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          message: `Fraud alert: This device has already recorded a ${eventType} event.` 
-        },
-        { status: 409 } // Conflict
-      );
+      if (existingTracking) {
+        return NextResponse.json(
+          { 
+            success: false, 
+            message: `Fraud alert: This device has already recorded a ${eventType} event.` 
+          },
+          { status: 409 } // Conflict
+        );
+      }
     }
 
     // 4. Record the tracking event

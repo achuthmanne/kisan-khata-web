@@ -36,29 +36,69 @@ export default function InternshipDashboard() {
 
   if (!isLoggedIn || !data) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
-        <div className="bg-white p-8 rounded-3xl border border-slate-200 w-full max-w-md">
-          <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-slate-900 mb-2">Intern Dashboard</h1>
-            <p className="text-slate-500">Enter your referral code to track your progress.</p>
+      <div className="min-h-screen bg-white flex">
+        {/* Left Side: Branding / Motivation (Hidden on mobile) */}
+        <div className="hidden lg:flex w-1/2 bg-[#008F5A] p-12 flex-col justify-between relative overflow-hidden">
+          {/* Subtle background decoration */}
+          <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <svg className="absolute w-[800px] h-[800px] -top-[200px] -left-[200px]" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <path d="M0,0 Q50,100 100,0 Z" fill="white" />
+            </svg>
+            <svg className="absolute w-[600px] h-[600px] -bottom-[100px] -right-[100px]" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <circle cx="50" cy="50" r="40" fill="white" />
+            </svg>
           </div>
-          <form onSubmit={handleLogin}>
-            <input
-              type="text"
-              value={referralCode}
-              onChange={(e) => setReferralCode(e.target.value.toUpperCase())}
-              placeholder="e.g., KK-ACH-1234"
-              className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-[#008F5A]/10 focus:border-[#008F5A] transition-all bg-slate-50/50 mb-4 text-center font-bold"
-            />
-            {error && <p className="text-red-500 text-sm font-medium mb-4 text-center">{error}</p>}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-[#008F5A] text-white font-bold py-4 rounded-2xl hover:bg-[#007A4D] transition-colors disabled:opacity-70"
-            >
-              {loading ? "Checking..." : "View Progress"}
-            </button>
-          </form>
+
+          <div className="relative z-10">
+            <h2 className="text-white text-3xl font-black tracking-tight mb-2">Kisan Khata</h2>
+            <p className="text-emerald-100 font-medium">Agri-Tech Field Operations Internship</p>
+          </div>
+
+          <div className="relative z-10 max-w-md">
+            <h1 className="text-5xl font-black text-white leading-tight mb-6">
+              Empowering<br/>Rural India,<br/>One Farmer<br/>at a Time.
+            </h1>
+            <p className="text-emerald-100 text-lg font-medium leading-relaxed">
+              Track your impact. Elevate your career. Digitize agriculture. 
+              Join the mission to bring a million farmers online.
+            </p>
+          </div>
+
+        </div>
+
+        {/* Right Side: Login Form */}
+        <div className="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-12 relative bg-white">
+          <div className="w-full max-w-md">
+            {/* Mobile Branding (Only visible on small screens) */}
+            <div className="lg:hidden text-center mb-10">
+              <h2 className="text-3xl font-black text-[#008F5A] mb-1">Kisan Khata</h2>
+              <p className="text-slate-500 font-medium">Intern Portal</p>
+            </div>
+
+            <div className="mb-10">
+              <h1 className="text-3xl font-bold text-slate-900 mb-3">Welcome Back</h1>
+              <p className="text-slate-500 font-medium">Enter your referral code to access your personalized performance dashboard.</p>
+            </div>
+
+            <form onSubmit={handleLogin}>
+              <input
+                type="text"
+                value={referralCode}
+                onChange={(e) => setReferralCode(e.target.value.toUpperCase())}
+                placeholder="e.g., KK-XXX-1234"
+                className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-[#008F5A]/10 focus:border-[#008F5A] transition-all bg-slate-50/50 mb-4 text-center font-bold"
+              />
+              {error && <p className="text-red-500 text-sm font-medium mb-4 text-center">{error}</p>}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-[#008F5A] text-white font-bold py-4 rounded-2xl hover:bg-[#007A4D] transition-colors disabled:opacity-70"
+              >
+                {loading ? "Checking..." : "View Progress"}
+              </button>
+            </form>
+
+          </div>
         </div>
       </div>
     );
@@ -66,6 +106,7 @@ export default function InternshipDashboard() {
 
   const { intern, stats } = data;
   const farmers = stats.farmersOnboarded || 0;
+  const agriConnectPercent = farmers > 0 ? Math.min(100, Math.round((stats.agriConnectUsages / farmers) * 100)) : 0;
   
   // Calculate Time Remaining
   const now = new Date();
@@ -215,7 +256,7 @@ export default function InternshipDashboard() {
               
               {/* Render the actual list of villages */}
               {stats.villagesList && stats.villagesList.length > 0 && (
-                <div className="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2">
+                <div className="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2 max-h-32 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent">
                   {stats.villagesList.map((village: string, idx: number) => (
                     <span key={idx} className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-bold capitalize">
                       {village}
@@ -237,10 +278,10 @@ export default function InternshipDashboard() {
                 <h3 className="font-bold text-slate-900">AgriConnect Usage</h3>
               </div>
               <div className="flex items-end gap-2 mb-2">
-                <span className="text-4xl font-black text-slate-900">{stats.agriConnectUsages}</span>
-                <span className="text-slate-500 font-medium mb-1">features used</span>
+                <span className="text-4xl font-black text-slate-900">{agriConnectPercent}%</span>
+                <span className="text-slate-500 font-medium mb-1">conversion</span>
               </div>
-              <p className="text-xs text-slate-500 font-medium mt-auto">Total interactions by your farmers on the AgriConnect platform.</p>
+              <p className="text-xs text-slate-500 font-medium mt-auto">{stats.agriConnectUsages} out of {farmers} onboarded farmers used AgriConnect.</p>
             </motion.div>
 
             {/* Data Entry Usage */}

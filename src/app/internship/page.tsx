@@ -666,7 +666,7 @@ export default function InternshipPage() {
                       </div>
                     </td>
                     <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
-                      <p className="font-bold text-slate-900">10+ Villages</p>
+                      <p className="font-bold text-slate-900">100 Farmers & 10 Villages</p>
                       <p className="text-sm text-slate-500 mt-1 font-medium">100% AgriConnect Usage</p>
                     </td>
                     <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
@@ -689,7 +689,7 @@ export default function InternshipPage() {
                       </div>
                     </td>
                     <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
-                      <p className="font-bold text-slate-900">5+ Villages</p>
+                      <p className="font-bold text-slate-900">50 Farmers & 5 Villages</p>
                       <p className="text-sm text-slate-500 mt-1 font-medium">100% AgriConnect Usage</p>
                     </td>
                     <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
@@ -712,8 +712,8 @@ export default function InternshipPage() {
                       </div>
                     </td>
                     <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
-                      <p className="font-bold text-slate-900">2+ Villages</p>
-                      <p className="text-sm text-slate-500 mt-1 font-medium">AgriConnect Usage</p>
+                      <p className="font-bold text-slate-900">50 Farmers & 2 Villages</p>
+                      <p className="text-sm text-slate-500 mt-1 font-medium">50% AgriConnect & 50% Data Entry</p>
                     </td>
                     <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
                       <p className="text-2xl font-extrabold text-slate-900 font-heading">₹200</p>
@@ -736,7 +736,7 @@ export default function InternshipPage() {
                     </td>
                     <td className="py-6 px-6 border-r border-slate-200 text-center">
                       <p className="font-bold text-slate-900">50 Farmers</p>
-                      <p className="text-sm text-slate-500 mt-1 font-medium">Use AgriConnect/Any Feature</p>
+                      <p className="text-sm text-slate-500 mt-1 font-medium">AgriConnect or Data Entry</p>
                     </td>
                     <td className="py-6 px-6 border-r border-slate-200 text-center">
                       <p className="font-bold text-slate-400 text-xl">-</p>
@@ -963,20 +963,9 @@ export default function InternshipPage() {
                   Agri-Tech Field Operations Internship
                 </h4>
                 {formStep === "edit" && !loginMode && (
-                  <>
-                    <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 mb-6 flex items-start gap-3">
-                      <div className="mt-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-700"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                      </div>
-                      <div>
-                        <p className="font-bold text-emerald-900 mb-0.5">Application Window</p>
-                        <p className="text-sm text-emerald-800 font-medium">Aug 20, 2026 – Sep 10, 2026. <br/>Approvals and onboarding will be processed during this period.</p>
-                      </div>
-                    </div>
-                    <p className="text-slate-500 font-medium text-base">
-                      Please fill in your details below to apply for the program.
-                    </p>
-                  </>
+                  <p className="text-slate-500 font-medium text-base mt-2">
+                    Please fill in your details below to apply for the program.
+                  </p>
                 )}
               </div>
 

@@ -33,6 +33,7 @@ export async function GET(req: NextRequest) {
           vehiclesAdded: { $sum: { $cond: [{ $eq: ["$eventType", "VEHICLE_ADDED"] }, 1, 0] } },
           expensesLogged: { $sum: { $cond: [{ $eq: ["$eventType", "EXPENSE_LOG"] }, 1, 0] } },
           salesLogged: { $sum: { $cond: [{ $eq: ["$eventType", "SALE_LOG"] }, 1, 0] } },
+          machineLogs: { $sum: { $cond: [{ $eq: ["$eventType", "MACHINE_LOG"] }, 1, 0] } },
           villages: { 
             $addToSet: { 
               $cond: [
@@ -54,11 +55,12 @@ export async function GET(req: NextRequest) {
       vehiclesAdded: 0,
       expensesLogged: 0,
       salesLogged: 0,
+      machineLogs: 0,
       villages: []
     };
 
     const uniqueVillages = stats.villages.filter((v: any) => v).length;
-    const dataEntryUsages = stats.laborLogs + stats.paymentsTracked + stats.vehiclesAdded + stats.expensesLogged + stats.salesLogged;
+    const dataEntryUsages = stats.laborLogs + stats.paymentsTracked + stats.vehiclesAdded + stats.expensesLogged + stats.salesLogged + stats.machineLogs;
 
     return NextResponse.json({
       success: true,
@@ -80,7 +82,8 @@ export async function GET(req: NextRequest) {
             paymentsTracked: stats.paymentsTracked,
             vehiclesAdded: stats.vehiclesAdded,
             expensesLogged: stats.expensesLogged,
-            salesLogged: stats.salesLogged
+            salesLogged: stats.salesLogged,
+            machineLogs: stats.machineLogs
           }
         }
       }
