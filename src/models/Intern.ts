@@ -41,11 +41,12 @@ const InternSchema: Schema = new Schema(
 
 // Automatically generate a referral code when the intern is approved
 InternSchema.pre("save", function () {
-  if (this.isModified("status") && this.status === "Approved" && !this.referralCode) {
+  const doc = this as IIntern;
+  if (doc.isModified("status") && doc.status === "Approved" && !doc.referralCode) {
     // Generates something like KK-JOH-4921
-    const namePrefix = this.name ? this.name.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, "X") : "INT";
+    const namePrefix = doc.name ? doc.name.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, "X") : "INT";
     const randomNum = Math.floor(1000 + Math.random() * 9000);
-    this.referralCode = `KK-${namePrefix}-${randomNum}`;
+    doc.referralCode = `KK-${namePrefix}-${randomNum}`;
   }
 });
 
