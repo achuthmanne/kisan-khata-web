@@ -41,7 +41,7 @@ const InternSchema: Schema = new Schema(
 
 // Automatically generate a referral code when the intern is approved
 InternSchema.pre("save", function () {
-  const doc = this as IIntern;
+  const doc = this as unknown as IIntern;
   if (doc.isModified("status") && doc.status === "Approved" && !doc.referralCode) {
     // Generates something like KK-JOH-4921
     const namePrefix = doc.name ? doc.name.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, "X") : "INT";
