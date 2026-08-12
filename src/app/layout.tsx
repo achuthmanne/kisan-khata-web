@@ -41,6 +41,9 @@ export const metadata: Metadata = {
     description: "Track labor, machinery, and crop sales digitally with Kisan Khata.",
     images: ["/logo.png"],
   },
+  verification: {
+    google: "per-evnaX8VqVXKJEWueaIbThnFt_CHuRx1kSPsePIk",
+  },
 };
 
 export default function RootLayout({
