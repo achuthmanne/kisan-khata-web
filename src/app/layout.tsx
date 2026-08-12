@@ -15,9 +15,32 @@ const notoSansTelugu = Noto_Sans_Telugu({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kisankhata.com"),
-  title: "Kisan Khata - Smart Digital Ledger for Farmers",
-  description: "Kisan Khata is a simple digital platform replacing traditional paper notebooks for farmers to track labor, machinery, and crop sales.",
+  metadataBase: new URL("https://kisankhata.co.in"),
+  title: "Kisan Khata - Smart Digital Ledger for Indian Farmers",
+  description: "Kisan Khata is a simple digital platform replacing traditional paper notebooks for farmers to track labor, machinery, and crop sales. Manage your farm expenses and income efficiently.",
+  keywords: ["Kisan Khata", "Farmer Ledger", "Agriculture App", "Farm Management", "Telugu Farmers", "Crop Sales", "Farm Accounting", "Agriculture India", "KisanKhata App"],
+  openGraph: {
+    title: "Kisan Khata - Smart Digital Ledger for Farmers",
+    description: "Replace traditional paper notebooks with Kisan Khata. Track labor, machinery, and crop sales digitally.",
+    url: "https://kisankhata.co.in",
+    siteName: "Kisan Khata",
+    images: [
+      {
+        url: "/logo.png",
+        width: 800,
+        height: 600,
+        alt: "Kisan Khata Logo",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kisan Khata - Smart Digital Ledger",
+    description: "Track labor, machinery, and crop sales digitally with Kisan Khata.",
+    images: ["/logo.png"],
+  },
 };
 
 export default function RootLayout({
