@@ -44,6 +44,11 @@ export const metadata: Metadata = {
   verification: {
     google: "per-evnaX8VqVXKJEWueaIbThnFt_CHuRx1kSPsePIk",
   },
+  icons: {
+    icon: '/kisan khata fav.png',
+    shortcut: '/kisan khata fav.png',
+    apple: '/kisan khata fav.png',
+  },
 };
 
 export default function RootLayout({
