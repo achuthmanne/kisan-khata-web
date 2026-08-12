@@ -30,18 +30,18 @@ export default function CertificatePage() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50">
+    <div className="flex flex-col min-h-screen bg-slate-50 overflow-x-hidden w-full max-w-[100vw]">
       {/* Navigation - Exact match to Internship Page */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div className="flex items-center justify-between px-4 md:px-8 lg:px-12 py-2 max-w-[1600px] mx-auto w-full">
+      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div className="flex items-center justify-between px-6 md:px-8 lg:px-12 py-2 max-w-[1600px] mx-auto w-full">
           <Link 
             href="/" 
-            className="flex flex-col items-center justify-center cursor-pointer transition-transform hover:scale-105"
+            className="flex flex-row items-center gap-1.5 md:gap-2 cursor-pointer transition-transform hover:scale-105"
           >
-            <div className="w-16 h-10 flex items-center justify-center shrink-0 relative overflow-visible">
-              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[2.5] origin-center" />
+            <div className="w-8 h-8 md:w-12 md:h-10 flex items-center justify-center shrink-0 relative overflow-visible">
+              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[1.8] md:scale-[2.2] origin-center" />
             </div>
-            <span className="text-[13px] md:text-[15px] font-heading font-extrabold text-green-900 tracking-tight leading-none z-10 -mt-0.5">
+            <span className="text-[16px] md:text-[18px] font-heading font-extrabold text-green-900 tracking-tight leading-none z-10 pt-0.5">
               Kisan Khata
             </span>
           </Link>
@@ -61,7 +61,7 @@ export default function CertificatePage() {
             </span>
           </div>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             {/* Auto-selected to EN - static dropdown visual */}
             <div className="hidden md:block relative">
               <div className="flex items-center gap-2 px-4 py-2.5 text-base font-medium text-gray-800 bg-gray-50 border border-gray-200 rounded-lg opacity-70 cursor-not-allowed">
@@ -80,12 +80,12 @@ export default function CertificatePage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.25 }}
-                  className="bg-white text-slate-800 border border-slate-200 px-5 py-2.5 h-11 rounded-lg font-bold text-base flex items-center gap-2.5"
+                  className="bg-white text-slate-800 border border-slate-200 px-3 md:px-5 py-1 md:py-2.5 h-8 md:h-11 rounded-md md:rounded-lg font-bold text-[11px] md:text-base flex items-center gap-1.5 md:gap-2.5"
                 >
-                  <div className="w-6 h-6 rounded-full bg-slate-800 text-white flex items-center justify-center text-sm">
+                  <div className="w-4 h-4 md:w-6 md:h-6 rounded-full bg-slate-800 text-white flex items-center justify-center text-[10px] md:text-sm">
                     {userData.name.charAt(0).toUpperCase()}
                   </div>
-                  <span className="hidden sm:inline">
+                  <span>
                     {userData.name.split(' ')[0]}
                   </span>
                 </motion.div>
@@ -96,10 +96,10 @@ export default function CertificatePage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.25 }}
-                  className="bg-slate-100 text-slate-600 border border-slate-200 px-5 py-2.5 h-11 rounded-lg font-bold text-base flex items-center gap-2.5"
+                  className="bg-slate-100 text-slate-600 border border-slate-200 px-3 md:px-5 py-1 md:py-2.5 h-8 md:h-11 rounded-md md:rounded-lg font-bold text-[11px] md:text-base flex items-center gap-1.5 md:gap-2.5"
                 >
-                  <User size={18} />
-                  <span className="hidden sm:inline">
+                  <User className="w-3.5 h-3.5 md:w-[18px] md:h-[18px]" />
+                  <span>
                     Guest
                   </span>
                 </motion.div>
@@ -146,7 +146,7 @@ export default function CertificatePage() {
 
       {/* Main Content Area - Single Continuous Card */}
       <main 
-        className="w-full pt-16 md:pt-20 px-4 md:px-8 pb-20 bg-slate-50 relative z-10"
+        className="w-full pt-0 md:pt-4 px-4 md:px-8 pb-20 bg-slate-50 relative z-10"
         style={{ 
           backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.025) 10px, rgba(0,0,0,0.025) 11px)' 
         }}

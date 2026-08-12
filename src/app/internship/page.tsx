@@ -186,18 +186,18 @@ export default function InternshipPage() {
   };
   
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden w-full max-w-[100vw]">
       {/* Navigation - Exact match to Home Page but with Apply Now button */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div className="flex items-center justify-between px-4 md:px-8 lg:px-12 py-2 max-w-[1600px] mx-auto w-full">
+      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div className="flex items-center justify-between px-6 md:px-8 lg:px-12 py-2 max-w-[1600px] mx-auto w-full">
           <Link 
             href="/" 
-            className="flex flex-col items-center justify-center cursor-pointer transition-transform hover:scale-105"
+            className="flex flex-row items-center gap-1.5 md:gap-2 cursor-pointer transition-transform hover:scale-105"
           >
-            <div className="w-16 h-10 flex items-center justify-center shrink-0 relative overflow-visible">
-              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[2.5] origin-center" />
+            <div className="w-8 h-8 md:w-12 md:h-10 flex items-center justify-center shrink-0 relative overflow-visible">
+              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[1.8] md:scale-[2.2] origin-center" />
             </div>
-            <span className="text-[13px] md:text-[15px] font-heading font-extrabold text-green-900 tracking-tight leading-none z-10 -mt-0.5">
+            <span className="text-[16px] md:text-[18px] font-heading font-extrabold text-green-900 tracking-tight leading-none z-10 pt-0.5">
               Kisan Khata
             </span>
           </Link>
@@ -217,7 +217,7 @@ export default function InternshipPage() {
             </Link>
           </div>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             {/* Auto-selected to EN - static dropdown visual */}
             <div className="hidden md:block relative">
               <div className="flex items-center gap-2 px-4 py-2.5 text-base font-medium text-gray-800 bg-gray-50 border border-gray-200 rounded-lg opacity-70 cursor-not-allowed">
@@ -236,12 +236,12 @@ export default function InternshipPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.25 }}
-                  className="bg-white text-slate-800 border border-slate-200 px-5 py-2.5 h-11 rounded-lg font-bold text-base flex items-center gap-2.5"
+                  className="bg-white text-slate-800 border border-slate-200 px-3 md:px-5 py-1 md:py-2.5 h-8 md:h-11 rounded-md md:rounded-lg font-bold text-[11px] md:text-base flex items-center gap-1.5 md:gap-2.5"
                 >
-                  <div className="w-6 h-6 rounded-full bg-slate-800 text-white flex items-center justify-center text-sm">
+                  <div className="w-4 h-4 md:w-6 md:h-6 rounded-full bg-slate-800 text-white flex items-center justify-center text-[10px] md:text-sm">
                     {formData.name.charAt(0).toUpperCase()}
                   </div>
-                  <span className="hidden sm:inline">
+                  <span>
                     {formData.name.split(' ')[0]}
                   </span>
                 </motion.div>
@@ -253,10 +253,10 @@ export default function InternshipPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.25 }}
-                  className="bg-emerald-700 text-white px-8 py-2.5 h-11 rounded-lg font-medium text-base hover:bg-emerald-800 transition-colors flex items-center gap-2 shadow-md cursor-pointer"
+                  className="bg-emerald-700 text-white px-3 md:px-8 py-1 md:py-2.5 h-8 md:h-11 rounded-md md:rounded-lg font-medium text-[11px] md:text-base hover:bg-emerald-800 transition-colors flex items-center justify-center gap-1.5 md:gap-2 cursor-pointer"
                 >
-                  <Send size={18} />
-                  <span className="hidden sm:inline">
+                  <Send className="w-3.5 h-3.5 md:w-[18px] md:h-[18px]" />
+                  <span>
                     Apply Now
                   </span>
                 </motion.a>
@@ -302,7 +302,7 @@ export default function InternshipPage() {
       </nav>
 
       {/* Hero Banner - Blends directly into white background */}
-      <main className="w-full pt-16 md:pt-20 px-4 md:px-8 bg-white relative z-10">
+      <main className="w-full pt-0 md:pt-0 px-4 md:px-8 bg-white relative z-10">
         <div className="w-full max-w-7xl mx-auto flex justify-center">
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
@@ -348,7 +348,7 @@ export default function InternshipPage() {
               <div className="w-16 h-16 bg-emerald-800 rounded-2xl flex items-center justify-center mb-6 text-white group-hover:scale-110 transition-transform duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
               </div>
-              <h3 className="text-xl font-bold text-emerald-950 mb-3 font-heading">Program Name</h3>
+              <h3 className="text-lg md:text-xl font-bold text-emerald-950 mb-3 font-heading">Program Name</h3>
               <p className="text-lg text-gray-600 font-medium leading-relaxed">
                 Agri-Tech Field Operations Internship
               </p>
@@ -365,7 +365,7 @@ export default function InternshipPage() {
               <div className="w-16 h-16 bg-emerald-800 rounded-2xl flex items-center justify-center mb-6 text-white group-hover:scale-110 transition-transform duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
               </div>
-              <h3 className="text-xl font-bold text-emerald-950 mb-3 font-heading">Conducted By</h3>
+              <h3 className="text-lg md:text-xl font-bold text-emerald-950 mb-3 font-heading">Conducted By</h3>
               <p className="text-lg text-gray-600 font-medium leading-relaxed">
                 Kisan Khata
               </p>
@@ -382,7 +382,7 @@ export default function InternshipPage() {
               <div className="w-16 h-16 bg-emerald-800 rounded-2xl flex items-center justify-center mb-6 text-white group-hover:scale-110 transition-transform duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
               </div>
-              <h3 className="text-xl font-bold text-emerald-950 mb-3 font-heading">The Goal</h3>
+              <h3 className="text-lg md:text-xl font-bold text-emerald-950 mb-3 font-heading">The Goal</h3>
               <p className="text-base text-gray-600 font-medium leading-relaxed">
                 Onboarding agricultural assets and bringing farmers into our digital ecosystem.
               </p>
@@ -432,7 +432,7 @@ export default function InternshipPage() {
             <div className="flex items-start gap-6 group">
               <span className="text-3xl font-heading font-extrabold text-yellow-500/90 tracking-tighter mt-1 group-hover:text-yellow-400 transition-colors">01.</span>
               <div>
-                <h4 className="text-2xl font-bold text-white mb-2 font-heading tracking-wide">Real Impact</h4>
+                <h4 className="text-xl md:text-2xl font-bold text-white mb-2 font-heading tracking-wide">Real Impact</h4>
                 <p className="text-emerald-100/90 leading-relaxed font-medium text-lg">See how your daily work directly improves the financial lives and efficiency of local farmers.</p>
               </div>
             </div>
@@ -440,7 +440,7 @@ export default function InternshipPage() {
             <div className="flex items-start gap-6 group">
               <span className="text-3xl font-heading font-extrabold text-yellow-500/90 tracking-tighter mt-1 group-hover:text-yellow-400 transition-colors">02.</span>
               <div>
-                <h4 className="text-2xl font-bold text-white mb-2 font-heading tracking-wide">Field Experience</h4>
+                <h4 className="text-xl md:text-2xl font-bold text-white mb-2 font-heading tracking-wide">Field Experience</h4>
                 <p className="text-emerald-100/90 leading-relaxed font-medium text-lg">Step out of the lab and into the real world of Agri-Tech operations and rural engagement.</p>
               </div>
             </div>
@@ -448,7 +448,7 @@ export default function InternshipPage() {
             <div className="flex items-start gap-6 group">
               <span className="text-3xl font-heading font-extrabold text-yellow-500/90 tracking-tighter mt-1 group-hover:text-yellow-400 transition-colors">03.</span>
               <div>
-                <h4 className="text-2xl font-bold text-white mb-2 font-heading tracking-wide">Career Growth</h4>
+                <h4 className="text-xl md:text-2xl font-bold text-white mb-2 font-heading tracking-wide">Career Growth</h4>
                 <p className="text-emerald-100/90 leading-relaxed font-medium text-lg">Get certified by a pioneering startup and build a resume that stands out in the tech industry.</p>
               </div>
             </div>
@@ -495,13 +495,13 @@ export default function InternshipPage() {
                 <img src="/logo.png" alt="Kisan Khata Logo" className="h-20 md:h-28 w-auto object-contain -ml-4" />
                 <div className="flex flex-col items-start -ml-2">
                   <div className="flex items-center">
-                    <span className="text-xl md:text-2xl font-bold text-slate-900 leading-none font-heading">Kisan Khata</span>
+                    <span className="text-xl md:text-xl md:text-2xl font-bold text-slate-900 leading-none font-heading">Kisan Khata</span>
                   </div>
                   <span className="text-xs md:text-sm font-semibold text-slate-500 tracking-wider mt-1">UDYAM REG. VERIFIED</span>
                 </div>
               </div>
 
-              <h3 className="text-2xl font-bold text-slate-900 font-heading mb-4">Govt. Recognized Startup</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-slate-900 font-heading mb-4">Govt. Recognized Startup</h3>
               <p className="text-slate-600 font-medium leading-relaxed mb-8">
                 Officially registered under the Ministry of MSME, Govt. of India. Scan the Udyam QR below to instantly verify our corporate authenticity.
               </p>
@@ -529,7 +529,7 @@ export default function InternshipPage() {
               <div className="w-14 h-14 bg-[#0A66C2]/10 text-[#0A66C2] rounded-2xl flex items-center justify-center mb-6">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 font-heading mb-4">LinkedIn Ready Certification</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-slate-900 font-heading mb-4">LinkedIn Ready Certification</h3>
               <p className="text-slate-600 font-medium leading-relaxed mb-8">
                 Yes, your hard work counts! Every graduate of this internship receives an official Certificate of Completion with a unique verifiable ID.
               </p>
@@ -568,26 +568,6 @@ export default function InternshipPage() {
             <div className="w-24 h-1.5 bg-emerald-700 mx-auto mt-6 rounded-full"></div>
           </motion.div>
 
-          {/* Strict Warning Block */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-white border-l-4 border-red-500 rounded-2xl p-6 md:p-8 shadow-sm mb-16"
-          >
-            <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
-              <div className="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-red-500"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-              </div>
-              <div>
-                <h4 className="text-xl font-bold text-slate-900 font-heading mb-2">Zero Tolerance for Fake Installs</h4>
-                <p className="text-slate-600 font-medium leading-relaxed">
-                  The app <strong className="text-red-600">MUST</strong> be installed directly on a farmer's smartphone. We use advanced device tracking to detect duplicate devices, fake profiles, and identical networks. Any fraudulent entry will lead to immediate disqualification.
-                </p>
-              </div>
-            </div>
-          </motion.div>
 
           {/* The Target & Breakdown */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
@@ -599,7 +579,7 @@ export default function InternshipPage() {
               className="lg:col-span-1 bg-emerald-900 text-white rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-emerald-800 rounded-full blur-2xl opacity-50"></div>
-              <h3 className="text-2xl font-bold font-heading mb-2 relative z-10">The Mandatory Target</h3>
+              <h3 className="text-xl md:text-2xl font-bold font-heading mb-2 relative z-10">The Mandatory Target</h3>
               <p className="text-emerald-100 font-medium mb-6 relative z-10">To successfully complete the internship, you must onboard a total of 50 Unique Farmers.</p>
               <div className="text-6xl font-extrabold font-heading text-emerald-400 relative z-10">50</div>
               <p className="text-emerald-200 font-bold uppercase tracking-wider text-sm mt-2 relative z-10">Farmers Needed</p>
@@ -614,7 +594,7 @@ export default function InternshipPage() {
             >
               <div className="flex-1 text-center">
                 <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-100">
-                  <span className="text-2xl font-bold font-heading">30</span>
+                  <span className="text-xl md:text-2xl font-bold font-heading">30</span>
                 </div>
                 <h4 className="text-lg font-bold text-slate-900 mb-2">AgriConnect Users</h4>
                 <p className="text-sm text-slate-500 font-medium">Strictly minimum 30 farmers must add a machine or labor in AgriConnect.</p>
@@ -623,7 +603,7 @@ export default function InternshipPage() {
               <div className="h-px w-full bg-slate-200 md:hidden"></div>
               <div className="flex-1 text-center">
                 <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-100">
-                  <span className="text-2xl font-bold font-heading">20</span>
+                  <span className="text-xl md:text-2xl font-bold font-heading">20</span>
                 </div>
                 <h4 className="text-lg font-bold text-slate-900 mb-2">General Users</h4>
                 <p className="text-sm text-slate-500 font-medium">Remaining 20 farmers can use other features like expenses or attendance.</p>
@@ -644,106 +624,102 @@ export default function InternshipPage() {
             </div>
 
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse min-w-200">
+              <table className="w-full text-left border-collapse min-w-[600px] md:min-w-full">
                 <thead>
                   <tr className="bg-[#008F5A] text-white">
-                    <th className="py-5 px-6 font-bold text-lg border-b border-r border-[#007A4D] w-1/4">Tier Category</th>
-                    <th className="py-5 px-6 font-bold text-lg border-b border-r border-[#007A4D] w-1/4 text-center">Required Target</th>
-                    <th className="py-5 px-6 font-bold text-lg border-b border-r border-[#007A4D] w-1/4 text-center">Cash Reward</th>
-                    <th className="py-5 px-6 font-bold text-lg border-b border-[#007A4D] w-1/4 text-center">Digital & Merch Rewards</th>
+                    <th className="py-3 px-3 md:py-5 md:px-6 font-bold text-sm md:text-lg border-b border-r border-[#007A4D] w-1/4">Tier Category</th>
+                    <th className="py-3 px-3 md:py-5 md:px-6 font-bold text-sm md:text-lg border-b border-r border-[#007A4D] w-1/4 text-center">Required Target</th>
+                    <th className="py-3 px-3 md:py-5 md:px-6 font-bold text-sm md:text-lg border-b border-r border-[#007A4D] w-1/4 text-center">Cash Reward</th>
+                    <th className="py-3 px-3 md:py-5 md:px-6 font-bold text-sm md:text-lg border-b border-[#007A4D] w-1/4 text-center">Digital & Merch Rewards</th>
                   </tr>
                 </thead>
                 <tbody className="text-slate-700">
                   {/* Tier 1: Gold */}
                   <tr className="hover:bg-slate-50 transition-colors">
-                    <td className="py-6 px-6 border-b border-r border-slate-200">
-                      <div className="flex items-center gap-3">
-
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-b border-r border-slate-200">
+                      <div className="flex items-center gap-2 md:gap-3">
                         <div>
-                          <p className="font-bold text-lg text-slate-900 leading-tight">Elite Tier</p>
-                          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Top 3 Interns</p>
+                          <p className="font-bold text-base md:text-lg text-slate-900 leading-tight">Elite Tier</p>
+                          <p className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Top 3 Interns</p>
                         </div>
                       </div>
                     </td>
-                    <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
-                      <p className="font-bold text-slate-900">100 Farmers & 10 Villages</p>
-                      <p className="text-sm text-slate-500 mt-1 font-medium">100% AgriConnect Usage</p>
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-b border-r border-slate-200 text-center">
+                      <p className="font-bold text-sm md:text-base text-slate-900">100 Farmers & 10 Villages</p>
+                      <p className="text-xs md:text-sm text-slate-500 mt-1 font-medium">100% AgriConnect Usage</p>
                     </td>
-                    <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
-                      <p className="text-2xl font-extrabold text-slate-900 font-heading">₹1,000</p>
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-b border-r border-slate-200 text-center">
+                      <p className="text-xl md:text-xl md:text-2xl font-extrabold text-slate-900 font-heading">₹1,000</p>
                     </td>
-                    <td className="py-6 px-6 border-b border-slate-200 text-center">
-                      <p className="font-bold text-slate-700">Elite Certificate</p>
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-b border-slate-200 text-center">
+                      <p className="font-bold text-sm md:text-base text-slate-700">Elite Certificate</p>
                     </td>
                   </tr>
 
                   {/* Tier 2: Silver */}
                   <tr className="hover:bg-slate-50 transition-colors">
-                    <td className="py-6 px-6 border-b border-r border-slate-200">
-                      <div className="flex items-center gap-3">
-
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-b border-r border-slate-200">
+                      <div className="flex items-center gap-2 md:gap-3">
                         <div>
-                          <p className="font-bold text-lg text-slate-900 leading-tight">High Achiever</p>
-                          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Next Top 5</p>
+                          <p className="font-bold text-base md:text-lg text-slate-900 leading-tight">High Achiever</p>
+                          <p className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Next Top 5</p>
                         </div>
                       </div>
                     </td>
-                    <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
-                      <p className="font-bold text-slate-900">50 Farmers & 5 Villages</p>
-                      <p className="text-sm text-slate-500 mt-1 font-medium">100% AgriConnect Usage</p>
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-b border-r border-slate-200 text-center">
+                      <p className="font-bold text-sm md:text-base text-slate-900">50 Farmers & 5 Villages</p>
+                      <p className="text-xs md:text-sm text-slate-500 mt-1 font-medium">100% AgriConnect Usage</p>
                     </td>
-                    <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
-                      <p className="text-2xl font-extrabold text-slate-900 font-heading">₹500</p>
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-b border-r border-slate-200 text-center">
+                      <p className="text-xl md:text-xl md:text-2xl font-extrabold text-slate-900 font-heading">₹500</p>
                     </td>
-                    <td className="py-6 px-6 border-b border-slate-200 text-center">
-                      <p className="font-bold text-slate-700">Verified Certificate</p>
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-b border-slate-200 text-center">
+                      <p className="font-bold text-sm md:text-base text-slate-700">Verified Certificate</p>
                     </td>
                   </tr>
 
                   {/* Tier 3: Bronze */}
                   <tr className="hover:bg-slate-50 transition-colors">
-                    <td className="py-6 px-6 border-b border-r border-slate-200">
-                      <div className="flex items-center gap-3">
-
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-b border-r border-slate-200">
+                      <div className="flex items-center gap-2 md:gap-3">
                         <div>
-                          <p className="font-bold text-lg text-slate-900 leading-tight">Rising Star</p>
-                          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Next Top 2</p>
+                          <p className="font-bold text-base md:text-lg text-slate-900 leading-tight">Rising Star</p>
+                          <p className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Next Top 2</p>
                         </div>
                       </div>
                     </td>
-                    <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
-                      <p className="font-bold text-slate-900">50 Farmers & 2 Villages</p>
-                      <p className="text-sm text-slate-500 mt-1 font-medium">50% AgriConnect & 50% Data Entry</p>
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-b border-r border-slate-200 text-center">
+                      <p className="font-bold text-sm md:text-base text-slate-900">50 Farmers & 2 Villages</p>
+                      <p className="text-xs md:text-sm text-slate-500 mt-1 font-medium">50% AgriConnect & 50% Data Entry</p>
                     </td>
-                    <td className="py-6 px-6 border-b border-r border-slate-200 text-center">
-                      <p className="text-2xl font-extrabold text-slate-900 font-heading">₹200</p>
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-b border-r border-slate-200 text-center">
+                      <p className="text-xl md:text-xl md:text-2xl font-extrabold text-slate-900 font-heading">₹200</p>
                     </td>
-                    <td className="py-6 px-6 border-b border-slate-200 text-center">
-                      <p className="font-bold text-slate-700">Verified Certificate</p>
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-b border-slate-200 text-center">
+                      <p className="font-bold text-sm md:text-base text-slate-700">Verified Certificate</p>
                     </td>
                   </tr>
 
                   {/* Base Tier */}
                   <tr className="hover:bg-emerald-50/50 transition-colors bg-emerald-50/20">
-                    <td className="py-6 px-6 border-r border-slate-200">
-                      <div className="flex items-center gap-3">
-
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-r border-slate-200">
+                      <div className="flex items-center gap-2 md:gap-3">
                         <div>
-                          <p className="font-bold text-lg text-slate-900 leading-tight">Certified Intern</p>
-                          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">All Participants</p>
+                          <p className="font-bold text-base md:text-lg text-slate-900 leading-tight">Certified Intern</p>
+                          <p className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">All Participants</p>
                         </div>
                       </div>
                     </td>
-                    <td className="py-6 px-6 border-r border-slate-200 text-center">
-                      <p className="font-bold text-slate-900">50 Farmers</p>
-                      <p className="text-sm text-slate-500 mt-1 font-medium">AgriConnect or Data Entry</p>
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-r border-slate-200 text-center">
+                      <p className="font-bold text-sm md:text-base text-slate-900">50 Farmers</p>
+                      <p className="text-xs md:text-sm text-slate-500 mt-1 font-medium">AgriConnect or Data Entry</p>
                     </td>
-                    <td className="py-6 px-6 border-r border-slate-200 text-center">
+                    <td className="py-4 px-3 md:py-6 md:px-6 border-r border-slate-200 text-center">
                       <p className="font-bold text-slate-400 text-xl">-</p>
                     </td>
-                    <td className="py-6 px-6 text-center">
-                      <p className="font-bold text-emerald-700">Verified Certificate</p>
-                      <p className="text-xs font-bold text-slate-500 mt-1">Free T-Shirts for best effort!</p>
+                    <td className="py-4 px-3 md:py-6 md:px-6 text-center">
+                      <p className="font-bold text-sm md:text-base text-emerald-700">Verified Certificate</p>
+                      <p className="text-[10px] md:text-xs font-bold text-slate-500 mt-1">Free T-Shirts for best effort!</p>
                     </td>
                   </tr>
 
@@ -774,7 +750,7 @@ export default function InternshipPage() {
             transition={{ duration: 0.5 }}
             className="text-center mb-20"
           >
-            <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-slate-900 tracking-tight">
               The Path to <span className="text-emerald-800">Certification</span>
             </h2>
             <p className="mt-6 text-lg text-slate-600 max-w-2xl mx-auto font-medium">
@@ -793,8 +769,8 @@ export default function InternshipPage() {
               transition={{ duration: 0.6 }}
               className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 relative group hover:border-emerald-500 transition-colors"
             >
-              <div className="absolute -top-6 left-8 w-14 h-14 bg-emerald-800 text-white rounded-2xl flex items-center justify-center text-2xl font-bold font-heading">1</div>
-              <h3 className="mt-4 text-2xl font-bold text-slate-900 font-heading mb-4 group-hover:text-emerald-800 transition-colors">Onboard</h3>
+              <div className="absolute -top-6 left-8 w-14 h-14 bg-emerald-800 text-white rounded-2xl flex items-center justify-center text-xl md:text-2xl font-bold font-heading">1</div>
+              <h3 className="mt-4 text-xl md:text-2xl font-bold text-slate-900 font-heading mb-4 group-hover:text-emerald-800 transition-colors">Onboard</h3>
               <p className="text-slate-600 font-medium leading-relaxed">
                 Connect with the community. Install the Kisan Khata app directly onto the smartphones of farmers, vehicle owners, or labor gangs.
               </p>
@@ -808,8 +784,8 @@ export default function InternshipPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 relative group hover:border-emerald-500 transition-colors"
             >
-              <div className="absolute -top-6 left-8 w-14 h-14 bg-emerald-800 text-white rounded-2xl flex items-center justify-center text-2xl font-bold font-heading">2</div>
-              <h3 className="mt-4 text-2xl font-bold text-slate-900 font-heading mb-4 group-hover:text-emerald-800 transition-colors">Register</h3>
+              <div className="absolute -top-6 left-8 w-14 h-14 bg-emerald-800 text-white rounded-2xl flex items-center justify-center text-xl md:text-2xl font-bold font-heading">2</div>
+              <h3 className="mt-4 text-xl md:text-2xl font-bold text-slate-900 font-heading mb-4 group-hover:text-emerald-800 transition-colors">Register</h3>
               <p className="text-slate-600 font-medium leading-relaxed">
                 Use <strong>AgriConnect</strong>. Register any farm machine, vehicle, or kuli mestri. Or, help a farmer complete their profile and use a feature.
               </p>
@@ -823,8 +799,8 @@ export default function InternshipPage() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 relative group hover:border-emerald-500 transition-colors"
             >
-              <div className="absolute -top-6 left-8 w-14 h-14 bg-emerald-800 text-white rounded-2xl flex items-center justify-center text-2xl font-bold font-heading">3</div>
-              <h3 className="mt-4 text-2xl font-bold text-slate-900 font-heading mb-4 group-hover:text-emerald-800 transition-colors">Fill the Circle</h3>
+              <div className="absolute -top-6 left-8 w-14 h-14 bg-emerald-800 text-white rounded-2xl flex items-center justify-center text-xl md:text-2xl font-bold font-heading">3</div>
+              <h3 className="mt-4 text-xl md:text-2xl font-bold text-slate-900 font-heading mb-4 group-hover:text-emerald-800 transition-colors">Fill the Circle</h3>
               <p className="text-slate-600 font-medium leading-relaxed">
                 Use your Referral Code! Track your target progress live on our portal. Keep adding value until your <strong>Progress Circle</strong> hits 100% to earn your certificate.
               </p>
@@ -854,7 +830,7 @@ export default function InternshipPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-white tracking-tight leading-tight">
+            <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-tight leading-tight">
               100% Free Internship. <br className="md:hidden" /><span className="text-yellow-400">Open For Everyone.</span>
             </h2>
           </motion.div>
@@ -868,7 +844,7 @@ export default function InternshipPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="bg-white p-8 md:p-12 rounded-2xl"
             >
-              <h3 className="text-2xl font-bold text-emerald-800 font-heading mb-6">
+              <h3 className="text-xl md:text-2xl font-bold text-emerald-800 font-heading mb-6">
                 Who Can Do This?
               </h3>
               <p className="text-slate-700 font-medium leading-relaxed text-lg">
@@ -884,7 +860,7 @@ export default function InternshipPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-white p-8 md:p-12 rounded-2xl"
             >
-              <h3 className="text-2xl font-bold text-emerald-800 font-heading mb-6">
+              <h3 className="text-xl md:text-2xl font-bold text-emerald-800 font-heading mb-6">
                 Where To Do It?
               </h3>
               <p className="text-slate-700 font-medium leading-relaxed text-lg">
@@ -902,17 +878,17 @@ export default function InternshipPage() {
           transition={{ duration: 0.6 }}
           className="max-w-5xl mx-auto px-6 mt-20 pb-12 w-full text-center border-t border-emerald-800/60 pt-16"
         >
-          <h3 className="text-2xl font-bold text-white mb-8">Still have doubts? Or want to invite friends?</h3>
+          <h3 className="text-xl md:text-2xl font-bold text-white mb-8">Still have doubts? Or want to invite friends?</h3>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-            <a href="https://wa.me/919493959557?text=Hi%20Kisan%20Khata,%20I%20am%20interested%20in%20the%20Internship!" target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center justify-center gap-3 bg-white text-emerald-900 px-8 py-3.5 rounded-full font-bold hover:bg-emerald-50 transition-colors shadow-sm">
+            <a href="https://wa.me/919493959557?text=Hi%20Kisan%20Khata,%20I%20am%20interested%20in%20the%20Internship!" target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center justify-center gap-3 bg-white text-emerald-900 px-8 py-3.5 rounded-full font-bold hover:bg-emerald-50 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-600"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
               WhatsApp Us
             </a>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kisankhata.official@gmail.com" target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center justify-center gap-3 bg-slate-800 text-white border border-slate-700 px-8 py-3.5 rounded-full font-bold hover:bg-slate-700 transition-colors shadow-sm">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kisankhata.official@gmail.com" target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center justify-center gap-3 bg-slate-800 text-white border border-slate-700 px-8 py-3.5 rounded-full font-bold hover:bg-slate-700 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
               Email Support
             </a>
-            <button onClick={handleShare} className="w-full md:w-auto flex items-center justify-center gap-3 bg-yellow-500 text-slate-900 px-8 py-3.5 rounded-full font-bold hover:bg-yellow-400 transition-colors shadow-sm">
+            <button onClick={handleShare} className="w-full md:w-auto flex items-center justify-center gap-3 bg-yellow-500 text-slate-900 px-8 py-3.5 rounded-full font-bold hover:bg-yellow-400 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
               Share with Friends
             </button>
@@ -930,15 +906,36 @@ export default function InternshipPage() {
       </section>
 
       {/* Application Form Section */}
-      <div id="apply-internship" className="w-full min-h-screen bg-white py-16 px-4 md:px-8 flex items-center justify-center">
+      <div id="apply-internship" className="w-full min-h-screen bg-slate-50 py-16 px-4 md:px-8 flex flex-col items-center justify-center relative">
         
+        {/* Strict Warning Block */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-7xl bg-white border border-slate-200 border-l-4 border-l-red-500 rounded-3xl p-6 md:p-8 mb-8"
+        >
+          <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
+            <div className="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-red-500"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            </div>
+            <div>
+              <h4 className="text-lg md:text-xl font-bold text-slate-900 font-heading mb-2">Zero Tolerance for Fake Installs</h4>
+              <p className="text-slate-600 font-medium leading-relaxed">
+                The app <strong className="text-red-600">MUST</strong> be installed directly on a farmer's smartphone. We use advanced device tracking to detect duplicate devices, fake profiles, and identical networks. Any fraudulent entry will lead to immediate disqualification.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Main Split Container - With Light Border */}
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="w-full max-w-7xl flex flex-col md:flex-row md:min-h-160 border border-slate-200 rounded-3xl overflow-hidden shadow-sm bg-white"
+          className="w-full max-w-7xl flex flex-col md:flex-row md:min-h-160 border border-slate-200 rounded-3xl overflow-hidden bg-white"
         >
           
           {/* Left Side - The Image */}
@@ -956,10 +953,10 @@ export default function InternshipPage() {
               
               {/* Header */}
               <div className="mb-10">
-                <h3 className="text-4xl md:text-5xl font-heading font-extrabold text-emerald-800 tracking-tight mb-2">
+                <h3 className="text-3xl md:text-5xl font-heading font-extrabold text-emerald-800 tracking-tight mb-2">
                   Kisan Khata
                 </h3>
-                <h4 className="text-lg md:text-xl font-bold text-slate-800 mb-4">
+                <h4 className="text-lg md:text-lg md:text-xl font-bold text-slate-800 mb-4">
                   Agri-Tech Field Operations Internship
                 </h4>
                 {formStep === "edit" && !loginMode && (
@@ -987,17 +984,17 @@ export default function InternshipPage() {
                   <div className="w-20 h-20 md:w-24 md:h-24 bg-emerald-600 text-white rounded-full flex items-center justify-center mb-6">
                     <CheckCircle size={48} strokeWidth={2.5} className="w-10 h-10 md:w-12 md:h-12" />
                   </div>
-                  <h4 className="text-2xl md:text-3xl font-extrabold text-emerald-900 mb-2 font-heading tracking-tight">Congratulations!</h4>
+                  <h4 className="text-xl md:text-3xl font-extrabold text-emerald-900 mb-2 font-heading tracking-tight">Congratulations!</h4>
                   <p className="text-slate-900 font-bold text-xl mb-3">You are Selected.</p>
                   <p className="text-slate-600 font-medium text-base mb-8 max-w-sm">
                     {userData?.name.split(' ')[0]}, your application has been approved! Welcome to the Kisan Khata Field Operations Team.
                   </p>
                   
-                  <div className="w-full bg-white border border-emerald-200 rounded-2xl p-5 md:p-6 mb-8 text-left shadow-sm relative overflow-hidden group">
+                  <div className="w-full bg-white border border-emerald-200 rounded-2xl p-5 md:p-6 mb-8 text-left relative overflow-hidden group">
                     <div className="absolute top-0 left-0 w-1 h-full bg-[#008F5A]"></div>
                     <h5 className="text-slate-800 font-bold text-sm uppercase tracking-wider mb-3">Your Referral Code</h5>
                     <div className="flex items-center justify-between bg-slate-50 p-4 rounded-xl border border-slate-200 group-hover:border-[#008F5A]/30 transition-colors">
-                      <span className="text-2xl font-extrabold text-[#008F5A] font-mono tracking-widest">{userData?.referralCode || "PENDING"}</span>
+                      <span className="text-xl md:text-2xl font-extrabold text-[#008F5A] font-mono tracking-widest">{userData?.referralCode || "PENDING"}</span>
                       <button 
                         onClick={handleCopy}
                         disabled={!userData?.referralCode}
@@ -1015,14 +1012,14 @@ export default function InternshipPage() {
                   
                   <a 
                     href="/internship/dashboard"
-                    className="w-full bg-[#008F5A] text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#007A4D] transition-all flex items-center justify-center gap-2 shadow-sm mb-4"
+                    className="w-full bg-[#008F5A] text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#007A4D] transition-all flex items-center justify-center gap-2 mb-4"
                   >
                     Go to Dashboard
                   </a>
 
                   <button 
                     onClick={handleShare}
-                    className="w-full bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all flex items-center justify-center gap-2 shadow-sm mb-4"
+                    className="w-full bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all flex items-center justify-center gap-2 mb-4"
                   >
                     <Share2 size={20} />
                     Invite Your Friends
@@ -1040,7 +1037,7 @@ export default function InternshipPage() {
                   <div className="w-20 h-20 md:w-24 md:h-24 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-6">
                     <User size={48} strokeWidth={2.5} className="w-10 h-10 md:w-12 md:h-12" />
                   </div>
-                  <h4 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-2 font-heading tracking-tight">Under Review</h4>
+                  <h4 className="text-xl md:text-3xl font-extrabold text-slate-900 mb-2 font-heading tracking-tight">Under Review</h4>
                   <p className="text-slate-600 font-medium text-base md:text-lg mb-6 max-w-sm">
                     Thank you, {userData?.name?.split(' ')[0] || formData.name.split(' ')[0]}. Your application is currently being reviewed by our team. You will be notified once a decision is made.
                   </p>
@@ -1055,7 +1052,7 @@ export default function InternshipPage() {
                   <h5 className="text-slate-800 font-bold mb-4">Help us grow the community!</h5>
                   <button 
                     onClick={handleShare}
-                    className="w-full bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all flex items-center justify-center gap-2 shadow-sm mb-4"
+                    className="w-full bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all flex items-center justify-center gap-2 mb-4"
                   >
                     <Share2 size={20} />
                     Invite Your Friends
@@ -1071,7 +1068,7 @@ export default function InternshipPage() {
                   className="bg-slate-50 border border-slate-200 rounded-3xl p-5 md:p-8 mt-4"
                 >
                   <div className="flex items-center justify-between mb-6">
-                    <h4 className="text-xl font-bold text-slate-800 font-heading">Review Details</h4>
+                    <h4 className="text-lg md:text-xl font-bold text-slate-800 font-heading">Review Details</h4>
                   </div>
                   
                   <div className="space-y-4 mb-8">
@@ -1112,8 +1109,8 @@ export default function InternshipPage() {
                   <div className="flex gap-3 w-full">
                     <button 
                       onClick={() => setFormStep("edit")} 
-                      className={`bg-white text-slate-700 font-bold rounded-2xl hover:bg-slate-50 transition-all duration-500 ease-in-out flex items-center justify-center overflow-hidden shrink-0 ${
-                        formStep === "submitting" ? "w-0 opacity-0 border-0 py-4" : "w-1/3 opacity-100 border border-slate-300 py-4"
+                      className={`bg-white text-slate-700 font-bold rounded-xl md:rounded-2xl hover:bg-slate-50 transition-all duration-500 ease-in-out flex items-center justify-center overflow-hidden shrink-0 ${
+                        formStep === "submitting" ? "w-0 opacity-0 border-0 py-3 md:py-4" : "w-1/3 opacity-100 border border-slate-300 py-3 md:py-4"
                       }`}
                     >
                       <ArrowLeft size={20} className="shrink-0" />
@@ -1121,7 +1118,7 @@ export default function InternshipPage() {
                     <button 
                       onClick={handleConfirmSubmit}
                       disabled={formStep === "submitting"} 
-                      className={`bg-emerald-800 text-white text-lg font-bold py-4 rounded-2xl hover:bg-emerald-700 transition-all duration-500 ease-in-out shadow-sm disabled:opacity-90 disabled:cursor-not-allowed flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap ${
+                      className={`bg-emerald-800 text-white text-base md:text-lg font-bold py-3 md:py-4 rounded-xl md:rounded-2xl hover:bg-emerald-700 transition-all duration-500 ease-in-out disabled:opacity-90 disabled:cursor-not-allowed flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap ${
                         formStep === "submitting" ? "w-full" : "w-2/3"
                       }`}
                     >
@@ -1148,7 +1145,7 @@ export default function InternshipPage() {
                   <div className="w-16 h-16 md:w-20 md:h-20 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-6">
                     <User size={36} strokeWidth={2.5} className="w-8 h-8 md:w-9 md:h-9" />
                   </div>
-                  <h4 className="text-2xl font-extrabold text-slate-900 mb-2 font-heading">Check Your Status</h4>
+                  <h4 className="text-xl md:text-2xl font-extrabold text-slate-900 mb-2 font-heading">Check Your Status</h4>
                   <p className="text-slate-500 font-medium text-sm mb-8 max-w-sm mx-auto">
                     Please enter the email address you used during your internship registration to securely access your portal.
                   </p>
@@ -1165,10 +1162,10 @@ export default function InternshipPage() {
                       value={loginEmail} 
                       onChange={(e) => setLoginEmail(e.target.value)} 
                       placeholder="Enter your email address" 
-                      className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-white placeholder:text-slate-400 text-center" 
+                      className="w-full px-4 py-3 md:px-5 md:py-4 text-base md:text-lg rounded-xl md:rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-white placeholder:text-slate-400 text-center" 
                     />
-                    <button type="submit" className="w-full bg-emerald-800 text-white text-lg font-bold py-4 rounded-2xl hover:bg-emerald-700 transition-all shadow-sm flex items-center justify-center gap-2">
-                      Check Status <ArrowLeft className="rotate-180" size={18} />
+                    <button type="submit" className="w-full bg-emerald-800 text-white text-base md:text-lg font-bold py-3 md:py-4 rounded-xl md:rounded-2xl hover:bg-emerald-700 transition-all flex items-center justify-center gap-2">
+                      Check Status
                     </button>
                   </form>
                   
@@ -1177,7 +1174,7 @@ export default function InternshipPage() {
                   </button>
                 </motion.div>
               ) : (
-                <form className="space-y-6" onSubmit={handlePreview}>
+                <form className="space-y-4 md:space-y-6" onSubmit={handlePreview}>
                   {errorMsg && (
                     <div className="bg-red-50 text-red-600 p-4 rounded-xl border border-red-100 font-medium text-sm">
                       {errorMsg}
@@ -1186,38 +1183,38 @@ export default function InternshipPage() {
                   
                   {/* Field 1: Full Name */}
                   <div>
-                    <label className="block text-base font-bold text-slate-700 mb-2">Full Name <span className="text-red-500 ml-0.5">*</span></label>
-                    <input type="text" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Enter your full name" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
-                    <p className="mt-2 text-sm text-slate-500 flex items-center gap-1.5 font-medium">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-600"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                    <label className="block text-sm md:text-base font-bold text-slate-700 mb-1.5 md:mb-2">Full Name <span className="text-red-500 ml-0.5">*</span></label>
+                    <input type="text" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Enter your full name" className="w-full px-4 py-3 md:px-5 md:py-4 text-base md:text-lg rounded-xl md:rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
+                    <p className="mt-1.5 md:mt-2 text-xs md:text-sm text-slate-500 flex items-center gap-1.5 font-medium">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-600 shrink-0"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
                       This exact name will be printed on your Internship Certificate.
                     </p>
                   </div>
 
                   {/* Field 2: Phone Number */}
                   <div>
-                    <label className="block text-base font-bold text-slate-700 mb-2">Phone Number <span className="text-red-500 ml-0.5">*</span></label>
-                    <input type="tel" maxLength={10} required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value.replace(/\D/g, '').slice(0, 10)})} placeholder="WhatsApp Number (e.g. 9876543210)" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
+                    <label className="block text-sm md:text-base font-bold text-slate-700 mb-1.5 md:mb-2">Phone Number <span className="text-red-500 ml-0.5">*</span></label>
+                    <input type="tel" maxLength={10} required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value.replace(/\D/g, '').slice(0, 10)})} placeholder="WhatsApp Number (e.g. 9876543210)" className="w-full px-4 py-3 md:px-5 md:py-4 text-base md:text-lg rounded-xl md:rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
                   </div>
 
                   {/* Field 3: Email Address */}
                   <div>
-                    <label className="block text-base font-bold text-slate-700 mb-2">Email Address <span className="text-red-500 ml-0.5">*</span></label>
-                    <input type="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="Your active email ID" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
+                    <label className="block text-sm md:text-base font-bold text-slate-700 mb-1.5 md:mb-2">Email Address <span className="text-red-500 ml-0.5">*</span></label>
+                    <input type="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} placeholder="Your active email ID" className="w-full px-4 py-3 md:px-5 md:py-4 text-base md:text-lg rounded-xl md:rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
                   </div>
 
                   {/* Field 4: Current Role */}
                   <div>
-                    <label className="block text-base font-bold text-slate-700 mb-2">Current Status / Role <span className="text-red-500 ml-0.5">*</span></label>
+                    <label className="block text-sm md:text-base font-bold text-slate-700 mb-1.5 md:mb-2">Current Status / Role <span className="text-red-500 ml-0.5">*</span></label>
                     <div className="relative">
-                      <select required value={formData.role} onChange={(e) => setFormData({...formData, role: e.target.value})} className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 text-slate-700 appearance-none">
+                      <select required value={formData.role} onChange={(e) => setFormData({...formData, role: e.target.value})} className="w-full px-4 py-3 md:px-5 md:py-4 text-base md:text-lg rounded-xl md:rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 text-slate-700 appearance-none">
                         <option value="" disabled>Select your current status</option>
                         <option value="student">College Student</option>
                         <option value="graduate">Recent Graduate</option>
                         <option value="working">Working Professional</option>
                         <option value="volunteer">Volunteer / Other</option>
                       </select>
-                      <div className="absolute inset-y-0 right-5 flex items-center pointer-events-none">
+                      <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400"><path d="m6 9 6 6 6-6"/></svg>
                       </div>
                     </div>
@@ -1225,30 +1222,30 @@ export default function InternshipPage() {
 
                   {/* Field 4: College/Organization (Optional) */}
                   <div>
-                    <label className="block text-base font-bold text-slate-700 mb-2">
-                      College / Organization Name <span className="text-slate-400 font-normal text-sm ml-1">(Optional)</span>
+                    <label className="block text-sm md:text-base font-bold text-slate-700 mb-1.5 md:mb-2">
+                      College / Organization Name <span className="text-slate-400 font-normal text-xs md:text-sm ml-1">(Optional)</span>
                     </label>
-                    <input type="text" value={formData.college} onChange={(e) => setFormData({...formData, college: e.target.value})} placeholder="Where do you study or work?" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
+                    <input type="text" value={formData.college} onChange={(e) => setFormData({...formData, college: e.target.value})} placeholder="Where do you study or work?" className="w-full px-4 py-3 md:px-5 md:py-4 text-base md:text-lg rounded-xl md:rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
                   </div>
 
                   {/* Field 5: Village/Town */}
                   <div>
-                    <label className="block text-base font-bold text-slate-700 mb-2">Village / Town Name <span className="text-red-500 ml-0.5">*</span></label>
-                    <input type="text" required value={formData.village} onChange={(e) => setFormData({...formData, village: e.target.value})} placeholder="Enter your native village or town" className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
+                    <label className="block text-sm md:text-base font-bold text-slate-700 mb-1.5 md:mb-2">Village / Town Name <span className="text-red-500 ml-0.5">*</span></label>
+                    <input type="text" required value={formData.village} onChange={(e) => setFormData({...formData, village: e.target.value})} placeholder="Enter your native village or town" className="w-full px-4 py-3 md:px-5 md:py-4 text-base md:text-lg rounded-xl md:rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400" />
                   </div>
 
                   {/* Field 6: Motivation */}
                   <div>
-                    <label className="block text-base font-bold text-slate-700 mb-2">Why do you want to join Kisan Khata? <span className="text-red-500 ml-0.5">*</span></label>
-                    <textarea required value={formData.motivation} onChange={(e) => setFormData({...formData, motivation: e.target.value})} placeholder="Tell us how this internship will help you and why you want to work with farmers..." rows={4} className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400 resize-none"></textarea>
+                    <label className="block text-sm md:text-base font-bold text-slate-700 mb-1.5 md:mb-2">Why do you want to join Kisan Khata? <span className="text-red-500 ml-0.5">*</span></label>
+                    <textarea required value={formData.motivation} onChange={(e) => setFormData({...formData, motivation: e.target.value})} placeholder="Tell us how this internship will help you and why you want to work with farmers..." rows={4} className="w-full px-4 py-3 md:px-5 md:py-4 text-base md:text-lg rounded-xl md:rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 placeholder:text-slate-400 resize-none"></textarea>
                   </div>
 
-                  <div className="pt-2">
-                    <p className="text-sm font-medium text-red-500 mb-3">
+                  <div className="pt-2 md:pt-4">
+                    <p className="text-xs md:text-sm font-medium text-red-500 mb-3">
                       <span className="font-bold">*</span> Indicates mandatory fields
                     </p>
-                    <button type="submit" className="w-full bg-emerald-800 text-white text-lg font-bold py-4 rounded-2xl hover:bg-emerald-700 transition-all shadow-sm flex items-center justify-center gap-2">
-                      Preview Application <ArrowLeft className="rotate-180" size={18} />
+                    <button type="submit" className="w-full bg-emerald-800 text-white text-base md:text-lg font-bold py-3 md:py-4 rounded-xl md:rounded-2xl hover:bg-emerald-700 transition-all flex items-center justify-center gap-2">
+                      Preview Application
                     </button>
                     <div className="mt-6 text-center">
                       <p className="text-slate-500 font-medium text-sm">
