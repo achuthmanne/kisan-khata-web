@@ -30,18 +30,18 @@ export default function CertificatePage() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 overflow-x-hidden w-full max-w-[100vw]">
+    <div className="flex flex-col min-h-screen bg-slate-50 overflow-x-hidden lg:overflow-visible w-full max-w-[100vw]">
       {/* Navigation - Exact match to Internship Page */}
-      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
         <div className="flex items-center justify-between px-6 md:px-8 lg:px-12 py-2 max-w-[1600px] mx-auto w-full">
           <Link 
             href="/" 
-            className="flex flex-row items-center gap-1.5 md:gap-2 cursor-pointer transition-transform hover:scale-105"
+            className="flex flex-row md:flex-col items-center justify-center gap-1.5 md:gap-0 cursor-pointer transition-transform hover:scale-105"
           >
-            <div className="w-8 h-8 md:w-12 md:h-10 flex items-center justify-center shrink-0 relative overflow-visible">
-              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[1.8] md:scale-[2.2] origin-center" />
+            <div className="w-8 h-8 md:w-16 md:h-10 flex items-center justify-center shrink-0 relative overflow-visible">
+              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[1.8] md:scale-[2.5] origin-center" />
             </div>
-            <span className="text-[16px] md:text-[18px] font-heading font-extrabold text-green-900 tracking-tight leading-none z-10 pt-0.5">
+            <span className="text-[16px] md:text-[15px] font-heading font-extrabold text-green-900 tracking-tight leading-none z-10 pt-0.5 md:pt-0 md:-mt-0.5">
               Kisan Khata
             </span>
           </Link>
@@ -146,7 +146,7 @@ export default function CertificatePage() {
 
       {/* Main Content Area - Single Continuous Card */}
       <main 
-        className="w-full pt-0 md:pt-4 px-4 md:px-8 pb-20 bg-slate-50 relative z-10"
+        className="w-full pt-16 md:pt-20 px-4 md:px-8 pb-20 bg-slate-50 relative z-10"
         style={{ 
           backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.025) 10px, rgba(0,0,0,0.025) 11px)' 
         }}
