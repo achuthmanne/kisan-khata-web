@@ -80,7 +80,7 @@ export default function Home() {
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className="flex items-center gap-1.5 md:gap-2 px-2 md:px-4 py-1.5 md:py-2.5 text-[11px] md:text-base font-medium text-gray-800 bg-gray-50 border border-gray-200 rounded-md md:rounded-lg hover:bg-gray-100 transition-colors shrink-0"
               >
-                <Globe className="w-3.5 h-3.5 md:w-[18px] md:h-[18px] text-primary shrink-0" />
+                <Globe className="w-3.5 h-3.5 md:w-4.5 md:h-4.5 text-primary shrink-0" />
                 <span className="leading-none">
                   {language === 'en' ? 'English' : 'తెలుగు'}
                 </span>
