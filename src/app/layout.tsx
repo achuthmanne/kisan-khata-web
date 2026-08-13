@@ -18,7 +18,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.kisankhata.co.in"),
   title: "Kisan Khata - Secure Farm Ledger & Operations",
   description: "Modern digital ledger, smart reminders, machine rentals, and live market prices for progressive farmers in Andhra Pradesh and Telangana.",
-  keywords: ["Kisan Khata", "Farmer Ledger", "Agriculture App", "Farm Management", "Telugu Farmers", "Crop Sales", "Farm Accounting", "Agriculture India", "KisanKhata App"],
+  keywords: [
+    "Kisan Khata", "Kisan Khata App", "KisanKhata", "Agriculture App", "Agriculture App Telugu", 
+    "Farm Management App", "Farmer Ledger", "Telugu Farmers", "Andhra Pradesh Agriculture", 
+    "Telangana Agriculture", "Crop Sales Tracker", "Farm Accounting", "Farm Expenses", 
+    "Agriculture India", "Agri-Tech Startup", "MSME Registered Startup", "Agriculture Internship"
+  ],
   openGraph: {
     title: "Kisan Khata - The Future of Farming",
     description: "Your comprehensive digital assistant for farm management. Track attendance, manage expenses, and stay updated with live market prices.",
