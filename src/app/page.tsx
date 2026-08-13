@@ -206,12 +206,8 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Curved wave separator (Transitions from White bg to Gray 50) */}
-      <div id="features" className="w-full bg-white relative z-0 scroll-mt-24">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none" className="w-full h-12 md:h-24 lg:h-32 block -mb-1">
-          <path fill="#f9fafb" d="M0,0 Q720,100 1440,0 L1440,100 L0,100 Z"></path>
-        </svg>
-      </div>
+      {/* Clean Divider */}
+      <div id="features" className="w-full h-16 md:h-24 bg-gray-50 border-t border-gray-200 scroll-mt-24"></div>
       
       {/* Features Section - Heading Only for now */}
       <section className="w-full bg-gray-50 pb-12">
@@ -501,11 +497,7 @@ export default function Home() {
       </section>
 
       {/* Top Divider for CTA Section */}
-      <div id="download" className="w-full relative z-10 -mb-1 bg-gray-50 scroll-mt-24">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none" className="w-full h-12 md:h-24 lg:h-32 block">
-          <path fill="#064e3b" d="M0,0 Q720,100 1440,0 L1440,100 L0,100 Z"></path>
-        </svg>
-      </div>
+      <div id="download" className="w-full h-8 md:h-12 bg-[#064e3b] border-t border-gray-200 scroll-mt-24"></div>
 
       {/* Dedicated Telugu Farmers & Download App CTA Section */}
       <section className="w-full bg-[#064e3b] relative overflow-hidden pt-12 md:pt-20 pb-16 md:pb-24">
