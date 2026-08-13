@@ -207,10 +207,9 @@ export default function Home() {
       </section>
       
       {/* Curved wave separator (Transitions from White bg to Gray 50) */}
-      {/* The viewBox is cropped (0 96 1440 224) to remove the massive empty transparent space above the wave in the SVG */}
       <div id="features" className="w-full bg-white relative z-0 scroll-mt-24">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 1440 224" preserveAspectRatio="none" className="w-full h-16 md:h-24 lg:h-auto block -mb-1">
-          <path fill="#f9fafb" fillOpacity="1" d="M0,96L48,117.3C96,139,192,181,288,186.7C384,192,480,160,576,138.7C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none" className="w-full h-12 md:h-24 lg:h-32 block -mb-1">
+          <path fill="#f9fafb" d="M0,0 Q720,100 1440,0 L1440,100 L0,100 Z"></path>
         </svg>
       </div>
       
@@ -503,8 +502,8 @@ export default function Home() {
 
       {/* Top Divider for CTA Section */}
       <div id="download" className="w-full relative z-10 -mb-1 bg-gray-50 scroll-mt-24">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-full h-12 md:h-20 lg:h-auto block">
-          <path fill="#064e3b" fillOpacity="1" d="M0,32L60,42.7C120,53,240,75,360,69.3C480,64,600,32,720,26.7C840,21,960,43,1080,53.3C1200,64,1320,64,1380,64L1440,64L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"></path>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none" className="w-full h-12 md:h-24 lg:h-32 block">
+          <path fill="#064e3b" d="M0,0 Q720,100 1440,0 L1440,100 L0,100 Z"></path>
         </svg>
       </div>
 
@@ -520,15 +519,13 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="flex flex-col items-center"
           >
-            <div className="flex items-center gap-6 md:gap-10 mb-8">
-              <div className="w-20 h-20 md:w-28 md:h-28 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center p-3 md:p-4 border border-white/20 relative group overflow-hidden">
-                <div className="absolute inset-0 rounded-full bg-emerald-400/20 blur-xl group-hover:bg-emerald-400/40 transition-all duration-500"></div>
-                <img src="/Emblem_of_Andhra_Pradesh.svg" alt="Andhra Pradesh Emblem" className="w-full h-full object-contain relative z-10 scale-[1.3] translate-y-2 md:translate-y-3" />
+            <div className="flex items-center gap-10 md:gap-16 mb-8">
+              <div className="w-24 h-24 md:w-32 md:h-32 flex items-center justify-center relative group">
+                <img src="/Emblem_of_Andhra_Pradesh.svg" alt="Andhra Pradesh Emblem" className="w-full h-full object-contain relative z-10 hover:scale-[1.1] transition-transform duration-500" />
               </div>
               <div className="h-12 w-px bg-white/20"></div>
-              <div className="w-20 h-20 md:w-28 md:h-28 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center p-3 md:p-4 border border-white/20 relative group overflow-hidden">
-                <div className="absolute inset-0 rounded-full bg-emerald-400/20 blur-xl group-hover:bg-emerald-400/40 transition-all duration-500"></div>
-                <img src="/Emblem_of_Telangana.svg" alt="Telangana Emblem" className="w-full h-full object-contain relative z-10 scale-[1.2] translate-y-2 md:translate-y-2" />
+              <div className="w-24 h-24 md:w-32 md:h-32 flex items-center justify-center relative group">
+                <img src="/Emblem_of_Telangana.svg" alt="Telangana Emblem" className="w-full h-full object-contain relative z-10 scale-[0.95] hover:scale-105 transition-transform duration-500" />
               </div>
             </div>
             
@@ -618,8 +615,8 @@ export default function Home() {
 
       {/* Footer Top Divider (Transition from #064e3b to #f9fafb) */}
       <div className="w-full relative z-10 -mt-1 bg-[#064e3b]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-full h-12 md:h-20 lg:h-auto block -mb-1">
-          <path fill="#f9fafb" fillOpacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,42.7C1120,32,1280,32,1360,32L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none" className="w-full h-12 md:h-24 lg:h-32 block -mb-1">
+          <path fill="#f9fafb" d="M0,0 Q720,100 1440,0 L1440,100 L0,100 Z"></path>
         </svg>
       </div>
 
@@ -665,7 +662,8 @@ export default function Home() {
               <h4 className="font-bold text-gray-900 uppercase tracking-wider text-sm">{language === 'en' ? 'Quick Links' : 'క్విక్ లింక్స్'}</h4>
               <nav className="flex flex-col gap-3 text-gray-600">
                 <a href="#features" className="hover:text-primary hover:translate-x-1 transition-all w-fit">Features</a>
-                <a href="https://sites.google.com/view/kisankhata-terms" target="_blank" rel="noopener noreferrer" className="hover:text-primary hover:translate-x-1 transition-all w-fit">Privacy Policy</a>
+                <a href="/privacy-policy" className="hover:text-primary hover:translate-x-1 transition-all w-fit">Privacy Policy</a>
+                <a href="/terms" className="hover:text-primary hover:translate-x-1 transition-all w-fit">Terms of Service</a>
               </nav>
             </div>
 
