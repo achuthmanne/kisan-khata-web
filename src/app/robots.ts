@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/'],
+      disallow: '/private/',
     },
-    sitemap: 'https://kisankhata.co.in/sitemap.xml',
+    sitemap: 'https://www.kisankhata.co.in/sitemap.xml',
   };
 }

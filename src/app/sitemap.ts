@@ -3,22 +3,22 @@ import { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://kisankhata.co.in',
+      url: 'https://www.kisankhata.co.in',
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'monthly',
       priority: 1,
     },
     {
-      url: 'https://kisankhata.co.in/internship',
+      url: 'https://www.kisankhata.co.in/internship',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://kisankhata.co.in/certificate',
+      url: 'https://www.kisankhata.co.in/certificate',
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.5,
+      priority: 0.8,
     },
   ];
 }
