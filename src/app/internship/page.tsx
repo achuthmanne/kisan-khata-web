@@ -906,7 +906,7 @@ export default function InternshipPage() {
       </section>
 
       {/* Application Form Section */}
-      <div id="apply-internship" className="w-full min-h-screen bg-slate-50 py-16 px-4 md:px-8 flex flex-col items-center justify-center relative">
+      <div id="apply-internship" className="w-full min-h-screen bg-white py-16 px-4 md:px-8 flex flex-col items-center justify-center relative">
         
         {/* Strict Warning Block */}
         <motion.div 
