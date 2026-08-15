@@ -16,8 +16,8 @@ const notoSansTelugu = Noto_Sans_Telugu({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.kisankhata.co.in"),
-  title: "Kisan Khata - Secure Farm Ledger & Operations",
-  description: "Modern digital ledger, smart reminders, machine rentals, and live market prices for progressive farmers in Andhra Pradesh and Telangana.",
+  title: "Kisan Khata - Smart Digital Ledger for AP & TS Farmers",
+  description: "The #1 digital farm management app for Andhra Pradesh and Telangana farmers. Track labor attendance, manage crop sales, expenses, and get live market prices.",
   keywords: [
     "Kisan Khata", "Kisan Khata App", "KisanKhata", "Agriculture App", "Agriculture App Telugu", 
     "Farm Management App", "Farmer Ledger", "Telugu Farmers", "Andhra Pradesh Agriculture", 
@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     "Agriculture India", "Agri-Tech Startup", "MSME Registered Startup", "Agriculture Internship"
   ],
   openGraph: {
-    title: "Kisan Khata - The Future of Farming",
-    description: "Your comprehensive digital assistant for farm management. Track attendance, manage expenses, and stay updated with live market prices.",
+    title: "Kisan Khata - Smart Digital Ledger for AP & TS Farmers",
+    description: "The #1 digital farm management app for Andhra Pradesh and Telangana farmers. Track labor attendance, manage crop sales, expenses, and get live market prices.",
     url: "https://www.kisankhata.co.in",
     siteName: "Kisan Khata",
     images: [
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kisan Khata - Smart Digital Ledger",
-    description: "Track labor, machinery, and crop sales digitally with Kisan Khata.",
+    title: "Kisan Khata - Smart Digital Ledger for AP & TS Farmers",
+    description: "The #1 digital farm management app for Andhra Pradesh and Telangana farmers. Track labor attendance, manage crop sales, expenses, and get live market prices.",
     images: ["/logo.png"],
   },
   verification: {
