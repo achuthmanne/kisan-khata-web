@@ -347,7 +347,7 @@ export default function InternshipPage() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="w-full mt-8 md:mt-12 rounded-[2rem] bg-white relative overflow-hidden flex flex-col lg:flex-row items-center justify-between"
+            className="w-full mt-2 md:mt-4 rounded-[2rem] bg-white relative overflow-hidden flex flex-col lg:flex-row items-center justify-between"
           >
             {/* Full Banner Multi-Layer Animated Tricolor Waves */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden bg-white">
