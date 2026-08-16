@@ -115,7 +115,7 @@ export const sendApprovalEmail = async (toEmail: string, name: string, referralC
     <p style="color: #334155; font-size: 15px; line-height: 1.7; margin-bottom: 30px;">You may now log in to your official internship dashboard using your registered credentials to view your progress and next steps.</p>
     
     <div style="text-align: left; margin: 35px 0;">
-      <a href="https://www.kisankhata.co.in/internship" style="display: inline-block; background-color: #059669; color: #ffffff; text-decoration: none; padding: 12px 28px; font-size: 15px; font-weight: 600; border-radius: 6px;">Access Your Dashboard</a>
+      <a href="https://www.kisankhata.co.in/internship/dashboard" style="display: inline-block; background-color: #059669; color: #ffffff; text-decoration: none; padding: 12px 28px; font-size: 15px; font-weight: 600; border-radius: 6px;">Access Your Dashboard</a>
     </div>
 
     <p style="color: #334155; font-size: 15px; line-height: 1.7; margin-bottom: 30px;">We look forward to a successful and highly rewarding journey with you. We can't wait to see the impact you will make.</p>
