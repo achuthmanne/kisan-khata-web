@@ -1057,6 +1057,29 @@ export default function InternshipPage() {
         </div>
       </section>
 
+      {/* Social Footprints (Instagram Feed) */}
+      <section id="social-footprints" className="w-full bg-white pt-8 pb-16 md:pb-24">
+        <div className="max-w-[1600px] mx-auto px-6 md:px-12">
+          <div className="flex flex-col items-center justify-center text-center mb-12">
+            <span className="bg-[#008F5A]/10 text-[#008F5A] font-bold px-4 py-1.5 rounded-full text-sm mb-4 tracking-wide">
+              # Social Footprints
+            </span>
+            <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-gray-900 tracking-tight flex items-center justify-center flex-wrap gap-x-2 gap-y-1 md:gap-3 py-2">
+              Kisan Khata on <span className="inline-block bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] bg-clip-text text-transparent pb-2 pt-1 leading-tight">Instagram</span>
+            </h2>
+            <p className="text-gray-500 font-medium mt-4 max-w-2xl">
+              Follow our journey and stay updated with the latest farming tips, field operations, and announcements directly from our official Instagram.
+            </p>
+          </div>
+          
+          {/* Widget Container */}
+          <div className="w-full max-w-6xl mx-auto flex items-center justify-center relative">
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div className="elfsight-app-e6609526-1f9d-4cd5-965f-c443226d59cc w-full mx-auto" data-elfsight-app-lazy></div>
+          </div>
+        </div>
+      </section>
+
       {/* Application Form Section */}
       <div id="apply-internship" className="w-full min-h-screen bg-white py-16 px-4 md:px-8 flex flex-col items-center justify-center relative">
         
@@ -1412,6 +1435,7 @@ export default function InternshipPage() {
           
         </motion.div>
       </div>
+
 
       {/* Unique Minimal Footer for Internship Page */}
       <footer className="w-full relative bg-slate-50 pt-24 pb-12 px-6 overflow-hidden">
