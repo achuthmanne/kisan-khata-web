@@ -21,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: 'https://www.kisankhata.co.in/internship/dashboard',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
       url: 'https://www.kisankhata.co.in/privacy-policy',
       lastModified: new Date(),
       changeFrequency: 'yearly',
