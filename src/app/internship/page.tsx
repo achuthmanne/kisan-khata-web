@@ -1426,10 +1426,10 @@ export default function InternshipPage() {
           
           {/* Column 1: Logo & Tagline */}
           <div className="flex flex-col items-center">
-            <div className="w-20 h-12 flex items-center justify-center shrink-0 overflow-visible z-20">
-              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[2.2] origin-center" />
+            <div className="w-24 h-16 flex items-center justify-center shrink-0 overflow-visible z-20">
+              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[1.8] origin-center" />
             </div>
-            <h4 className="text-2xl font-heading font-extrabold text-slate-800 mt-4">Kisan Khata</h4>
+            <h4 className="text-2xl font-heading font-extrabold text-slate-800 -mt-1">Kisan Khata</h4>
             <p className="text-slate-500 font-medium mt-1 text-center">The digital ledger for modern agriculture</p>
           </div>
           
