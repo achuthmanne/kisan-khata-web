@@ -9,6 +9,41 @@ export default function InternshipDashboard() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [data, setData] = useState<any>(null);
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [timePercent, setTimePercent] = useState(0);
+
+  useEffect(() => {
+    if (!data?.intern?.endDate) return;
+    
+    const end = new Date(data.intern.endDate).getTime();
+    const start = new Date(data.intern.startDate || new Date()).getTime();
+    const totalDuration = end - start;
+    
+    // Initial call to avoid 1-second delay
+    const calculateTime = () => {
+      const now = new Date().getTime();
+      const difference = end - now;
+      
+      if (difference <= 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        setTimePercent(100);
+      } else {
+        const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((difference % (1000 * 60)) / 1000);
+        setTimeLeft({ days: d, hours: h, minutes: m, seconds: s });
+        
+        const elapsed = now - start;
+        const pct = Math.min(100, Math.max(0, (elapsed / totalDuration) * 100));
+        setTimePercent(pct);
+      }
+    };
+    
+    calculateTime();
+    const timer = setInterval(calculateTime, 1000);
+    return () => clearInterval(timer);
+  }, [data]);
 
   const fetchStats = async (code: string) => {
     setLoading(true);
@@ -107,15 +142,6 @@ export default function InternshipDashboard() {
   const { intern, stats } = data;
   const farmers = stats.farmersOnboarded || 0;
   const agriConnectPercent = farmers > 0 ? Math.min(100, Math.round((stats.agriConnectUsages / farmers) * 100)) : 0;
-  
-  // Calculate Time Remaining
-  const now = new Date();
-  const endDate = new Date(intern.endDate || new Date());
-  const startDate = new Date(intern.startDate || new Date());
-  
-  const totalDays = Math.max(1, Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)));
-  const daysLeft = Math.max(0, Math.ceil((endDate.getTime() - now.getTime()) / (1000 * 3600 * 24)));
-  const timePercent = Math.min(100, Math.max(0, ((totalDays - daysLeft) / totalDays) * 100));
 
   // Main Target Logic (0-49: Orange, 50-99: Silver, 100+: Gold)
   const maxTarget = 100;
@@ -229,9 +255,26 @@ export default function InternshipDashboard() {
                 </div>
                 <h3 className="font-bold text-slate-900">Time Remaining</h3>
               </div>
-              <div className="flex items-end gap-2 mb-4">
-                <span className="text-4xl font-black text-slate-900">{daysLeft}</span>
-                <span className="text-slate-500 font-medium mb-1">days left</span>
+              <div className="flex items-center gap-2 mb-4 w-full justify-between">
+                <div className="flex flex-col items-center flex-1 bg-slate-50 p-2 rounded-lg border border-slate-100">
+                  <span className="text-2xl font-black text-slate-900">{timeLeft.days.toString().padStart(2, '0')}</span>
+                  <span className="text-[10px] uppercase font-bold text-slate-400 mt-0.5">Days</span>
+                </div>
+                <span className="text-slate-300 font-bold mb-3">:</span>
+                <div className="flex flex-col items-center flex-1 bg-slate-50 p-2 rounded-lg border border-slate-100">
+                  <span className="text-2xl font-black text-slate-900">{timeLeft.hours.toString().padStart(2, '0')}</span>
+                  <span className="text-[10px] uppercase font-bold text-slate-400 mt-0.5">Hrs</span>
+                </div>
+                <span className="text-slate-300 font-bold mb-3">:</span>
+                <div className="flex flex-col items-center flex-1 bg-slate-50 p-2 rounded-lg border border-slate-100">
+                  <span className="text-2xl font-black text-slate-900">{timeLeft.minutes.toString().padStart(2, '0')}</span>
+                  <span className="text-[10px] uppercase font-bold text-slate-400 mt-0.5">Mins</span>
+                </div>
+                <span className="text-slate-300 font-bold mb-3">:</span>
+                <div className="flex flex-col items-center flex-1 bg-slate-50 p-2 rounded-lg border border-slate-100">
+                  <span className="text-2xl font-black text-blue-600">{timeLeft.seconds.toString().padStart(2, '0')}</span>
+                  <span className="text-[10px] uppercase font-bold text-slate-400 mt-0.5">Secs</span>
+                </div>
               </div>
               <div className="w-full bg-slate-100 rounded-full h-1.5 mt-auto">
                 <div className="bg-blue-500 h-1.5 rounded-full" style={{ width: `${timePercent}%` }}></div>
