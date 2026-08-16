@@ -500,11 +500,15 @@ export default function Home() {
       <section id="social-footprints" className="w-full bg-white py-16 md:py-24 border-t border-gray-100">
         <div className="max-w-[1600px] mx-auto px-6 md:px-12">
           <div className="flex flex-col items-center justify-center text-center mb-12">
-            <span className="bg-orange-100 text-orange-600 font-bold px-4 py-1.5 rounded-full text-sm mb-4">
+            <span className="bg-[#008F5A]/10 text-[#008F5A] font-bold px-4 py-1.5 rounded-full text-sm mb-4 tracking-wide">
               # Social Footprints
             </span>
-            <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-gray-900 tracking-tight">
-              {language === 'en' ? 'Kisan Khata on Instagram' : 'మా ఇన్‌స్టాగ్రామ్ అప్డేట్స్'}
+            <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-gray-900 tracking-tight flex items-center justify-center flex-wrap gap-2 md:gap-3">
+              {language === 'en' ? (
+                <>Kisan Khata on <span className="bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] bg-clip-text text-transparent pb-1">Instagram</span></>
+              ) : (
+                <>మా <span className="bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] bg-clip-text text-transparent pb-1">Instagram</span> అప్డేట్స్</>
+              )}
             </h2>
             <p className="text-gray-500 font-medium mt-4 max-w-2xl">
               {language === 'en' 
