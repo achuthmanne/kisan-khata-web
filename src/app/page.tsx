@@ -10,6 +10,11 @@ export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isUdyamModalOpen, setIsUdyamModalOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -518,9 +523,13 @@ export default function Home() {
           </div>
           
           {/* Widget Container */}
-          <div className="w-full max-w-6xl mx-auto flex items-center justify-center relative">
-            <script src="https://elfsightcdn.com/platform.js" async></script>
-            <div className="elfsight-app-e6609526-1f9d-4cd5-965f-c443226d59cc w-full mx-auto" data-elfsight-app-lazy></div>
+          <div className="w-full max-w-6xl mx-auto flex items-center justify-center relative min-h-[400px]">
+            {isMounted && (
+              <>
+                <script src="https://elfsightcdn.com/platform.js" async></script>
+                <div className="elfsight-app-e6609526-1f9d-4cd5-965f-c443226d59cc w-full mx-auto" data-elfsight-app-lazy></div>
+              </>
+            )}
           </div>
         </div>
       </section>

@@ -16,6 +16,11 @@ export default function InternshipPage() {
   const [loginEmail, setLoginEmail] = useState("");
   const [copied, setCopied] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const endDate = new Date("2026-08-30T23:59:59").getTime();
@@ -472,7 +477,7 @@ export default function InternshipPage() {
       </main>
       
       {/* About the Internship Section - Moderate Gap */}
-      <section className="w-full bg-white pb-16 pt-10 md:pt-12 px-6 md:px-12 border-b border-gray-100 overflow-hidden relative z-20">
+      <section className="w-full bg-white pb-10 md:pb-12 pt-10 md:pt-12 px-6 md:px-12 border-b border-gray-100 overflow-hidden relative z-20">
         <div className="max-w-5xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -546,7 +551,7 @@ export default function InternshipPage() {
 
 
       {/* Motivation Section - Deep Emerald Green with Waves */}
-      <section className="relative w-full bg-emerald-900 pt-32 pb-36 px-6 md:px-12 text-white overflow-hidden">
+      <section className="relative w-full bg-emerald-900 pt-20 md:pt-28 pb-20 md:pb-28 px-6 md:px-12 text-white overflow-hidden">
         {/* Top Wave */}
         <div className="absolute top-0 left-0 w-full overflow-hidden leading-0">
           <svg className="relative block w-[200%] md:w-full h-15 md:h-25" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -702,7 +707,7 @@ export default function InternshipPage() {
       </section>
 
       {/* Rewards & Rules Section - Corporate Minimal */}
-      <section className="w-full bg-slate-50 py-20 md:py-28 px-6 md:px-12 border-b border-gray-100">
+      <section className="w-full bg-slate-50 py-16 md:py-20 px-6 md:px-12 border-b border-gray-100">
         <div className="max-w-6xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -900,7 +905,7 @@ export default function InternshipPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-20"
+            className="text-center mb-12 md:mb-16"
           >
             <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-slate-900 tracking-tight">
               The Path to <span className="text-emerald-800">Certification</span>
@@ -1028,7 +1033,7 @@ export default function InternshipPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-5xl mx-auto px-6 mt-20 pb-12 w-full text-center border-t border-emerald-800/60 pt-16"
+          className="max-w-5xl mx-auto px-6 mt-12 pb-12 w-full text-center border-t border-emerald-800/60 pt-12"
         >
           <h3 className="text-xl md:text-2xl font-bold text-white mb-8">Still have doubts? Or want to invite friends?</h3>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
@@ -1073,9 +1078,13 @@ export default function InternshipPage() {
           </div>
           
           {/* Widget Container */}
-          <div className="w-full max-w-6xl mx-auto flex items-center justify-center relative">
-            <script src="https://elfsightcdn.com/platform.js" async></script>
-            <div className="elfsight-app-e6609526-1f9d-4cd5-965f-c443226d59cc w-full mx-auto" data-elfsight-app-lazy></div>
+          <div className="w-full max-w-6xl mx-auto flex items-center justify-center relative min-h-[400px]">
+            {isMounted && (
+              <>
+                <script src="https://elfsightcdn.com/platform.js" async></script>
+                <div className="elfsight-app-e6609526-1f9d-4cd5-965f-c443226d59cc w-full mx-auto" data-elfsight-app-lazy></div>
+              </>
+            )}
           </div>
         </div>
       </section>
