@@ -505,9 +505,9 @@ export default function Home() {
             </span>
             <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-gray-900 tracking-tight flex items-center justify-center flex-wrap gap-2 md:gap-3">
               {language === 'en' ? (
-                <>Kisan Khata on <span className="bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] bg-clip-text text-transparent pb-1">Instagram</span></>
+                <>Kisan Khata on <span className="inline-block bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] bg-clip-text text-transparent pb-2 -mb-2">Instagram</span></>
               ) : (
-                <>మా <span className="bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] bg-clip-text text-transparent pb-1">Instagram</span> అప్డేట్స్</>
+                <>మా <span className="inline-block bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] bg-clip-text text-transparent pb-2 -mb-2">Instagram</span> అప్డేట్స్</>
               )}
             </h2>
             <p className="text-gray-500 font-medium mt-4 max-w-2xl">
