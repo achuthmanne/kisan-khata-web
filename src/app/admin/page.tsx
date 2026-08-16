@@ -200,7 +200,7 @@ export default function AdminDashboard() {
                             {intern.referralCode}
                           </div>
                           <a 
-                            href={`https://wa.me/${intern.phone.replace(/\\D/g, '').length === 10 ? '91' + intern.phone.replace(/\\D/g, '') : intern.phone.replace(/\\D/g, '')}?text=${encodeURIComponent(`Hi ${intern.name},\n\nCongratulations! You have been officially selected for the Kisan Khata Internship.\n\n⏳ Your 30-Day Internship Timer has started.\n\n📩 Please check your registered email for your Official Referral Code.\n\n📊 You can track your live countdown and performance on your dashboard:\nhttps://www.kisankhata.co.in/internship/dashboard\n\nThis is an automated official alert. Please do not reply.\n\nBest Regards,\nKisan Khata Automated Alert System`)}`}
+                            href={`https://wa.me/${intern.phone.replace(/\\D/g, '').length === 10 ? '91' + intern.phone.replace(/\\D/g, '') : intern.phone.replace(/\\D/g, '')}?text=${encodeURIComponent(`Hi ${intern.name},\n\nCongratulations! You have been officially selected for the Kisan Khata Internship.\n\n⏳ Your 30-Day Internship Timer has started.\n\n📩 Please check your registered email for your Official Referral Code.\n\n📊 You can track your live countdown and performance on your dashboard:\nhttps://www.kisankhata.co.in/internship/dashboard\n\nThis is an automated official alert. Please do not reply.\n\nBest Regards,\nKisan Khata`)}`}
                             target="_blank"
                             rel="noreferrer"
                             className="bg-[#25D366] text-white px-3 py-2 rounded-lg text-xs font-bold hover:bg-[#128C7E] transition-colors w-full flex items-center justify-center gap-1.5 shadow-sm"
