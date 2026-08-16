@@ -77,25 +77,34 @@ export default function AdminDashboard() {
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
-        <div className="bg-white p-8 rounded-3xl border border-slate-200 w-full max-w-md shadow-sm">
-          <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-slate-900 mb-2">Admin Access Only</h1>
-            <p className="text-slate-500">Enter password to view applications.</p>
+        <div className="bg-white p-8 rounded-3xl border border-slate-200 w-full max-w-md shadow-sm text-center">
+          
+          <div className="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <XCircle size={32} strokeWidth={2.5} />
           </div>
+
+          <h1 className="text-2xl font-bold text-slate-900 mb-2">Restricted Area</h1>
+          
+          <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-8">
+            <p className="text-red-700 font-bold text-sm leading-relaxed">
+              This page is not applicable for you. Unauthorized access is strictly prohibited.
+            </p>
+          </div>
+          
           <form onSubmit={handleLogin}>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter Admin Password"
-              className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all bg-slate-50/50 mb-4 text-center font-bold"
+              placeholder="Enter Admin Passcode"
+              className="w-full px-5 py-4 text-lg rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-[#008F5A]/10 focus:border-[#008F5A] transition-all bg-slate-50/50 mb-4 text-center font-bold"
             />
-            {loginError && <p className="text-red-500 text-sm font-medium mb-4 text-center">{loginError}</p>}
+            {loginError && <p className="text-red-500 text-sm font-medium mb-4">{loginError}</p>}
             <button
               type="submit"
               className="w-full bg-[#008F5A] text-white font-bold py-4 rounded-2xl hover:bg-[#007A4D] transition-colors"
             >
-              Unlock Dashboard
+              Verify Access
             </button>
           </form>
         </div>
