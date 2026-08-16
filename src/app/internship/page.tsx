@@ -1422,44 +1422,44 @@ export default function InternshipPage() {
           </svg>
         </div>
 
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-12 text-center md:text-left relative z-10">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-y-10 gap-x-6 text-left relative z-10">
           
           {/* Column 1: Logo & Tagline */}
-          <div className="flex flex-col items-center">
-            <div className="w-24 h-16 flex items-center justify-center shrink-0 overflow-visible z-20">
-              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[1.8] origin-center" />
+          <div className="col-span-2 md:col-span-1 flex flex-col items-start">
+            <div className="w-16 h-12 flex items-center justify-start shrink-0 overflow-visible z-20">
+              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[1.8] origin-left" />
             </div>
-            <h4 className="text-2xl font-heading font-extrabold text-slate-800 -mt-1">Kisan Khata</h4>
-            <p className="text-slate-500 font-medium mt-1 text-center">The digital ledger for modern agriculture</p>
+            <h4 className="text-2xl font-heading font-extrabold text-slate-800">Kisan Khata</h4>
+            <p className="text-slate-500 font-medium mt-1">The digital ledger for modern agriculture</p>
           </div>
           
           {/* Column 2: Contact Us */}
-          <div className="flex flex-col items-center md:items-start">
+          <div className="col-span-1 flex flex-col items-start">
             <h5 className="font-bold text-slate-800 mb-4 uppercase tracking-wider text-sm">Contact Us</h5>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kisankhata.official@gmail.com" target="_blank" rel="noreferrer" className="text-slate-600 hover:text-red-600 transition-colors text-base font-medium flex items-center gap-2 mb-3 bg-white px-5 py-2.5 rounded-full border border-slate-200 hover:border-red-200">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#EA4335]"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-              Email Support
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kisankhata.official@gmail.com" target="_blank" rel="noreferrer" className="text-slate-600 hover:text-red-600 transition-colors text-[11px] sm:text-sm font-medium flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2 mb-3 bg-white px-3 py-2 md:px-5 md:py-2.5 rounded-xl md:rounded-full border border-slate-200 hover:border-red-200 w-full sm:w-auto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#EA4335] shrink-0 hidden sm:block"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span>Email Support</span>
             </a>
-            <a href="https://wa.me/919493959557?text=Hi%20Kisan%20Khata,%20I%20have%20a%20query!" target="_blank" rel="noreferrer" className="text-slate-600 hover:text-emerald-700 transition-colors text-base font-medium flex items-center gap-2 bg-white px-5 py-2.5 rounded-full border border-slate-200 hover:border-emerald-200">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#25D366]"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
-              WhatsApp Us
+            <a href="https://wa.me/919493959557?text=Hi%20Kisan%20Khata,%20I%20have%20a%20query!" target="_blank" rel="noreferrer" className="text-slate-600 hover:text-emerald-700 transition-colors text-[11px] sm:text-sm font-medium flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2 bg-white px-3 py-2 md:px-5 md:py-2.5 rounded-xl md:rounded-full border border-slate-200 hover:border-emerald-200 w-full sm:w-auto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#25D366] shrink-0 hidden sm:block"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
+              <span>WhatsApp Us</span>
             </a>
           </div>
           
           {/* Column 3: Follow Us */}
-          <div className="flex flex-col items-center md:items-start">
+          <div className="col-span-1 flex flex-col items-start">
             <h5 className="font-bold text-slate-800 mb-4 uppercase tracking-wider text-sm">Follow Us On</h5>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               {/* Original Instagram Gradient */}
-              <a href="https://instagram.com/kisankhata.official" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full flex items-center justify-center text-white transition-transform hover:-translate-y-1" style={{ background: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)" }} title="Kisan Khata on Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              <a href="https://instagram.com/kisankhata.official" target="_blank" rel="noreferrer" className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-white transition-transform hover:-translate-y-1" style={{ background: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)" }} title="Kisan Khata on Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
               </a>
               {/* Original LinkedIn Blue */}
-              <a href="https://www.linkedin.com/in/manne-achuth-629394332/" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full flex items-center justify-center text-white bg-[#0A66C2] transition-transform hover:-translate-y-1" title="Connect with Founder">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+              <a href="https://www.linkedin.com/in/manne-achuth-629394332/" target="_blank" rel="noreferrer" className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-white bg-[#0A66C2] transition-transform hover:-translate-y-1" title="Connect with Founder">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
               </a>
             </div>
-            <p className="text-xs text-slate-400 font-medium mt-3 text-center md:text-left">Connect with our<br/>Founder on LinkedIn</p>
+            <p className="text-[10px] md:text-xs text-slate-400 font-medium mt-3 text-left">Connect with our<br/>Founder on LinkedIn</p>
           </div>
           
         </div>
