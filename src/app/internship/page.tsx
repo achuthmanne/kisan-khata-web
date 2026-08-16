@@ -391,7 +391,7 @@ export default function InternshipPage() {
                  </div>
                  <div className="text-slate-300 font-bold">:</div>
                  <div className="flex flex-col items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white border border-slate-100 rounded-lg shadow-sm">
-                   <span className="text-xl md:text-2xl font-black text-emerald-600 font-heading">{timeLeft.seconds.toString().padStart(2, '0')}</span>
+                   <span className="text-xl md:text-2xl font-black text-red-600 font-heading">{timeLeft.seconds.toString().padStart(2, '0')}</span>
                    <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Secs</span>
                  </div>
                </div>
