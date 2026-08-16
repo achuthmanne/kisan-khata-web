@@ -645,31 +645,31 @@ export default function Home() {
       <footer className="w-full bg-gray-50 text-gray-900 pt-12 pb-8 px-6 md:px-12 border-t border-gray-200">
         <div className="max-w-[1600px] mx-auto">
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-16">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-y-10 gap-x-6 mb-12">
             
             {/* Brand Column */}
-            <div className="flex flex-col gap-6 lg:col-span-2 lg:pr-12">
+            <div className="flex flex-col gap-4 col-span-2 lg:pr-12">
               <div className="flex flex-col items-start">
-                <div className="w-20 h-12 flex items-center justify-start shrink-0 overflow-visible z-20">
-                  <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[2.2] origin-left" />
+                <div className="w-16 h-12 flex items-center justify-start shrink-0 overflow-visible z-20">
+                  <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[1.8] origin-left" />
                 </div>
-                <span className="text-2xl md:text-3xl font-heading font-extrabold tracking-tight text-gray-900 z-10 relative mt-2">Kisan Khata</span>
+                <span className="text-2xl md:text-3xl font-heading font-extrabold tracking-tight text-gray-900 z-10 relative">Kisan Khata</span>
               </div>
-              <p className="text-gray-600 text-sm leading-relaxed max-w-sm mt-2">
+              <p className="text-gray-600 text-sm leading-relaxed max-w-sm">
                 {language === 'en' 
                   ? 'Empowering farmers with a modern digital ledger, seamless machine rentals, and comprehensive agricultural tracking.' 
                   : 'ఆధునిక డిజిటల్ లెడ్జర్, సులభమైన యంత్రాల అద్దె మరియు వ్యవసాయ ట్రాకింగ్ ద్వారా రైతులను బలోపేతం చేయడం.'}
               </p>
               
               {/* Socials */}
-              <div className="mt-4">
+              <div className="mt-2">
                 <a 
                   href="https://instagram.com/kisankhata.official" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="inline-flex items-center gap-3 transition-all group"
                 >
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="w-9 h-9 object-contain group-hover:scale-110 transition-transform" />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="w-8 h-8 object-contain group-hover:scale-110 transition-transform" />
                   <div className="flex flex-col justify-center">
                     <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider leading-none mb-1">Follow Us</span>
                     <span className="text-sm font-extrabold text-gray-900 group-hover:text-pink-600 transition-colors leading-none">@kisankhata.official</span>
@@ -679,9 +679,9 @@ export default function Home() {
             </div>
 
             {/* Quick Links */}
-            <div className="flex flex-col gap-5 lg:pt-3">
+            <div className="flex flex-col gap-4 col-span-1 lg:pt-3">
               <h4 className="font-bold text-gray-900 uppercase tracking-wider text-sm">{language === 'en' ? 'Quick Links' : 'క్విక్ లింక్స్'}</h4>
-              <nav className="flex flex-col gap-3 text-gray-600">
+              <nav className="flex flex-col gap-3 text-gray-600 text-sm md:text-base">
                 <a href="#features" className="hover:text-primary hover:translate-x-1 transition-all w-fit">Features</a>
                 <a href="/privacy-policy" className="hover:text-primary hover:translate-x-1 transition-all w-fit">Privacy Policy</a>
                 <a href="/terms" className="hover:text-primary hover:translate-x-1 transition-all w-fit">Terms of Service</a>
@@ -689,32 +689,32 @@ export default function Home() {
             </div>
 
             {/* Contact Us */}
-            <div className="flex flex-col gap-5 lg:pt-3">
+            <div className="flex flex-col gap-4 col-span-1 lg:pt-3">
               <h4 className="font-bold text-gray-900 uppercase tracking-wider text-sm" id="contact">{language === 'en' ? 'Contact Us' : 'సంప్రదించండి'}</h4>
               <nav className="flex flex-col gap-3 text-gray-600 text-sm">
-                <a href="https://wa.me/919493959557" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors flex items-center gap-2">
-                  <span className="opacity-70">WhatsApp:</span> <span className="font-semibold text-gray-900">+91 9493959557</span>
+                <a href="https://wa.me/919493959557" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                  <span className="opacity-70 text-[11px] sm:text-xs">WhatsApp:</span> <span className="font-semibold text-gray-900">+91 9493959557</span>
                 </a>
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kisankhata.support@gmail.com&su=Kisan%20Khata%20Support%20Request&body=Hi%20Kisan%20Khata%20Team," target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors flex flex-col">
-                  <span className="opacity-70 text-xs">General Support</span>
-                  <span className="font-medium">kisankhata.support@gmail.com</span>
+                  <span className="opacity-70 text-[11px] sm:text-xs">General Support</span>
+                  <span className="font-medium break-all text-[13px] sm:text-sm">kisankhata.support<wbr/>@gmail.com</span>
                 </a>
               </nav>
             </div>
 
             {/* Official Registration */}
-            <div className="flex flex-col gap-5 lg:pt-3">
+            <div className="flex flex-col gap-4 col-span-2 lg:col-span-1 lg:pt-3">
               <h4 className="font-bold text-gray-900 uppercase tracking-wider text-sm">{language === 'en' ? 'Official' : 'అఫీషియల్'}</h4>
               <button 
                 onClick={() => setIsUdyamModalOpen(true)}
-                className="text-left group w-full"
+                className="text-left group w-full sm:max-w-xs lg:max-w-full"
               >
-                <div className="bg-white p-4 rounded-xl border border-gray-200 group-hover:border-primary transition-colors h-full flex flex-col justify-center">
-                  <p className="text-xs text-gray-500 uppercase tracking-wider mb-1 font-semibold flex items-center justify-between">
-                    MSME Udyam Registration
-                    <span className="bg-green-100 text-green-700 text-[10px] px-1.5 py-0.5 rounded font-bold">VERIFIED</span>
+                <div className="bg-white p-4 rounded-xl border border-gray-200 group-hover:border-primary transition-colors h-full flex flex-col justify-center shadow-sm">
+                  <p className="text-[11px] text-gray-500 uppercase tracking-wider mb-1 font-semibold flex items-center justify-between">
+                    MSME Registration
+                    <span className="bg-green-100 text-green-700 text-[9px] px-1.5 py-0.5 rounded font-bold">VERIFIED</span>
                   </p>
-                  <p className="text-sm font-mono font-bold text-gray-900 group-hover:text-primary transition-colors">UDYAM-AP-20-0107784</p>
+                  <p className="text-xs md:text-sm font-mono font-bold text-gray-900 group-hover:text-primary transition-colors">UDYAM-AP-20-0107784</p>
                   <p className="text-[10px] text-gray-400 mt-2 font-medium flex items-center gap-1 group-hover:text-primary transition-colors">
                     View Verification QR <ArrowRight size={10} />
                   </p>
