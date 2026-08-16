@@ -1058,9 +1058,9 @@ export default function InternshipPage() {
       </section>
 
       {/* Social Footprints (Instagram Feed) */}
-      <section id="social-footprints" className="w-full bg-white pt-8 pb-16 md:pb-24">
+      <section id="social-footprints" className="w-full bg-white pt-8 pb-4">
         <div className="max-w-[1600px] mx-auto px-6 md:px-12">
-          <div className="flex flex-col items-center justify-center text-center mb-12">
+          <div className="flex flex-col items-center justify-center text-center mb-8">
             <span className="bg-[#008F5A]/10 text-[#008F5A] font-bold px-4 py-1.5 rounded-full text-sm mb-4 tracking-wide">
               # Social Footprints
             </span>
@@ -1081,7 +1081,7 @@ export default function InternshipPage() {
       </section>
 
       {/* Application Form Section */}
-      <div id="apply-internship" className="w-full min-h-screen bg-white py-16 px-4 md:px-8 flex flex-col items-center justify-center relative">
+      <div id="apply-internship" className="w-full min-h-screen bg-white pt-8 pb-16 px-4 md:px-8 flex flex-col items-center justify-center relative">
         
         {/* Strict Warning Block */}
         <motion.div 
