@@ -43,7 +43,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-white overflow-x-hidden lg:overflow-visible w-full max-w-[100vw]">
       {/* Navigation - Sticky, Flat, Minimal */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div className="flex items-center justify-between px-6 md:px-8 lg:px-12 py-2 max-w-[1600px] mx-auto w-full overflow-hidden">
+        <div className="flex items-center justify-between px-6 md:px-8 lg:px-12 py-2 max-w-[1600px] mx-auto w-full">
           <a 
             href="#" 
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
