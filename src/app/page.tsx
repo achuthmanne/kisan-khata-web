@@ -496,6 +496,37 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Social Footprints (Instagram Feed) Placeholder */}
+      <section id="social-footprints" className="w-full bg-white py-16 md:py-24 border-t border-gray-100">
+        <div className="max-w-[1600px] mx-auto px-6 md:px-12">
+          <div className="flex flex-col items-center justify-center text-center mb-12">
+            <span className="bg-orange-100 text-orange-600 font-bold px-4 py-1.5 rounded-full text-sm mb-4">
+              # Social Footprints
+            </span>
+            <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-gray-900 tracking-tight">
+              {language === 'en' ? 'Kisan Khata on Instagram' : 'మా ఇన్‌స్టాగ్రామ్ అప్డేట్స్'}
+            </h2>
+            <p className="text-gray-500 font-medium mt-4 max-w-2xl">
+              {language === 'en' 
+                ? 'Follow our journey and stay updated with the latest farming tips, field operations, and announcements directly from our official Instagram.'
+                : 'వ్యవసాయ సలహాలు, మా ఫీల్డ్ ఆపరేషన్స్ మరియు తాజా అప్డేట్స్ కోసం మా ఇన్‌స్టాగ్రామ్ ని ఫాలో అవ్వండి.'}
+            </p>
+          </div>
+          
+          {/* Widget Container */}
+          <div className="w-full min-h-[400px] bg-slate-50 border border-dashed border-slate-300 rounded-2xl flex flex-col items-center justify-center p-8 text-center relative overflow-hidden">
+            {/* We will paste the Elfsight/Widget code here */}
+            <div className="w-16 h-16 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 rounded-2xl flex items-center justify-center text-white mb-4 shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </div>
+            <h3 className="text-xl font-bold text-slate-800 mb-2">Instagram Live Feed Setup</h3>
+            <p className="text-slate-500 font-medium max-w-md">
+              The automatic Instagram feed will appear here. Please provide the Embed Code to activate it.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Top Divider for CTA Section */}
       <div id="download" className="w-full h-8 md:h-12 bg-[#064e3b] border-t border-gray-200 scroll-mt-24"></div>
 
