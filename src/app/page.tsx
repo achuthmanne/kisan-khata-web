@@ -514,15 +514,9 @@ export default function Home() {
           </div>
           
           {/* Widget Container */}
-          <div className="w-full min-h-[400px] bg-slate-50 border border-dashed border-slate-300 rounded-2xl flex flex-col items-center justify-center p-8 text-center relative overflow-hidden">
-            {/* We will paste the Elfsight/Widget code here */}
-            <div className="w-16 h-16 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 rounded-2xl flex items-center justify-center text-white mb-4 shadow-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-            </div>
-            <h3 className="text-xl font-bold text-slate-800 mb-2">Instagram Live Feed Setup</h3>
-            <p className="text-slate-500 font-medium max-w-md">
-              The automatic Instagram feed will appear here. Please provide the Embed Code to activate it.
-            </p>
+          <div className="w-full min-h-[400px] flex justify-center relative overflow-hidden -mx-4 md:mx-0">
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div className="elfsight-app-e6609526-1f9d-4cd5-965f-c443226d59cc w-full" data-elfsight-app-lazy></div>
           </div>
         </div>
       </section>
