@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Globe, ChevronDown, ExternalLink, ShieldCheck, CheckCircle2, Share2, ArrowLeft, PencilLine, User, CheckCircle, Menu, X } from "lucide-react";
+import { Send, Globe, ChevronDown, ExternalLink, ShieldCheck, CheckCircle2, Share2, ArrowLeft, ArrowDown, PencilLine, User, CheckCircle, Menu, X } from "lucide-react";
 import Link from "next/link";
 
 export default function InternshipPage() {
@@ -338,139 +338,70 @@ export default function InternshipPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="w-full hidden"
+            className="w-full relative z-10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-2xl md:rounded-[2rem] border border-gray-100 overflow-hidden"
           >
             <img 
               src="/int banner.png" 
               alt="Kisan Khata Internship" 
-              className="w-full h-auto object-cover rounded-2xl md:rounded-[2rem]" 
+              className="w-full h-auto object-cover" 
             />
           </motion.div>
 
-          {/* Independence Day Banner - High Fidelity Corporate Design */}
+          {/* Hanging Timer Board */}
           <motion.div 
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: -40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="w-full mt-2 md:mt-4 rounded-[2rem] bg-white relative overflow-hidden flex flex-col lg:flex-row items-center justify-between"
+            transition={{ duration: 0.8, delay: 0.4, type: "spring", bounce: 0.4 }}
+            className="relative flex flex-col items-center w-full max-w-[340px] md:max-w-md -mt-2 md:-mt-4 z-0"
           >
-            {/* Full Banner Multi-Layer Animated Tricolor Waves */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden bg-white">
-               
-               {/* Center Ashoka Chakra */}
-               <motion.div
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
-                  className="absolute inset-0 m-auto w-24 h-24 md:w-48 md:h-48 flex items-center justify-center text-[#000080] opacity-30 md:opacity-100"
-               >
-                  <svg width="100%" height="100%" viewBox="0 0 100 100" className="animate-[spin_15s_linear_infinite]">
-                     <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="2"/>
-                     <circle cx="50" cy="50" r="4" fill="currentColor"/>
-                     {Array.from({ length: 24 }).map((_, i) => (
-                       <path key={i} d="M50 50 L51 8 L49 8 Z" fill="currentColor" transform={`rotate(${i * 15} 50 50)`} />
-                     ))}
-                  </svg>
-               </motion.div>
-
-               {/* Top Saffron Multi-Waves */}
-               <motion.div 
-                 animate={{ x: ["0%", "-50%"] }}
-                 transition={{ ease: "linear", duration: 18, repeat: Infinity }}
-                 className="absolute top-0 left-0 w-[200%] h-24 md:h-40 flex items-start opacity-90"
-               >
-                 <div className="w-1/2 h-full relative">
-                   <svg className="absolute top-0 w-full h-full object-fill" preserveAspectRatio="none" viewBox="0 0 1440 320">
-                     <path fill="#FF9933" opacity="0.3" d="M0,200 C360,300 1080,0 1440,200 L1440,0 L0,0 Z"></path>
-                     <path fill="#FF9933" opacity="0.6" d="M0,150 C360,50 1080,250 1440,150 L1440,0 L0,0 Z"></path>
-                     <path fill="#FF9933" d="M0,100 C360,200 1080,0 1440,100 L1440,0 L0,0 Z"></path>
-                   </svg>
-                 </div>
-                 <div className="w-[50.5%] h-full relative -ml-[1%]">
-                   <svg className="absolute top-0 w-full h-full object-fill" preserveAspectRatio="none" viewBox="0 0 1440 320">
-                     <path fill="#FF9933" opacity="0.3" d="M0,200 C360,300 1080,0 1440,200 L1440,0 L0,0 Z"></path>
-                     <path fill="#FF9933" opacity="0.6" d="M0,150 C360,50 1080,250 1440,150 L1440,0 L0,0 Z"></path>
-                     <path fill="#FF9933" d="M0,100 C360,200 1080,0 1440,100 L1440,0 L0,0 Z"></path>
-                   </svg>
-                 </div>
-               </motion.div>
-
-               {/* Bottom Green Multi-Waves */}
-               <motion.div 
-                 animate={{ x: ["-50%", "0%"] }}
-                 transition={{ ease: "linear", duration: 22, repeat: Infinity }}
-                 className="absolute bottom-0 left-0 w-[200%] h-24 md:h-40 flex items-end opacity-90"
-               >
-                 <div className="w-1/2 h-full relative">
-                   <svg className="absolute bottom-0 w-full h-full object-fill" preserveAspectRatio="none" viewBox="0 0 1440 320">
-                     <path fill="#138808" opacity="0.3" d="M0,120 C360,20 1080,320 1440,120 L1440,320 L0,320 Z"></path>
-                     <path fill="#138808" opacity="0.6" d="M0,170 C360,270 1080,70 1440,170 L1440,320 L0,320 Z"></path>
-                     <path fill="#138808" d="M0,220 C360,120 1080,320 1440,220 L1440,320 L0,320 Z"></path>
-                   </svg>
-                 </div>
-                 <div className="w-[50.5%] h-full relative -ml-[1%]">
-                   <svg className="absolute bottom-0 w-full h-full object-fill" preserveAspectRatio="none" viewBox="0 0 1440 320">
-                     <path fill="#138808" opacity="0.3" d="M0,120 C360,20 1080,320 1440,120 L1440,320 L0,320 Z"></path>
-                     <path fill="#138808" opacity="0.6" d="M0,170 C360,270 1080,70 1440,170 L1440,320 L0,320 Z"></path>
-                     <path fill="#138808" d="M0,220 C360,120 1080,320 1440,220 L1440,320 L0,320 Z"></path>
-                   </svg>
-                 </div>
-               </motion.div>
+            {/* Chains */}
+            <div className="flex justify-between w-[75%] px-2 md:px-6 -mb-1 relative z-0">
+              <svg width="12" height="40" viewBox="0 0 12 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-gray-300 drop-shadow-sm h-6 md:h-10">
+                <rect x="2" y="0" width="8" height="14" rx="4" stroke="currentColor" strokeWidth="2.5"/>
+                <rect x="2" y="12" width="8" height="14" rx="4" stroke="currentColor" strokeWidth="2.5"/>
+                <rect x="2" y="24" width="8" height="14" rx="4" stroke="currentColor" strokeWidth="2.5"/>
+              </svg>
+              <svg width="12" height="40" viewBox="0 0 12 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-gray-300 drop-shadow-sm h-6 md:h-10">
+                <rect x="2" y="0" width="8" height="14" rx="4" stroke="currentColor" strokeWidth="2.5"/>
+                <rect x="2" y="12" width="8" height="14" rx="4" stroke="currentColor" strokeWidth="2.5"/>
+                <rect x="2" y="24" width="8" height="14" rx="4" stroke="currentColor" strokeWidth="2.5"/>
+              </svg>
             </div>
-
-            <div className="px-6 md:px-12 py-24 md:py-40 flex-1 flex flex-col xl:flex-row items-center xl:items-center justify-between gap-16 xl:gap-10 relative z-10 w-full min-h-[450px]">
-              
-              <div className="flex flex-col gap-4 w-full xl:w-auto relative z-10 max-w-lg text-center xl:text-left items-center xl:items-start">
-                <div className="flex items-center justify-center xl:justify-start">
-                   <div className="relative px-4 py-1.5 bg-white text-slate-800 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] rounded-md border border-slate-200 overflow-hidden">
-                      <div className="absolute top-0 left-0 right-0 h-[3px] flex">
-                        <div className="flex-1 bg-[#FF9933]"></div>
-                        <div className="flex-1 bg-slate-100"></div>
-                        <div className="flex-1 bg-[#138808]"></div>
-                      </div>
-                      <span className="relative z-10 mt-0.5 block">Independence Launch</span>
-                   </div>
-                </div>
-                <h3 className="text-4xl md:text-[3rem] lg:text-[3.5rem] font-extrabold text-slate-900 tracking-tight leading-[1.1] mt-2">
-                   Applications <br className="hidden md:block" /> Are <span className="text-blue-600">Open Now</span>
-                </h3>
-                <p className="text-slate-500 font-medium text-sm md:text-base max-w-md leading-relaxed mt-1 xl:mt-2 mx-auto xl:mx-0">
-                   Join the Agri-Tech Field Operations Internship and make a real difference on ground this Independence Day.
-                </p>
-              </div>
-              
-              <div className="flex flex-col items-center xl:items-end gap-6 w-full xl:w-auto mt-2 xl:mt-0 relative z-10">
-                {/* Timer Component */}
-                <div className="flex flex-col items-center xl:items-end gap-3 w-full">
-                  <span className="text-slate-400 text-[10px] md:text-xs font-bold uppercase tracking-widest">Applications Close In</span>
-                  <div className="flex items-center gap-2 md:gap-4">
-                    <div className="flex flex-col items-center justify-center w-14 h-14 md:w-20 md:h-20 bg-white border-2 border-slate-200 rounded-xl md:rounded-2xl">
-                      <span className="text-xl md:text-3xl font-black text-slate-800 font-heading">{timeLeft.days.toString().padStart(2, '0')}</span>
-                      <span className="text-[8px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Days</span>
-                    </div>
-                    <div className="text-slate-300 text-lg md:text-xl font-bold">:</div>
-                    <div className="flex flex-col items-center justify-center w-14 h-14 md:w-20 md:h-20 bg-white border-2 border-slate-200 rounded-xl md:rounded-2xl">
-                      <span className="text-xl md:text-3xl font-black text-slate-800 font-heading">{timeLeft.hours.toString().padStart(2, '0')}</span>
-                      <span className="text-[8px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Hours</span>
-                    </div>
-                    <div className="text-slate-300 text-lg md:text-xl font-bold">:</div>
-                    <div className="flex flex-col items-center justify-center w-14 h-14 md:w-20 md:h-20 bg-white border-2 border-slate-200 rounded-xl md:rounded-2xl">
-                      <span className="text-xl md:text-3xl font-black text-slate-800 font-heading">{timeLeft.minutes.toString().padStart(2, '0')}</span>
-                      <span className="text-[8px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Mins</span>
-                    </div>
-                    <div className="text-slate-300 text-lg md:text-xl font-bold">:</div>
-                    <div className="flex flex-col items-center justify-center w-14 h-14 md:w-20 md:h-20 bg-white border-2 border-slate-200 rounded-xl md:rounded-2xl">
-                      <span className="text-xl md:text-3xl font-black text-[#138808] font-heading">{timeLeft.seconds.toString().padStart(2, '0')}</span>
-                      <span className="text-[8px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Secs</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <a href="#apply-internship" className="w-full flex items-center justify-center px-10 py-4 bg-blue-600 text-white rounded-xl font-extrabold hover:bg-blue-700 transition-colors text-sm md:text-base tracking-wide border-2 border-blue-600">
-                   Apply Today
-                </a>
-              </div>
-              
+            
+            {/* Board */}
+            <div className="bg-white border-2 border-slate-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] rounded-[1.5rem] p-5 md:p-6 w-full flex flex-col items-center gap-4 md:gap-5 relative z-10 before:absolute before:inset-0 before:bg-gradient-to-b before:from-slate-50/50 before:to-transparent before:rounded-[1.5rem]">
+               <span className="text-slate-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-center relative z-10 flex items-center gap-2">
+                  Applications Close In
+               </span>
+               
+               <div className="flex items-center gap-1.5 md:gap-2 relative z-10">
+                 <div className="flex flex-col items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white border border-slate-100 rounded-lg shadow-sm">
+                   <span className="text-xl md:text-2xl font-black text-slate-800 font-heading">{timeLeft.days.toString().padStart(2, '0')}</span>
+                   <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Days</span>
+                 </div>
+                 <div className="text-slate-300 font-bold">:</div>
+                 <div className="flex flex-col items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white border border-slate-100 rounded-lg shadow-sm">
+                   <span className="text-xl md:text-2xl font-black text-slate-800 font-heading">{timeLeft.hours.toString().padStart(2, '0')}</span>
+                   <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Hours</span>
+                 </div>
+                 <div className="text-slate-300 font-bold">:</div>
+                 <div className="flex flex-col items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white border border-slate-100 rounded-lg shadow-sm">
+                   <span className="text-xl md:text-2xl font-black text-slate-800 font-heading">{timeLeft.minutes.toString().padStart(2, '0')}</span>
+                   <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Mins</span>
+                 </div>
+                 <div className="text-slate-300 font-bold">:</div>
+                 <div className="flex flex-col items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white border border-slate-100 rounded-lg shadow-sm">
+                   <span className="text-xl md:text-2xl font-black text-emerald-600 font-heading">{timeLeft.seconds.toString().padStart(2, '0')}</span>
+                   <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Secs</span>
+                 </div>
+               </div>
+               
+               <a href="#apply-internship" className="w-full flex items-center justify-center px-6 py-3.5 md:py-4 bg-emerald-700 text-white rounded-xl font-bold hover:bg-emerald-800 transition-all text-sm md:text-base tracking-wide shadow-md group relative z-10 overflow-hidden">
+                  <span className="relative z-10 flex items-center gap-2">
+                    Apply Today
+                    <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+                  </span>
+               </a>
             </div>
           </motion.div>
         </div>
