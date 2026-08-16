@@ -1425,12 +1425,12 @@ export default function InternshipPage() {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-12 text-center md:text-left relative z-10">
           
           {/* Column 1: Logo & Tagline */}
-          <div className="flex flex-col items-center md:items-start">
-            <div className="w-20 h-12 flex items-center md:justify-start justify-center shrink-0 overflow-visible z-20">
-              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[2.2] md:origin-left origin-center" />
+          <div className="flex flex-col items-center">
+            <div className="w-20 h-12 flex items-center justify-center shrink-0 overflow-visible z-20">
+              <img src="/logo.png" alt="Kisan Khata Logo" className="w-full h-full object-contain scale-[2.2] origin-center" />
             </div>
-            <h4 className="text-2xl font-heading font-extrabold text-slate-800 mt-2">Kisan Khata</h4>
-            <p className="text-slate-500 font-medium mt-1">The digital ledger for modern agriculture</p>
+            <h4 className="text-2xl font-heading font-extrabold text-slate-800 mt-4">Kisan Khata</h4>
+            <p className="text-slate-500 font-medium mt-1 text-center">The digital ledger for modern agriculture</p>
           </div>
           
           {/* Column 2: Contact Us */}
