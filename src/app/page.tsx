@@ -503,11 +503,11 @@ export default function Home() {
             <span className="bg-[#008F5A]/10 text-[#008F5A] font-bold px-4 py-1.5 rounded-full text-sm mb-4 tracking-wide">
               # Social Footprints
             </span>
-            <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-gray-900 tracking-tight flex items-center justify-center flex-wrap gap-2 md:gap-3">
+            <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-gray-900 tracking-tight flex items-center justify-center flex-wrap gap-x-2 gap-y-1 md:gap-3 py-2">
               {language === 'en' ? (
-                <>Kisan Khata on <span className="inline-block bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] bg-clip-text text-transparent pb-2 -mb-2">Instagram</span></>
+                <>Kisan Khata on <span className="inline-block bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] bg-clip-text text-transparent pb-2 pt-1 leading-tight">Instagram</span></>
               ) : (
-                <>మా <span className="inline-block bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] bg-clip-text text-transparent pb-2 -mb-2">Instagram</span> అప్డేట్స్</>
+                <>మా <span className="inline-block bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] bg-clip-text text-transparent pb-2 pt-1 leading-tight">Instagram</span> అప్డేట్స్</>
               )}
             </h2>
             <p className="text-gray-500 font-medium mt-4 max-w-2xl">
@@ -518,9 +518,9 @@ export default function Home() {
           </div>
           
           {/* Widget Container */}
-          <div className="w-full min-h-[400px] flex justify-center relative overflow-hidden -mx-4 md:mx-0">
+          <div className="w-full max-w-6xl mx-auto flex items-center justify-center relative">
             <script src="https://elfsightcdn.com/platform.js" async></script>
-            <div className="elfsight-app-e6609526-1f9d-4cd5-965f-c443226d59cc w-full" data-elfsight-app-lazy></div>
+            <div className="elfsight-app-e6609526-1f9d-4cd5-965f-c443226d59cc w-full mx-auto" data-elfsight-app-lazy></div>
           </div>
         </div>
       </section>
