@@ -111,8 +111,18 @@ export const sendApprovalEmail = async (toEmail: string, name: string, referralC
       <h3 style="margin: 0; color: #064e3b; font-size: 34px; letter-spacing: 4px; font-family: 'Courier New', Courier, monospace;">${referralCode}</h3>
     </div>
     
-    <p style="color: #334155; font-size: 15px; line-height: 1.7; margin-bottom: 20px;">To help you get started, we have generated your Official Referral Code. Please keep this code secure, as you will use it to track your field activities, farmer registrations, and overall performance impact.</p>
-    <p style="color: #334155; font-size: 15px; line-height: 1.7; margin-bottom: 30px;">You may now log in to your official internship dashboard using your registered credentials to view your progress and next steps.</p>
+    <h4 style="color: #0f172a; font-size: 16px; font-weight: 700; margin-bottom: 12px; margin-top: 30px;">Quick Start Trial & Verification</h4>
+    <p style="color: #334155; font-size: 15px; line-height: 1.7; margin-bottom: 15px;">To help you get familiar with the process, please complete this quick trial to ensure your code is working properly:</p>
+    
+    <ol style="color: #334155; font-size: 15px; line-height: 1.8; margin-bottom: 25px; padding-left: 20px;">
+      <li style="margin-bottom: 10px;"><strong>Download the App:</strong> Install the "Kisan Khata - AP & TS Farmers" app from the Google Play Store. <em>(If you already have it installed, please install it on a friend's or family member's phone).</em></li>
+      <li style="margin-bottom: 10px;"><strong>Use Your Code:</strong> Sign up in the app and make sure to enter your Official Tracking Code (<strong>\${referralCode}</strong>) during registration.</li>
+      <li style="margin-bottom: 10px;"><strong>Check Dashboard:</strong> Add a test entry in the app (like an expense), then click the button below to log into your Internship Dashboard and see your progress update in real-time.</li>
+    </ol>
+
+    <div style="background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 15px 20px; margin: 25px 0 35px 0; border-radius: 4px;">
+      <p style="margin: 0; color: #92400e; font-size: 14px; line-height: 1.6;"><strong>Important Note:</strong> This is only a trial to verify your code. These test entries do <strong>not</strong> count towards your official internship targets or field work.</p>
+    </div>
     
     <div style="text-align: left; margin: 35px 0;">
       <a href="https://www.kisankhata.co.in/internship/dashboard" style="display: inline-block; background-color: #059669; color: #ffffff; text-decoration: none; padding: 12px 28px; font-size: 15px; font-weight: 600; border-radius: 6px;">Access Your Dashboard</a>
